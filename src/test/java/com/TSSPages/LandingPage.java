@@ -27,11 +27,11 @@ public class LandingPage extends DBUtilities {
 */
 	public void checkElementPresentOnScreen(DataTable table) throws InterruptedException
 	{
-		
+		Thread.sleep(3000);
 		List<List<String>> data = table.raw();
 		System.out.println(" value is ++" +data);
 		for (int i = 1; i <data.size(); i++){
-			Thread.sleep(3000);
+			
 			String name = data.get(i).get(1);
 			System.out.println(" and the name is+++++" +name);
 			if(name.equals("Current_Bill")

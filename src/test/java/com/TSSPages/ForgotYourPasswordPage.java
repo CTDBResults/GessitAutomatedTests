@@ -9,11 +9,11 @@ public class ForgotYourPasswordPage extends DBUtilities {
 		
 	}
 
-	public void checkBoxClick(String arg1){
-	 DBUtilities createXpath = new DBUtilities(driver);
-	String myxpath =  createXpath.xpathMakerContainsText(arg1);
-	System.out.println("Clincking on the checkbox " + arg1);
-     driver.findElement(By.xpath(myxpath)).click();
+//	public void checkBoxClick(String arg1){
+//	 DBUtilities createXpath = new DBUtilities(driver);
+//	String myxpath =  createXpath.xpathMakerContainsText(arg1);
+//	System.out.println("Clicking on the checkbox " + myxpath);
+//     driver.findElement(By.xpath(myxpath)).click();
 	 
-	}
+	//}
 }

@@ -59,6 +59,11 @@ public class XPathGenerator {
 		String xpath = "//*[contains(text(),'"+buttonName+"')]";
 		 return xpath;
 	    }
+	 public String xpathMakerContainsText2ndOption(String buttonName)
+	    {
+		String xpath = "(//*[contains(text(),'"+buttonName+"')])[2]";
+		 return xpath;
+	    }
 	//span[@class='nav-selection']
 	 public String xpathMakerSpanClass(String buttonName)
 	    {
@@ -142,12 +147,26 @@ public class XPathGenerator {
 		 
 	 }
 	 
+	 //specifically for gessit when a trwith specific text is to be selected from a table id
+	 public String xpathMakerPickTrTextInTableID(String arg1, String arg2){
+		// String xpath = "//table[contains(@id, '"+arg1+"')]/tbody";
+		//*[@id='treatmentoptiontable']/tbody/tr[contains(.,'Paritaprevir/ RTV + Ombitasvir + Dasabuvir + Ribavirin')]
+		 String xpath = "//*[@id='"+arg2+"']/tbody/tr[contains(.,'"+arg1+"')]";
+		 System.out.println(" its " +xpath);
+		 return xpath;
+	 }
+	 
 	 public String xpathMakerTbodyById(String arg1){
 		 String xpath = "//table[contains(@id, '"+arg1+"')]/tbody";
 		 System.out.println(" its " +xpath);
 		 return xpath;
 	 }
-	 	 
+	 public String xpathMakerForTableElement(String arg1){
+		 String xpath = "//tr/td[(text())=arg1]";
+		 System.out.println(" its " +xpath);
+		 return xpath;
+	 }
+	 
 	 public String xpathMakerTbody(){
 		 String xpath = "//table/tbody";
 		 System.out.println(" its " +xpath);
@@ -198,5 +217,11 @@ public class XPathGenerator {
 		 return xpath;
 	    }
 	 
+	 public String xpathMakerByTd(String arg1)
+	    {
+		String xpath = "//td[contains(., '"+arg1+"')]";
+		System.out.println("xpath ::*** " +xpath);
+		 return xpath;
+	    }
 	 
 }

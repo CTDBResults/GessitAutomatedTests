@@ -3,6 +3,7 @@ package runnerAndSteps;
 
 import java.sql.DriverManager;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 import org.junit.AfterClass;
@@ -15,6 +16,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 
@@ -61,7 +63,7 @@ public class Gessit_StepImplementations {
 
 	@After()
 		  public void tearDown() {	
-		    driver.quit();
+	    driver.quit();
 		   	  }
 	//******************************************************************************   
 	    
@@ -220,6 +222,14 @@ public class Gessit_StepImplementations {
 		 return PageFactory.initElements(driver, LandingPage.class);
 	}
 	
+	@And("^I hit tab$")
+    public LandingPage I_hit_Tab() throws InterruptedException
+	{
+  PageFactory.initElements(driver, LandingPage.class).hitTab();
+		Thread.sleep(1000);
+		
+		 return PageFactory.initElements(driver, LandingPage.class);
+	}
 	//will be used to tab out to activate a button incase the button is not activated.
 		@Given("^I Tab Out$")
 		public void i_Tab_Out() throws Throwable {
@@ -228,9 +238,27 @@ public class Gessit_StepImplementations {
 		
 		@Then("^I click on image \"(.*?)\"$")
 		public void i_click_on_image(String arg1) throws Throwable {
+			try{
+			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			LandingPage lp = PageFactory.initElements(driver, LandingPage.class);
 			lp.clickOnImage(arg1);
+			}catch (Exception e){ System.out.println("Shori saab, Element not visible on Screen");}
 		}
+		
+		// click on text
+		@Then("^I click on text \"(.*?)\"$")
+		public void i_click_on_text(String arg1) throws Throwable {
+			if (arg1.equals("Request Referral to Liver Clinic")){
+				String txtToBeClicked = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerContainsText2ndOption(arg1);
+				WebElement exist =	driver.findElement(By.xpath(txtToBeClicked));	
+				exist.click();
+			}else{
+			String txtToBeClicked = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerContainsText(arg1);
+			WebElement exist =	driver.findElement(By.xpath(txtToBeClicked));	
+			exist.click();
+			}
+		}
+
 
 	@And("^I click on button \"(.*?)\"$")
 	public void i_click_on_button(String arg1) throws Throwable {
@@ -257,10 +285,16 @@ public class Gessit_StepImplementations {
 				
 			}
 		}
+
 		else {
 			myXpath = createXpath.xpathMakerById(arg1);
-			driver.findElement(By.xpath(myXpath)).click();
+		WebElement exist =	driver.findElement(By.xpath(myXpath));
+		System.out.println(exist.getText());
+		//exist.sendKeys(Keys.RETURN);
+		exist.click();
+	
 		}
+
 		Thread.sleep(2500);
 
 	}
@@ -270,29 +304,21 @@ public class Gessit_StepImplementations {
 		new DBUtilities(driver).scrollDownThePage(arg1);
 	}
 	
+
 	@And("^I click on \"(.*?)\"$")
 	public void i_click_on(String arg1) throws Throwable {
 		// give time for page loading
-		Thread.sleep(1000);
-		Pattern datePattern = Pattern.compile("\\d\\d\\d\\d\\d\\d\\d\\d"); // date pattern as used in the calendar popup
 
-		if(arg1.equals("Create New Patient")
+		if(arg1.equals("Create New Patient")||(arg1.equals("Care Units")))
 				
-				){
+				{
 			Thread.sleep(3000);
 			DBUtilities createXpath2 = new DBUtilities(driver);
 			String myxpath = createXpath2.xpathMakerContainsText(arg1);
 			System.out.println("cliclking on " +myxpath);
 			Assert.assertTrue(driver.findElement(By.xpath(myxpath)).isDisplayed());
 			driver.findElement(By.xpath(myxpath)).click();
-			
-			
-			
-			
-//			JavascriptExecutor executor = (JavascriptExecutor)driver;
-//			executor.executeScript("arguments[0].scrollIntoView(true);",button);
-//			button.click();
-			
+
 		}
 
 		else if (arg1.equals("Welcome")){
@@ -301,33 +327,8 @@ public class Gessit_StepImplementations {
 
 				
 			}
-		// for calendar stuff found in the PAYROLL TAX INFORMATION part of the tax registration page
-		else if (datePattern.matcher(arg1).matches()){
-			DBUtilities createXpath = new DBUtilities(driver);
-			String myxpath4 = createXpath.xpathMakerContainsCustomField("dyc-date", arg1);
-			try {
-				driver.findElement(By.xpath(myxpath4)).click();
-			}
-			catch (Exception e){
-				for (int i = 0; i < 100; i++){
-					System.out.println("(" + myxpath4 + ")[" + i + "]");
-					try {
-						driver.findElement(By.xpath("(" + myxpath4 + ")[" + i + "]")).click();
-						break;
-					}
-					catch (Exception e2){
-						System.out.println();
-					}
-				}
-				
-				WebElement button = driver.findElement(By.xpath(myxpath4));
-				
-				JavascriptExecutor executor = (JavascriptExecutor)driver;
-				executor.executeScript("arguments[0].scrollIntoView(true);",button);
-				button.click();
 
-			}
-		}
+		
 		else {
 			DBUtilities createXpath = new DBUtilities(driver);
 			String myxpath = createXpath.xpathMaker(arg1);
@@ -337,9 +338,42 @@ public class Gessit_StepImplementations {
 			driver.findElement(By.xpath(myxpath)).click();
 			
 		}
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		
 	}
+
+	
+//****************************************************
+	
+	//this is for pop-up only
+	
+	//*********************************************************
+	@And("^I click on \"(.*?)\" on popup$")
+	public void i_click_on_popup(String arg1) throws Throwable {
+		// give time for page loading
+
+	
+			DBUtilities createXpath = new DBUtilities(driver);
+			String myxpath = createXpath.xpathMakerById(arg1);
+			System.out.println("cliclking on popup" +myxpath);
+			Assert.assertTrue(driver.findElement(By.xpath(myxpath)).isDisplayed());
+			Thread.sleep(1000);
+			driver.findElement(By.xpath(myxpath)).click();
+			
+		
+		Thread.sleep(1000);
+		
+	}
+	
+
+@Given("^I enter popup values as$")
+public void i_enter_popup_values_as(DataTable table) throws Throwable {
+    PageFactory.initElements(driver, DBUtilities.class).enterCucumbertableValuesInUI(table);
+}
+
+
+
+
 
 //for drop down
 	@Given("^I select \"(.*?)\" from \"(.*?)\"$")
@@ -351,19 +385,42 @@ public class Gessit_StepImplementations {
 		System.out.println(" looking for dropdown xpath " +myxpath);
 		if (myxpath.equals("//*[contains(text(),'')]")){
 		//donothing
+			
+		}else if (arg1.equals("Pegasys (peginterferon alfa-2a )")){
+		
+			  Select dropdown = new Select(driver.findElement(By.xpath(myxpath)));
+			  dropdown.selectByValue(arg1);
 		}else{
 			driver.findElement(By.xpath(myxpath)).click();
 		}
 		System.out.println();
 		
 	}
+	
+	// same as above BUT this is for pop up as multiple elements detected.
+	@Then("^on popup I select \"(.*?)\" from \"(.*?)\"$")
+	public void on_popup_I_select_from(String arg1, String arg2) throws Throwable {
+      PageFactory.initElements(driver, DBUtilities.class).xpathMakerByExactId(arg2);
+      PageFactory.initElements(driver, DBUtilities.class).hitDown();
+      PageFactory.initElements(driver, DBUtilities.class).hitEnter();
+  
+      
+	
+	}
+
+	
+	
+	
+	
 	// check for field text and text boxes
 	@And("^I enter the details as$")
 	public void I_enter_then_details_as(DataTable table) throws Throwable {
 
+		
      PageFactory.initElements(driver, DBUtilities.class).enterCucumbertableValuesInUI(table);
 	//In test	
-     //Thread.sleep(2000);
+     Thread.sleep(2000);
+   
 		
 		}
 	
@@ -373,6 +430,7 @@ public class Gessit_StepImplementations {
 	@Then("^I wait for \"(.*?)\" millisecond$")
 	public void i_wait_for_millisecond(long arg1) throws Throwable {
 		Thread.sleep(arg1);
+		 
 	}
 
 
@@ -387,7 +445,21 @@ public class Gessit_StepImplementations {
     PageFactory.initElements(driver, MakeAPaymentPage.class).hoverOverElement(arg1, arg2);
  
 	}
+// Specifically for Gessit datepicker
+	@Then("^I use \"(.*?)\" to enter \"(.*?)\"$")
+	public void i_use_to_enter(String arg1, String arg2) throws Throwable {
+		String myxpath = PageFactory.initElements(driver, DBUtilities.class).xpathMakerById(arg1);
+		WebElement date = driver.findElement(By.xpath(myxpath));
+		
+		Actions actions = new Actions(driver);
+		actions.moveToElement(date);
+		actions.click();
+		actions.sendKeys(arg2);
+		actions.build().perform();
+   
+	}
 
+	
 	// CHECK ELEMENT IS READ ONLY
 	@Then("^I check \"(.*?)\" is readonly$")
 	public void i_check_is(String arg1) throws Throwable {
@@ -397,9 +469,10 @@ public class Gessit_StepImplementations {
 	// this is for checking checkbox
 	@Given("^I click on \"(.*?)\" checkbox$")
 	public void i_click_on_checkbox(String arg1) throws Throwable {
+	
      PageFactory.initElements(driver, ForgotYourPasswordPage.class).checkBoxClick(arg1);
+	
 	}
-
 	//*********************************************** read popup message********************************************
 	@Then("^I see \"(.*?)\" displayed on popup and I click \"(.*?)\"$")
 	public void i_see_displayed_on_popup_and_I_click(String arg1, String arg2) throws Throwable {
@@ -423,6 +496,11 @@ public class Gessit_StepImplementations {
 		}
 //	}
 
+	@Then("^\"(.*?)\" is NOT displayed as \"(.*?)\"$")
+	public void is_not_displayed_as(String arg1, String arg2, DataTable table) throws Throwable {
+		PageFactory.initElements(driver, LandingPage.class).checkTextElementAbsent(table);
+		}
+	
 	
 	// Read All SAs
 	@Then("^I read all \"(.*?)\" from the corousel$")
@@ -471,6 +549,25 @@ public class Gessit_StepImplementations {
 //      AU.checkUIElementTEXTIsDisplayed(arg1);
 		DBUtilities createXpath = new DBUtilities(driver);
 		createXpath.checkTextElementPresent(arg1);
+	}	
+	
+	@Then("^I see popup \"(.*?)\" displayed$")
+	public void i_see_popup_displayed(String arg1) throws Throwable {
+//      Gessit_LandingPage AU = PageFactory.initElements(driver, Gessit_LandingPage.class);
+//      Thread.sleep(1000);
+//      AU.checkUIElementTEXTIsDisplayed(arg1);
+		DBUtilities createXpath = new DBUtilities(driver);
+		createXpath.xpathMakerById(arg1);
+	}
+	
+	
+	@Then("^I see text \"(.*?)\" not displayed$")
+	public void i_see_text_not_displayed(String arg1) throws Throwable {
+//      Gessit_LandingPage AU = PageFactory.initElements(driver, Gessit_LandingPage.class);
+//      Thread.sleep(1000);
+//      AU.checkUIElementTEXTIsDisplayed(arg1);
+		DBUtilities createXpath = new DBUtilities(driver);
+		createXpath.checkTextElementAbsent(arg1);
 	}
 	//check i am on right page
 	@Given("^I check I am on \"(.*?)\" page$")
@@ -479,6 +576,17 @@ public class Gessit_StepImplementations {
 		  
 		  System.out.println(" on correct page " +arg1);
 	}
+	
+	
+	@Then("^I see sytem date displayed in \"(.*?)\"$")
+	public void i_see_sytem_date_displayed(String arg1) throws Throwable {
+		String date = PageFactory.initElements(driver, BillingHistoryPage.class).date();
+		String bodyText = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerById(arg1);
+		String downValue = driver.findElement(By.xpath(bodyText)).getText();
+		Assert.assertTrue("Text not found!", downValue.contains(date));
+	}
+
+	
 	
 	// check that a checkbox is checked
 	@Then("^I see checkbox \"(.*?)\" as selected$")
@@ -707,11 +815,36 @@ public class Gessit_StepImplementations {
 		PageFactory.initElements(driver, DBUtilities.class).checkUIElementTableIsDisplayed(arg1);
 	}
 
-	@And("^I see the number of records are displayed in \"(.*?)\" table$")
-	public void i_see_the_number_of_records_are_displayed_in(String arg1) throws Throwable {
-		PageFactory.initElements(driver, DBUtilities.class).checkNumberOfTableRecordsIsDisplayed(arg1);
-	}
+//	@And("^I see the number of records are displayed in \"(.*?)\" table$")
+//	public void i_see_the_number_of_records_are_displayed_in(String arg1) throws Throwable {
+//		PageFactory.initElements(driver, DBUtilities.class).checkNumberOfTableRecordsIsDisplayed(arg1);
+//	}
+//	
+
 	
+	//good example to convert string into webelement and vise versa
+@Then("^I \"(.*?)\" text \"(.*?)\" displayed in table \"(.*?)\"$")
+public void i_should_see_displayed_in_table(String arg1, String arg2, String arg3) throws Throwable {
+	
+	  if (arg1.equals("check")){
+  String checkElementInTable = PageFactory.initElements(driver, DBUtilities.class).xpathMakerPickTrTextInTableID(arg2,arg3);
+  //Assert.assertEquals(true, checkElementInTable.isDisplayed());
+  Assert.assertTrue(driver.findElement(By.xpath(checkElementInTable)).isDisplayed());
+
+  }else if(arg1.equals("click")) {
+	 //  PageFactory.initElements(driver, DBUtilities.class).getTableRowContentByTableId(arg1,arg2,arg3);
+	  DBUtilities createXpath = new DBUtilities(driver);
+	  String checkElementInTable = createXpath.xpathMakerPickTrTextInTableID(arg2,arg3);
+	  System.out.println("clicking on table element " + arg1);
+	  driver.findElement(By.xpath(checkElementInTable)).click();
+		
+		
+	   
+	  
+  }
+	}
+
+
 	@Then("^I see header \"(.*?)\" is displayed as \"(.*?)\" in table \"(.*?)\"$")
 	public void i_see_header_is_displayed_as_in_table(String arg1, String arg2, String arg3, DataTable table) throws Throwable {
 
@@ -723,10 +856,10 @@ public class Gessit_StepImplementations {
 		PageFactory.initElements(driver, DBUtilities.class).checkRowValuesOrder(arg2, arg1, table);
 		}
 
-	@And("^I see records in \"(.*?)\" are sorted by \"(.*?)\" in alphabetical order$")
-	public void i_see_records_in_are_sorted_by_in_alphabetical_order(String arg1, String arg2) throws Throwable {
-		PageFactory.initElements(driver, DBUtilities.class).checkColumnValuesOrder(arg1, arg2);
-	}
+//	@And("^I see records in \"(.*?)\" are sorted by \"(.*?)\" in alphabetical order$")
+//	public void i_see_records_in_are_sorted_by_in_alphabetical_order(String arg1, String arg2) throws Throwable {
+//		PageFactory.initElements(driver, DBUtilities.class).checkColumnValuesOrder(arg1, arg2);
+//	}
 	
 	@And("^I click on \"(.*?)\" of the record with$")
 	public void i_click_on_of_the_record_with(String arg1, DataTable table) throws Throwable {
@@ -839,6 +972,62 @@ public class Gessit_StepImplementations {
           
 		 }
 		  
+	}
+
+//	8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+	
+//	  only fill in elements if preseent on screen, use carefully
+//	888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+	
+	@Given("^I enter the details if present$")
+	public void i_enter_the_details_if_present(DataTable table) throws Throwable {
+
+		
+	     PageFactory.initElements(driver, DBUtilities.class).enterCucumbertableValuesInUIOnlyIfPresent(table);
+		//In test	
+	     Thread.sleep(1000);
+	   
+	}
+
+	
+
+	@And("^I click on \"(.*?)\" if present$")
+	public void i_click_on_if_present(String arg1) throws Throwable {
+		// give time for page loading
+
+		
+			DBUtilities createXpath = new DBUtilities(driver);
+			String myxpath = createXpath.xpathMaker(arg1);
+      boolean isPresent = driver.findElements(By.xpath(myxpath)).size()>0;
+			
+			if(isPresent == true){
+				 driver.findElement(By.xpath(myxpath)).click();
+				 
+			}
+			else{
+				System.out.println(" Element not present so not doing anything as this function only does something when element is present");
+			}
+			
+			
+		}
+		
+		
+	@Then("^I click on \"(.*?)\" radio option if present$")
+	public void i_click_on_radio_option_if_present(String arg1) throws Throwable {
+		
+		
+		
+		String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg1);
+		boolean isPresent = driver.findElements(By.xpath(myxpath)).size()>0;
+		if(isPresent == true){
+			 driver.findElement(By.xpath(myxpath)).click();
+			 System.out.println(" Selecting radio option " +arg1);
+		}
+		else{
+			System.out.println(" Element not present so not doing anything as this function only does something when element is present");
+		}
+		
+	
 	}
 
 }

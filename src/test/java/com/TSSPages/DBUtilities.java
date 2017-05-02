@@ -79,7 +79,41 @@ public class DBUtilities extends XPathGenerator {
 	 	
 	 		System.out.println("***Page Element " +arg1 + " is displayed successfully***");
 	 }
+	 	 
+		 // following will check if the text element does NOT exist on the screen
+	 	 public void checkTextElementAbsent(String arg1){
+	 		 
+	 		  DBUtilities checkElementDisplayed = new DBUtilities(driver);
+	       	  String myxpath=checkElementDisplayed.xpathMakerContainsText(arg1);
+	       	  
+	       	  
+	       	 Assert.assertTrue("Text not present", driver.findElements(By.xpath(myxpath)).size() ==0);
+
+	 }
 	 
+	 	 
+	 	public void checkBoxClick(String arg1){
+	 		 DBUtilities createXpath = new DBUtilities(driver);
+	 		String myxpath =  createXpath.xpathMakerContainsText(arg1);
+	 		System.out.println("Clicking on the checkbox " + myxpath);
+	 	     driver.findElement(By.xpath(myxpath)).click();
+	 	}
+	 	 
+	 	public void checkTextElementAbsent(DataTable table) throws InterruptedException
+		{
+	 		Thread.sleep(3000);
+			List<List<String>> data = table.raw();
+			System.out.println(" value is ++" +data);
+			for (int i = 1; i <data.size(); i++){
+				;
+				String name = data.get(i).get(1);
+				System.out.println(" Checking for absent element and the name is+++++" +name);
+		       	 Assert.assertTrue("Text not present", driver.findElements(By.xpath(name)).size() ==0);
+			
+					
+				}
+			}
+			
 	// note: HS: following is different from checkElementPresentMessage
      public void checkUIElementIsDisplayed (String arg1) throws InterruptedException
    	  {
@@ -162,6 +196,7 @@ public class DBUtilities extends XPathGenerator {
 	 		 DBUtilities createXpath = new DBUtilities(driver);
 			 String myXpath = createXpath.xpathMakerByImageName(arg1);
 			 WebElement some_image = driver.findElement(By.xpath(myXpath));
+			 System.out.println("clicking on image " +some_image);
 			 some_image.click();
 			 
 
@@ -174,6 +209,30 @@ public class DBUtilities extends XPathGenerator {
 		   action.sendKeys(Keys.ENTER).build().perform();
 		   //action.sendKeys(Keys.RETURN);
 	    }
+		 
+		 public void hitDown() {
+		    	
+			 Actions action = new Actions(driver); 
+			   //action.sendKeys(Keys.ENTER).build().perform();
+			 action.sendKeys(Keys.ARROW_DOWN).perform();
+			 //  action.sendKeys(Keys.RETURN);
+		    }
+		 
+		 
+		 public void hitUp() {
+		    	
+			 Actions action = new Actions(driver); 
+			 
+			 action.sendKeys(Keys.ARROW_UP).perform();
+			 //  action.sendKeys(Keys.RETURN);
+		    }
+		 
+		 public void hitTab() {
+		    	
+			 Actions action = new Actions(driver); 
+			   action.sendKeys(Keys.TAB).build().perform();
+			   //action.sendKeys(Keys.RETURN);
+		    }
 		 
 		 // move control to new window and check if the right url is opened
 		 public void passControlToNewWindow(String arg1)
@@ -223,21 +282,42 @@ public class DBUtilities extends XPathGenerator {
 
 			 public String DNT() {
 
-//				   DateFormat dateFormat = new SimpleDateFormat("ddMMYYYYHHmmss");
-//			   //get current date time with Calendar()
-//				   Calendar cal = Calendar.getInstance();
-//				   String datentime = dateFormat.format(cal.getTime());
-//				   System.out.println(" Current System DNT is "+ datentime);
-//				   return datentime;
+				   DateFormat dateFormat = new SimpleDateFormat("ddMMYYYYHHmmss");
+			   //get current date time with Calendar()
+				   Calendar cal = Calendar.getInstance();
+				   String datentime = dateFormat.format(cal.getTime());
+				   System.out.println(" Current System DNT is "+ datentime);
+				   String truncateddatentime = datentime.substring(6);
+				   System.out.println(" Truncated Current System DNT is "+ datentime);
+				   return truncateddatentime;
 				
-				 DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy ");
-				 Date date = new Date();
-				 String currentDate = dateFormat.format(date);
-				 System.out.println(" Current System DNT is "+ currentDate);
-				return currentDate;
+//				 DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy ");
+//				 Date date = new Date();
+//				 String currentDate = dateFormat.format(date);
+//				 System.out.println(" Current System DNT is "+ currentDate);
+//				return currentDate;
 				 
 				 
 			  }
+			 
+			 public String date() {
+
+//				   DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy");
+//			   //get current date time with Calendar()
+//				   Date date = new Date();
+//				  String datentime = dateFormat.format(date);
+//				
+//				   System.out.println(" Current System date is "+ datentime);
+//				  
+				 String pattern = "dd-MM-yyyy";
+				 String dateInString =new SimpleDateFormat(pattern).format(new Date());
+				 System.out.println(" Current System date is "+ dateInString);
+                   return dateInString;
+				 
+			  }
+			 
+			 
+			 
 
 			 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 			 //++++++++++++++++++++++++++++++++++Read table Rows and compare to an expected number++++++++++++++++++++++++++++++++++++++++
@@ -367,6 +447,8 @@ public class DBUtilities extends XPathGenerator {
 				return myXpath;							
 			 }
 			 
+			 
+			 // entering cucumber table values
 			 public void enterCucumbertableValuesInUI (DataTable table) throws InterruptedException 
 			 {
 				 	String myXpath;
@@ -375,8 +457,15 @@ public class DBUtilities extends XPathGenerator {
 						for (int i = 1; i <data.size(); i++){
 							String name = data.get(i).get(1);
 							System.out.println("The table length is .." +data.size());
+						
 							
 						DBUtilities createXpath = new DBUtilities(driver);
+						// delete later if code works
+//						if(name.equals("DOB")){
+//							myXpath = createXpath.xpathMakerById(name);
+//							
+											
+						
 						try {
 							  myXpath = createXpath.xpathMakerByInputId(data.get(i).get(0));
 							  System.out.println(i);
@@ -392,15 +481,61 @@ public class DBUtilities extends XPathGenerator {
 							  System.out.println(myXpath);
 							  driver.findElement(By.xpath(myXpath)).clear();
 						  }
+						
 					 // driver.findElement(By.xpath(myXpath)).click();
 						// disabled above as we have already clicked it before
-					 
-					  driver.findElement(By.xpath(myXpath)).sendKeys(data.get(i).get(1));
+					 if(myXpath.contains("medicare")){ 
+						String nameToBeEntered= data.get(i).get(1);
+						System.out.println(nameToBeEntered);
+					String dnt =	DNT();
+					System.out.println(dnt);
+						
+						 driver.findElement(By.xpath(myXpath));
+						 String nameAfterAddingSuffix = nameToBeEntered+dnt;
+						 System.out.println(nameAfterAddingSuffix);
+						 driver.findElement(By.xpath(myXpath)).sendKeys(nameAfterAddingSuffix);
+					 }else{
+					 		
+						 driver.findElement(By.xpath(myXpath)).sendKeys(data.get(i).get(1));
 						System.out.println("Entering value in table " +myXpath +"as" +name);  
 						}
-					
+						}
 			 }
 
+			 
+			 
+			 // entering cucumber table values
+			 public void enterCucumbertableValuesInUIOnlyIfPresent (DataTable table) throws InterruptedException 
+			 {
+				 	String myXpath;
+					List<List<String>> data = table.raw();
+						
+						for (int i = 1; i <data.size(); i++){
+							String name = data.get(i).get(1);
+							System.out.println("The table length is .." +data.size());
+							DBUtilities createXpath = new DBUtilities(driver);
+							myXpath = createXpath.xpathMakerByInputId(data.get(i).get(0));
+							  System.out.println(i);
+							  System.out.println(myXpath);
+                           
+							  try{	 
+								  driver.findElement(By.xpath(myXpath)).isDisplayed();
+							    driver.findElement(By.xpath(myXpath)).sendKeys(data.get(i).get(1));
+								System.out.println("Entering value in table " +myXpath +"as" +name);  
+						}
+
+							  catch(Exception e)
+						{	
+			            	  System.out.println(" Element not present so not doing anything as this function only does something when element is present");
+						}
+						
+             
+						}
+					
+											
+					
+				
+			 }
 			 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 			 //++++++++++++++++++++++++++++++++++compare 2 dollar values++++++++++++++++++++++++++++++++++++++++
 			//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -536,6 +671,8 @@ public class DBUtilities extends XPathGenerator {
 			 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 			 //++++++++++++++++++++++++++++++++++Table handlers++++++++++++++++++++++++++++++++++++++++
 			//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+			 
+			 
 				
 				public WebElement getTableBodyByTableId(String arg1) throws InterruptedException
 			    {
@@ -554,12 +691,35 @@ public class DBUtilities extends XPathGenerator {
 			  	  	return myTable;
 			    }
 				
-				public List < WebElement > getTableRowsByTableId(String arg1) throws InterruptedException
+				public WebElement getTableRowContentByTableId(String arg2,String arg3) throws InterruptedException
+			    {
+			    	WebElement myTable = getTableBodyByTableId(arg3); 
+			    	String contents = myTable.getText();
+			
+			  	  	return myTable;
+			    }
+				
+				
+				public WebElement getTableRow(String arg1) throws InterruptedException
+			    {
+					String myxpath = new DBUtilities(driver).xpathMakerByTd(arg1);
+			    	//To locate table
+			    	WebElement myTable = driver.findElement(By.xpath(myxpath));
+			    	
+			    
+			  	  	return myTable;
+			    }
+				
+				
+				
+				
+				
+				public WebElement clickTableRowContentByTableId(String arg1) throws InterruptedException
 			    {
 			    	WebElement myTable = getTableBodyByTableId(arg1); 
-			  	  	//To locate rows of table.
-			  	  	List < WebElement > rows = myTable.findElements(By.tagName("tr"));  	 
-			  	  	return rows;
+			    	myTable.click();
+			    
+			  	  	return myTable;
 			    }
 
 				
@@ -605,16 +765,17 @@ public class DBUtilities extends XPathGenerator {
 			  	  	return headers;
 			    }
 				
-				public List<List<WebElement>> getTableCellsByTableId(String arg1) throws InterruptedException
-				{		
-					List<List<WebElement>> tableCells = new ArrayList<List<WebElement>>();
-					List < WebElement > rows = getTableRowsByTableId(arg1);
-					for (int i=0; i < rows.size(); i++){
-						List < WebElement > cells = rows.get(i).findElements(By.tagName("td")); 
-						tableCells.add(cells);
-					}
-					return tableCells;		
-				}	
+//				public List<List<WebElement>> getTableCellsByTableId(String arg1) throws InterruptedException
+//				{		
+//					List<List<WebElement>> tableCells = new ArrayList<List<WebElement>>();
+//					List < WebElement > rows = getTableRowContentByTableId(arg1);
+//					for (int i=0; i < rows.size(); i++){
+//						List < WebElement > cells = rows.get(i).findElements(By.tagName("td")); 
+//						tableCells.add(cells);
+//						System.out.println(cells);
+//					}
+//					return tableCells;		
+//				}	
 							
 				public List<List<WebElement>> getTableCells() throws InterruptedException
 				{		
@@ -640,24 +801,24 @@ public class DBUtilities extends XPathGenerator {
 					return index;		
 				}	
 				
-				public List< WebElement > getTableColumnsByTableId(String arg1, String arg2) throws InterruptedException
-				{
-					List < WebElement > headers = getTableHeaderByTableId(arg1);
-					int index = 0;
-					for (int i=0; i < headers.size(); i++){
-						if (headers.get(i).getText().equals(arg2)) {
-							index = i;
-							break;
-						}
-					}
-					
-					List< WebElement > columns = new ArrayList< WebElement >();
-					List<List<WebElement>> tableCells = getTableCellsByTableId(arg1);
-					for (int i=0; i < tableCells.size(); i++){
-						columns.add(tableCells.get(i).get(index));
-					}
-					return columns;
-				}	
+	//			public List< WebElement > getTableColumnsByTableId(String arg1, String arg2) throws InterruptedException
+//				{
+//					List < WebElement > headers = getTableHeaderByTableId(arg1);
+//					int index = 0;
+//					for (int i=0; i < headers.size(); i++){
+//						if (headers.get(i).getText().equals(arg2)) {
+//							index = i;
+//							break;
+//						}
+//					}
+//					
+//					List< WebElement > columns = new ArrayList< WebElement >();
+//					List<List<WebElement>> tableCells = getTableCellsByTableId(arg1);
+//					for (int i=0; i < tableCells.size(); i++){
+//						columns.add(tableCells.get(i).get(index));
+//					}
+//					return columns;
+//				}	
 							
 				public List< WebElement > getTableColumns(String arg1) throws InterruptedException
 				{
@@ -681,6 +842,7 @@ public class DBUtilities extends XPathGenerator {
 			    public void checkUIElementTableIsDisplayed (String arg1) throws InterruptedException
 				  {
 			    	WebElement myTable = getTableBodyByTableId(arg1);
+			    	System.out.println("table displeyed as ************" +myTable);
 			    	// verify table on screen
 					Assert.assertTrue(" Varification failed as table NOT FOUND", myTable.isDisplayed());
 				}
@@ -701,12 +863,18 @@ public class DBUtilities extends XPathGenerator {
 					Assert.assertTrue(driver.findElement(By.xpath(combineXPaths)).isDisplayed());
 				}
 				
-			    public void checkNumberOfTableRecordsIsDisplayed (String arg1) throws InterruptedException
-				  {
-			    	List < WebElement > rows = getTableRowsByTableId(arg1);
-			    	checkCombineTextIsDisplayed(rows.size() + "", "record");
-					//Assert.assertTrue(" Varification failede as " +myxpath +"NOT FOUND", driver.findElement(By.xpath(myxpath)).isDisplayed());
-				}
+//			    public void checkNumberOfTableRecordsIsDisplayed (String arg1) throws InterruptedException
+//				  {
+//			    	List < WebElement > rows = getTableRowContentByTableId(arg1);
+//			    	checkCombineTextIsDisplayed(rows.size() + "", "record");
+//					//Assert.assertTrue(" Varification failede as " +myxpath +"NOT FOUND", driver.findElement(By.xpath(myxpath)).isDisplayed());
+//				}
+//			    
+////			    public void checkSpecificTextInTable (String arg1, DataTable table) throws InterruptedException
+////				  {
+////			    	List < WebElement > rows = getTableRowsByTableId(table);
+////			    	
+////								}
 				
 				public void checkTableHeadersOrder(String arg1, DataTable table) throws InterruptedException
 				{
@@ -727,25 +895,25 @@ public class DBUtilities extends XPathGenerator {
 					Assert.assertTrue("Headers are not displayed in a correct order",val);
 				}
 				
-				public void checkColumnValuesOrder(String arg1, String arg2) throws InterruptedException
-				{
-					List <String> vals = new ArrayList <String>();
-					List < WebElement > columns = getTableColumnsByTableId(arg1, arg2);
-					for (int i=0; i < columns.size(); i++){
-						System.out.println("value: " + columns.get(i).getText());
-						vals.add(columns.get(i).getText());
-					}
-					boolean isSorted = true;
-					for(int i = 0; i < vals.size() - 1; i++) {
-						// current String is > than the next one (if there are equal list is still sorted)
-						if(vals.get(i).compareToIgnoreCase(vals.get(i + 1)) > 0) { 
-							isSorted = false;
-							break;
-						}
-					}
-					Assert.assertTrue("The values are not sorted in alphabetical order.",isSorted);
-				}
-				
+//				public void checkColumnValuesOrder(String arg1, String arg2) throws InterruptedException
+//				{
+//					List <String> vals = new ArrayList <String>();
+//					List < WebElement > columns = getTableColumnsByTableId(arg1, arg2);
+//					for (int i=0; i < columns.size(); i++){
+//						System.out.println("value: " + columns.get(i).getText());
+//						vals.add(columns.get(i).getText());
+//					}
+//					boolean isSorted = true;
+//					for(int i = 0; i < vals.size() - 1; i++) {
+//						// current String is > than the next one (if there are equal list is still sorted)
+//						if(vals.get(i).compareToIgnoreCase(vals.get(i + 1)) > 0) { 
+//							isSorted = false;
+//							break;
+//						}
+//					}
+//					Assert.assertTrue("The values are not sorted in alphabetical order.",isSorted);
+//				}
+//				
 				
 				public void checkRowValuesOrder(String arg1, String arg2, DataTable table) throws InterruptedException
 				{
