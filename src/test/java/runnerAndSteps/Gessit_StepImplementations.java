@@ -63,7 +63,7 @@ public class Gessit_StepImplementations {
 
 	@After()
 		  public void tearDown() {	
-	    driver.quit();
+	//    driver.quit();
 		   	  }
 	//******************************************************************************   
 	    
@@ -1029,10 +1029,130 @@ public void i_should_see_displayed_in_table(String arg1, String arg2, String arg
 		
 	
 	}
-
+	
+//	8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888	
+//	8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888	
+//	8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888	
+//	8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+//	8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+//	88888888888888888888888888888888888888 ALGORITHM 888888888888888888888888888888888888888888888888
+//	8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+//	8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888	
+//	8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+//	8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888	
+//	8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+//	888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
+	
+	
+	@Then("^for ALGO I click on \"(.*?)\" radio option$")
+	public void for_ALGO_I_click_on_radio_option(String arg1) throws Throwable {
+		if(arg1.equals("G30")){
+		String arg2 = "renalfailno";
+		String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+		driver.findElement(By.xpath(myxpath)).click();
+		System.out.println(" Selecting radio option " +arg1);
+		
+		
+		}else if(arg1.equals("L30")){
+		String arg2 = "renalfailyes";
+		String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+		driver.findElement(By.xpath(myxpath)).click();
+		System.out.println(" Selecting radio option " +arg1);
+		
+		
+		}else if (arg1.equals("1AL")){
+			String arg2 = "genotype1a";
+			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+			driver.findElement(By.xpath(myxpath)).click();
+			System.out.println(" Selecting radio option " +arg1);
+			
+		}else if (arg1.equals("1AG")){
+			String arg2 = "genotype1a";
+			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+			driver.findElement(By.xpath(myxpath)).click();
+			System.out.println(" Selecting radio option " +arg1);
+			
+		}else if (arg1.equals("1AU")){
+			String arg2 = "genotype1a";
+			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+			driver.findElement(By.xpath(myxpath)).click();
+			System.out.println(" Selecting radio option " +arg1);
+			
+		}else if (arg1.equals("1BL")){
+			String arg2 = "genotype1a";
+			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+			driver.findElement(By.xpath(myxpath)).click();
+			System.out.println(" Selecting radio option " +arg1);
+			
+		}else if (arg1.equals("1BU")){
+			String arg2 = "genotype1b";
+			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+			driver.findElement(By.xpath(myxpath)).click();
+			System.out.println(" Selecting radio option " +arg1);
+			
+		}else if (arg1.equals("2XX")){
+			String arg2 = "genotype2";
+			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+			driver.findElement(By.xpath(myxpath)).click();
+			System.out.println(" Selecting radio option " +arg1);
+			
+		}else if (arg1.equals("3XX")){
+			String arg2 = "genotype3";
+			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+			driver.findElement(By.xpath(myxpath)).click();
+			System.out.println(" Selecting radio option " +arg1);
+			
+		}else if (arg1.equals("4XX")){
+			String arg2 = "genotype4";
+			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+			driver.findElement(By.xpath(myxpath)).click();
+			System.out.println(" Selecting radio option " +arg1);
+			
+		}else if (arg1.equals("5XX")){
+			String arg2 = "genotype5";
+			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+			driver.findElement(By.xpath(myxpath)).click();
+			System.out.println(" Selecting radio option " +arg1);
+			
+		}else if (arg1.equals("6XX")){
+			String arg2 = "genotype6";
+			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+			driver.findElement(By.xpath(myxpath)).click();
+			System.out.println(" Selecting radio option " +arg1);
+		
+		
+		
+		/// following is for therapy
+	  
+		}else if (arg1.equals("XPN")){
+			String arg2 = "genotype6";
+			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+			driver.findElement(By.xpath(myxpath)).click();
+			System.out.println(" Selecting radio option " +arg1);
+		}else if (arg1.equals("X5A")){
+			String arg2 = "nsa5expgroup";
+			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+			driver.findElement(By.xpath(myxpath)).click();
+			System.out.println(" Selecting radio option " +arg1);
+		}else if (arg1.equals("X5B")){
+			String arg2 = "genotype6";
+			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+			driver.findElement(By.xpath(myxpath)).click();
+			System.out.println(" Selecting radio option " +arg1);
+		}else if (arg1.equals("XAB")){
+			String arg2 = "nsa5a5bxpgroup";
+			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+			driver.findElement(By.xpath(myxpath)).click();
+			System.out.println(" Selecting radio option " +arg1);
+		}else if (arg1.equals("XIF")){
+			String arg2 = "interferonexpgroup";
+			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+			driver.findElement(By.xpath(myxpath)).click();
+			System.out.println(" Selecting radio option " +arg1);
 }
 	
 	
+}
 
-
+}
 
