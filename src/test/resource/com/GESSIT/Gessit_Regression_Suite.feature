@@ -126,7 +126,7 @@ Feature: Some feature
       | FirstNameInput | <FirstName>    |
       | FirstNameInput | <FirstName>    |
     And I use "DOB" to enter "12122001"
-    And I select "Royal" from "Care Unit"
+    And I select "<CU>" from "Care Unit"
     And I select "Male" from "Gender"
     Then I click on button "OptionalFields"
     And I enter the details as
@@ -158,8 +158,8 @@ Feature: Some feature
 
     #Scenario 1: Create patient
     Examples: 
-      | PortalName | email                       | Password | FirstName | EmailInput   | LastName  | contactInput | medicare | postCode | ResidentialAddress1 | Weight | Height | ResidentialAddress2 | Suburb   |
-      | Gessit     | demospecialist123@gmail.com | pass123  | Hemantww  | abwc@abc.com | testTwoww |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
+      | PortalName | email                       | Password | FirstName | EmailInput   | LastName  | contactInput | medicare | CU|postCode | ResidentialAddress1 | Weight | Height | ResidentialAddress2 | Suburb   |
+      | Gessit     | demospecialist123@gmail.com | pass123  | Hemantww  | abwc@abc.com | testTwoww |   0422000000 |        7 | Royal |   2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
 
   Scenario Outline: GES-3 Scenario 4 Create patient tests (from,LHS menu), Postal address different from residential address
     Given I want to login to portal "<PortalName>"
@@ -184,7 +184,7 @@ Feature: Some feature
       | FirstNameInput | <FirstName>    |
       | FirstNameInput | <FirstName>    |
     And I use "DOB" to enter "12122001"
-    And I select "Royal" from "Care Unit"
+    And I select "<CU>" from "Care Unit"
     And I select "Male" from "Gender"
     Then I click on button "OptionalFields"
     And I enter the details as
@@ -199,8 +199,8 @@ Feature: Some feature
 
     # DO not submit
     Examples: 
-      | PortalName | email                       | Password | FirstName | EmailInput   | LastName | contactInput | medicare | postCode | ResidentialAddress1 | Weight | Height | ResidentialAddress2 | Suburb   |
-      | Gessit     | demospecialist123@gmail.com | pass123  | Test      | abwc@abc.com | Patient  |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
+      | PortalName | email                       | Password | FirstName | EmailInput   | LastName | contactInput | medicare |CU| postCode | ResidentialAddress1 | Weight | Height | ResidentialAddress2 | Suburb   |
+      | Gessit     | demospecialist123@gmail.com | pass123  | Test      | abwc@abc.com | Patient  |   0422000000 |        7 | Royal|    2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
 
   Scenario Outline: GES-3 Create patient tests (from,RHS), Postal address different from residential address
     #  GES-141 :As a GP/Specialist, I want a prompt message displayed when I enter a new patient in the system and it identifies the patient already exists.
@@ -225,7 +225,7 @@ Feature: Some feature
       | FirstNameInput | <FirstName>    |
       | FirstNameInput | <FirstName>    |
     And I use "DOB" to enter "12122001"
-    And I select "Royal" from "Care Unit"
+    And I select "<CU>" from "Care Unit"
     And I select "Male" from "Gender"
     Then I click on button "OptionalFields"
     And I enter the details as
@@ -270,7 +270,7 @@ Feature: Some feature
       | FirstNameInput | <FirstName>    |
       | FirstNameInput | <FirstName>    |
     And I use "DOB" to enter "12122001"
-    And I select "Royal" from "Care Unit"
+    And I select "<CU>" from "Care Unit"
     And I select "Male" from "Gender"
     Then I click on button "OptionalFields"
     And I enter the details as
@@ -288,8 +288,8 @@ Feature: Some feature
     # Then I see text "A patient already exists with the details that you have entered." displayed
     #Scenario 1: Create patient
     Examples: 
-      | PortalName | email                       | Password | FirstName | EmailInput   | LastName  | contactInput | medicare | postCode | ResidentialAddress1 | Weight | Height | ResidentialAddress2 | Suburb   |
-      | Gessit     | demospecialist123@gmail.com | pass123  | Hemantwwf | abwc@abc.com | testTwoww |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
+      | PortalName | email                       | Password | FirstName | EmailInput   | LastName  | CU|contactInput | medicare | postCode | ResidentialAddress1 | Weight | Height | ResidentialAddress2 | Suburb   |
+      | Gessit     | demospecialist123@gmail.com | pass123  | Hemantwwf | abwc@abc.com | testTwoww |Royal |  0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
 
   Scenario Outline: GES-9 As a GP/Specialist, I want the ability to record the patient's medications so that the appropriate treatment plan can be selected
     #Scenario 1:Medication search unsuccessful
@@ -801,7 +801,7 @@ Feature: Some feature
       | FirstNameInput | <FirstName>    |
     And I wait for "1000" millisecond
     And I use "DOB" to enter "12122001"
-    And I select "Royal" from "Care Unit"
+    And I select "<CU>" from "Care Unit"
     And I select "Male" from "Gender"
     Then I click on button "OptionalFields"
     And I enter the details as
@@ -923,8 +923,8 @@ Feature: Some feature
       | item1 | Creatinine    |
 
     Examples: 
-      | PortalName | email                       | Password | FirstName           | EmailInput   | LastName     | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message1 | Suburb     | ResidentialAddress1 | Weight | Height   | ResidentialAddress2 |
-      | Gessit     | demospecialist123@gmail.com | pass123  | CheckCirrhosisLogic | abwc@abc.com | NOTCirrhotic |   0422000000 |        7 |     2222 |       40 |  50 |      200 |          | Chandigarh |                  84 |    175 | Bhilowal |                     |
+      | PortalName | email                       | Password | FirstName           | EmailInput   | LastName     |CU |contactInput | medicare | postCode | aprilevl | ast | Platelet | Message1 | Suburb     | ResidentialAddress1 | Weight | Height   | ResidentialAddress2 |
+      | Gessit     | demospecialist123@gmail.com | pass123  | CheckCirrhosisLogic | abwc@abc.com | NOTCirrhotic |Royal |  0422000000 |        7 |     2222 |       40 |  50 |      200 |          | Chandigarh |                  84 |    175 | Bhilowal |                     |
   
    Scenario Outline: GES-249, As a GP, I want the ability to start a treatment plan without needing to send it to a Specialist for approval and completed added as well.
     Given I want to login to portal "<PortalName>"
@@ -1567,7 +1567,7 @@ Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approv
       | FirstNameInput | <FirstName>    |
     And I wait for "1000" millisecond
     And I use "DOB" to enter "12122001"
-    And I select "Royal" from "Care Unit"
+    And I select "<CU>" from "Care Unit"
     And I select "Male" from "Gender"
     And I click on "Create Patient"
     And I click on "Next"
@@ -1581,7 +1581,6 @@ Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approv
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
     And I select "Adelaide - James Kildare (Oncologist)" from "Specialist"
-    And I select "Darwin - Torsten Wiesel (GP)" from "GP"
     And I click on "Save"
     Then "<Item>" is displayed as "<ItemName>"
       | Item  | ItemName       |
@@ -1637,8 +1636,8 @@ Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approv
     Then I see text "Treatment Plan (Approved)" displayed
 
     Examples: 
-      | PortalName | email               | Password | FirstName | EmailInput   | LastName | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message |
-      | Gessit     | demogp123@gmail.com | pass123  | SetTwo    | abwc@abc.com | GAP      |   0422000000 |        7 |     2222 |       40 |  50 |      200 |         |
+      | PortalName | email               | Password | FirstName | EmailInput   | LastName | contactInput |CU| medicare | postCode | aprilevl | ast | Platelet | Message |
+      | Gessit     | demogp123@gmail.com | pass123  | SetTwo    | abwc@abc.com | GAP      |   0422000000 | Bay|       7 |     2222 |       40 |  50 |      200 |         |
 
   Scenario Outline: Set 4..... login as specialist.......create a draft (NC)....... approve
     Given I want to login to portal "<PortalName>"
@@ -1663,7 +1662,7 @@ Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approv
       | FirstNameInput | <FirstName>    |
     And I wait for "1000" millisecond
     And I use "DOB" to enter "12122001"
-    And I select "Royal" from "Care Unit"
+    And I select "<CU>" from "Care Unit"
     And I select "Male" from "Gender"
     And I click on "Create Patient"
     And I click on "Next"
@@ -1723,8 +1722,8 @@ Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approv
     Then I see text "Treatment Plan (Approved)" displayed
 
     Examples: 
-      | PortalName | email                       | Password | FirstName | EmailInput   | LastName | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message |
-      | Gessit     | demospecialist123@gmail.com | pass123  | SetTwo    | abwc@abc.com | GAP      |   0422000000 |        7 |     2222 |       40 |  50 |      200 |         |
+      | PortalName | email                       | Password | FirstName | EmailInput   | LastName | contactInput |CU| medicare | postCode | aprilevl | ast | Platelet | Message |
+      | Gessit     | demospecialist123@gmail.com | pass123  | SetTwo    | abwc@abc.com | GAP      |   0422000000 | Royal|       7 |     2222 |       40 |  50 |      200 |         |
 
   Scenario Outline: Set 7..... login as specialist.......create a draft (C).......save and  approve
     Given I want to login to portal "<PortalName>"
@@ -1749,7 +1748,7 @@ Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approv
       | FirstNameInput | <FirstName>    |
     And I wait for "1000" millisecond
     And I use "DOB" to enter "12122001"
-    And I select "Royal" from "Care Unit"
+    And I select "<CU>" from "Care Unit"
     And I select "Male" from "Gender"
     And I click on "Create Patient"
     And I click on "Next"
@@ -1838,8 +1837,8 @@ Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approv
     Then I see sytem date displayed in "dateDiv"
 
     Examples: 
-      | PortalName | email                       | Password | FirstName | EmailInput   | LastName | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message       |
-      | Gessit     | demospecialist123@gmail.com | pass123  | SetTwo    | abwc@abc.com | GAP      |   0422000000 |        7 |     2222 |       40 |  50 |       20 | Complications |
+      | PortalName | email                       | Password | FirstName | EmailInput   | LastName | contactInput |CU |medicare | postCode | aprilevl | ast | Platelet | Message       |
+      | Gessit     | demospecialist123@gmail.com | pass123  | SetTwo    | abwc@abc.com | GAP      |   0422000000 | Royal |      7 |     2222 |       40 |  50 |       20 | Complications |
 
   Scenario Outline: 
     # Set 8..... login as specialist.......create a draft (C).......save and  discard
@@ -1865,7 +1864,7 @@ Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approv
       | FirstNameInput | <FirstName>    |
     And I wait for "1000" millisecond
     And I use "DOB" to enter "12122001"
-    And I select "Royal" from "Care Unit"
+    And I select "<CU>" from "Care Unit"
     And I select "Male" from "Gender"
     And I click on "Create Patient"
     And I click on "Next"
@@ -1937,8 +1936,8 @@ Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approv
     #defect 824
     #Then I see text "Treatment Plans" not displayed
     Examples: 
-      | PortalName | email                       | Password | FirstName | EmailInput   | LastName | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message       |
-      | Gessit     | demospecialist123@gmail.com | pass123  | SetTwo    | abwc@abc.com | GAP      |   0422000000 |        7 |     2222 |       40 |  50 |       20 | Complications |
+      | PortalName | email                       | Password | FirstName | EmailInput   | LastName | contactInput |CU |medicare | postCode | aprilevl | ast | Platelet | Message       |
+      | Gessit     | demospecialist123@gmail.com | pass123  | SetTwo    | abwc@abc.com | GAP      |   0422000000 | Royal |      7 |     2222 |       40 |  50 |       20 | Complications |
 
   Scenario Outline: GES-119, GES-621 As an Administrator, I want the ability to create and view Care Units
     # Scenario 1: Administrator accesses Create Care Unit function
@@ -2027,6 +2026,7 @@ Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approv
   ##############################################################
   #######################NOTES BY GP AND SP#########################
   ###############################################################
+ 
   Scenario Outline: GES-233 - As a GP/Specialist, I should be able to add notes to a treatment plan page
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -2050,7 +2050,7 @@ Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approv
       | FirstNameInput | <FirstName>    |
     And I wait for "1000" millisecond
     And I use "DOB" to enter "12122001"
-    And I select "Royal" from "Care Unit"
+    And I select "<CU>" from "Care Unit"
     And I select "Male" from "Gender"
     And I click on "Create Patient"
     And I click on "Next"
@@ -2064,7 +2064,7 @@ Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approv
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
     And I select "Adelaide - James Kildare (Oncologist)" from "Specialist"
-    And I select "Darwin - Torsten Wiesel (GP)" from "GP"
+   # And I select "Darwin - Torsten Wiesel (GP)" from "GP"
     And I click on "Save"
     Then "<Item>" is displayed as "<ItemName>"
       | Item  | ItemName       |
@@ -2151,8 +2151,8 @@ Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approv
       | item1 | <noteinput> |
 
     Examples: 
-      | PortalName | email               | Password | FirstName | EmailInput   | LastName | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message | text                     | addnote   | noteinput     | addnote2 | noteinput2                     | billrubin | inr | albumin | creatinine | Poorly controlled | Minimum | variscesyes | bleedingyes |
-      | Gessit     | demogp123@gmail.com | pass123  | test233   | abwc@abc.com | GPNC     |   0422000000 |        7 |     2222 |       40 |  50 |      200 |         | Based on the information | I am a GP | entering note | GP       | Check if i can add to approved |           |     |         |            |                   |         |             |             |
+      | PortalName | email               | Password | FirstName | EmailInput   | LastName | contactInput |CU |medicare | postCode | aprilevl | ast | Platelet | Message | text                     | addnote   | noteinput     | addnote2 | noteinput2                     | billrubin | inr | albumin | creatinine | Poorly controlled | Minimum | variscesyes | bleedingyes |
+      | Gessit     | demogp123@gmail.com | pass123  | testTwoThreeThree   | abwc@abc.com | GPNC     |   0422000000 |Bay  |      7 |     2222 |       40 |  50 |      200 |         | Based on the information | I am a GP | entering note | GP       | Check if i can add to approved |           |     |         |            |                   |         |             |             |
 
   Scenario Outline: GES-233 - As a GP, I should be able to add notes to a Cirrotic treatment plan page
     Given I want to login to portal "<PortalName>"
@@ -2177,7 +2177,7 @@ Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approv
       | FirstNameInput | <FirstName>    |
     And I wait for "1000" millisecond
     And I use "DOB" to enter "12122001"
-    And I select "Royal" from "Care Unit"
+    And I select "<CU>" from "Care Unit"
     And I select "Male" from "Gender"
     And I click on "Create Patient"
     And I click on "Next"
@@ -2191,7 +2191,6 @@ Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approv
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
     And I select "Adelaide - James Kildare (Oncologist)" from "Specialist"
-    And I select "Darwin - Torsten Wiesel (GP)" from "GP"
     And I click on "Save"
     Then "<Item>" is displayed as "<ItemName>"
       | Item  | ItemName       |
@@ -2283,8 +2282,8 @@ Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approv
       | item1 | <noteinput> |
 
     Examples: 
-      | PortalName | email               | Password | FirstName | EmailInput   | LastName | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message | text | addnote   | noteinput     | addnote2 | noteinput2                     |
-      | Gessit     | demogp123@gmail.com | pass123  | test233   | abwc@abc.com | GPC      |   0422000000 |        7 |     2222 |       40 |  50 |       20 |         |      | I am a GP | entering note | GP       | Check if i can add to approved |
+      | PortalName | email               | Password | FirstName | EmailInput   | LastName | contactInput | medicare | CU|postCode | aprilevl | ast | Platelet | Message | text | addnote   | noteinput     | addnote2 | noteinput2                     |
+      | Gessit     | demogp123@gmail.com | pass123  | testTwoThreeThree   | abwc@abc.com | GPC      |   0422000000 |        7 | Bay |   2222 |       40 |  50 |       20 |         |      | I am a GP | entering note | GP       | Check if i can add to approved |
 
   Scenario Outline: GES-233 - As a GP, I should be able to add notes to a Cirrotic treatment plan page
     Given I want to login to portal "<PortalName>"
@@ -2309,7 +2308,7 @@ Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approv
       | FirstNameInput | <FirstName>    |
     And I wait for "1000" millisecond
     And I use "DOB" to enter "12122001"
-    And I select "Royal" from "Care Unit"
+    And I select "<CU>" from "Care Unit"
     And I select "Male" from "Gender"
     And I click on "Create Patient"
     And I click on "Next"
@@ -2322,8 +2321,8 @@ Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approv
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Adelaide - James Kildare (Oncologist)" from "Specialist"
-    And I select "Darwin - Torsten Wiesel (GP)" from "GP"
+    
+    And I select "Port Melbourne - Torsten Wiesel (GP)" from "GP"
     And I click on "Save"
     Then "<Item>" is displayed as "<ItemName>"
       | Item  | ItemName       |
@@ -2397,6 +2396,7 @@ Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approv
       | item1 | <noteinput> |
     Then I click on "Submit"
     And I click on text "Approve Plan"
+    And I wait for "1000" millisecond
     Then I see text "Treatment Plan (Approved)" displayed
     And I click on text "+ Add Note"
     Then "<Item>" is displayed as "<ItemName>"
@@ -2415,9 +2415,9 @@ Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approv
       | item1 | <noteinput> |
 
     Examples: 
-      | PortalName | email                       | Password | FirstName              | EmailInput   | LastName | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message | text | addnote   | noteinput     | addnote2   | noteinput2                              |
-      | Gessit     | demospecialist123@gmail.com | pass123  | test233loginSpecialist | abwc@abc.com | SPC      |   0422000000 |        7 |     2222 |       40 |  50 |       20 |         |      | I am a GP | entering note | SPecialist | Check if specialist can add to approved |
-
+      | PortalName | email                       | Password | FirstName              | EmailInput   | LastName |CU| contactInput | medicare | postCode | aprilevl | ast | Platelet | Message | text | addnote   | noteinput     | addnote2   | noteinput2                              |
+      | Gessit     | demospecialist123@gmail.com | pass123  | testTTTloginSpecialist | abwc@abc.com | SPC      |Royal |  0422000000 |        7 |     2222 |       40 |  50 |       20 |         |      | I am a GP | entering note | SPecialist | Check if specialist can add to approved |
+@Gessit_Regression
   Scenario Outline: GES-233 - As a GP, I should be able to add notes to a Cirrotic treatment plan page
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -2441,7 +2441,7 @@ Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approv
       | FirstNameInput | <FirstName>    |
     And I wait for "1000" millisecond
     And I use "DOB" to enter "12122001"
-    And I select "Royal" from "Care Unit"
+    And I select "<CU>" from "Care Unit"
     And I select "Male" from "Gender"
     And I click on "Create Patient"
     And I click on "Next"
@@ -2454,8 +2454,8 @@ Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approv
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Adelaide - James Kildare (Oncologist)" from "Specialist"
-    And I select "Darwin - Torsten Wiesel (GP)" from "GP"
+  
+    And I select "Port Melbourne - Torsten Wiesel (GP)" from "GP"
     And I click on "Save"
     And I click on "Next"
     And I check I am on "Medical History" page
@@ -2543,8 +2543,8 @@ Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approv
       | item1 | <noteinput> |
 
     Examples: 
-      | PortalName | email                       | Password | FirstName              | EmailInput   | LastName | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message | text | addnote   | noteinput     | addnote2   | noteinput2                              |
-      | Gessit     | demospecialist123@gmail.com | pass123  | test233loginSpecialist | abwc@abc.com | SPC      |   0422000000 |        7 |     2222 |       40 |  50 |       20 |         |      | I am a GP | entering note | SPecialist | Check if specialist can add to approved |
+      | PortalName | email                       | Password | FirstName              | EmailInput   | LastName | contactInput | medicare |CU |postCode | aprilevl | ast | Platelet | Message | text | addnote   | noteinput     | addnote2   | noteinput2                              |
+      | Gessit     | demospecialist123@gmail.com | pass123  | testTTTloginSpecialist | abwc@abc.com | SPC      |   0422000000 |        7 |Royal  |   2222 |       40 |  50 |       20 |         |      | I am a GP | entering note | SPecialist | Check if specialist can add to approved |
 
   Scenario Outline: GES-502 Password reset for an account
     Given I want to login to portal "<PortalName>"

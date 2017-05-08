@@ -63,7 +63,7 @@ public class Gessit_StepImplementations {
 
 	@After()
 		  public void tearDown() {	
-	//    driver.quit();
+	   // driver.quit();
 		   	  }
 	//******************************************************************************   
 	    
@@ -1062,33 +1062,57 @@ public void i_should_see_displayed_in_table(String arg1, String arg2, String arg
 		
 		}else if (arg1.equals("1AL")){
 			String arg2 = "genotype1a";
+			String arg3 = "viralload6mlessgroup";
 			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
 			driver.findElement(By.xpath(myxpath)).click();
 			System.out.println(" Selecting radio option " +arg1);
+			String myxpath2 = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg3);
+			driver.findElement(By.xpath(myxpath2)).click();
 			
 		}else if (arg1.equals("1AG")){
 			String arg2 = "genotype1a";
+			String arg3 = "viralload6mgreatergroup";
 			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
 			driver.findElement(By.xpath(myxpath)).click();
 			System.out.println(" Selecting radio option " +arg1);
+			String myxpath2 = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg3);
+			driver.findElement(By.xpath(myxpath2)).click();
+			
 			
 		}else if (arg1.equals("1AU")){
 			String arg2 = "genotype1a";
+			String arg3 = "viralloadunknowngroup";
+			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+			driver.findElement(By.xpath(myxpath)).click();
+			System.out.println(" Selecting radio option " +arg1);
+			String myxpath2 = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg3);
+			driver.findElement(By.xpath(myxpath2)).click();
+			
+			
+		}else if (arg1.equals("1BL")){
+			String arg2 = "genotype1b";
+			String arg3 = "viralload6mlessgroup";
 			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
 			driver.findElement(By.xpath(myxpath)).click();
 			System.out.println(" Selecting radio option " +arg1);
 			
-		}else if (arg1.equals("1BL")){
-			String arg2 = "genotype1a";
+		}else if (arg1.equals("1BG")){
+			String arg2 = "genotype1b";
+			String arg3 = "viralload6mgreatergroup";
 			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
 			driver.findElement(By.xpath(myxpath)).click();
 			System.out.println(" Selecting radio option " +arg1);
+			String myxpath2 = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg3);
+			driver.findElement(By.xpath(myxpath2)).click();
 			
 		}else if (arg1.equals("1BU")){
 			String arg2 = "genotype1b";
+			String arg3 = "viralload6mgreatergroup";
 			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
 			driver.findElement(By.xpath(myxpath)).click();
 			System.out.println(" Selecting radio option " +arg1);
+			String myxpath2 = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg3);
+			driver.findElement(By.xpath(myxpath2)).click();
 			
 		}else if (arg1.equals("2XX")){
 			String arg2 = "genotype2";
@@ -1149,10 +1173,176 @@ public void i_should_see_displayed_in_table(String arg1, String arg2, String arg
 			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
 			driver.findElement(By.xpath(myxpath)).click();
 			System.out.println(" Selecting radio option " +arg1);
+			
+			// for TreatmentOutcome (this decides if Therapy is considered)
+		}else if (arg1.equals("NVX")){
+			String arg2 = "previoustherapyno";
+			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+			driver.findElement(By.xpath(myxpath)).click();
+			System.out.println(" Selecting radio option " +arg1);
+		
+			
+		// only if above is non NVX
+		}else if(!arg1.equals(" ")){
+			String arg2 = "previoustherapyyes";
+			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+			driver.findElement(By.xpath(myxpath)).click();
+			System.out.println(" Selecting radio option " +arg1);
+			
+		// this is for Outcome
+			
+		}else if(arg1.equals("XNX")){
+			String arg2 = "therapyOutcome1";
+			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+			driver.findElement(By.xpath(myxpath)).click();
+			System.out.println(" Selecting radio option " +arg1);
+		}else if(arg1.equals("XRP")){
+			String arg2 = "therapyOutcome4";
+			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+			driver.findElement(By.xpath(myxpath)).click();
+			System.out.println(" Selecting radio option " +arg1);
+		}else if(arg1.equals("XIN")){
+			String arg2 = "therapyOutcome2";
+			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+			driver.findElement(By.xpath(myxpath)).click();
+			System.out.println(" Selecting radio option " +arg1);
+		}else if(arg1.equals("XUN")){
+			String arg2 = "therapyOutcome3";
+			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+			driver.findElement(By.xpath(myxpath)).click();
+			System.out.println(" Selecting radio option " +arg1);
 }
 	
 	
 }
+	
+	@Given("^for ALGO I select on \"(.*?)\",\"(.*?)\" and \"(.*?)\" radio option$")
+	public void for_ALGO_I_select_on_and_radio_option(String arg1, String arg2, String arg3) throws Throwable {
+		// for TreatmentOutcome (this decides if Therapy is considered)
+       if (arg1.equals("NVX")){
+		arg1 = "previoustherapyno";
+		String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg1);
+		driver.findElement(By.xpath(myxpath)).click();
+		System.out.println(" Selecting radio option " +arg1);
+       }else{
+		    	   arg1 = "previoustherapyyes";
+   		String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg1);
+   		driver.findElement(By.xpath(myxpath)).click();
+   		System.out.println(" Selecting radio option " +arg1);
+   		//TODO put the below stuff here later
+}
+    
+       
+       
+     /// following is for therapy
+ 	  
+ 		if (arg2.equals("XPN")){
+ 			arg2 = "genotype6";
+ 			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+ 			driver.findElement(By.xpath(myxpath)).click();
+ 			System.out.println(" Selecting radio option " +arg2);
+ 		}else if (arg2.equals("X5A")){
+ 			 arg2 = "nsa5expgroup";
+ 			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+ 			driver.findElement(By.xpath(myxpath)).click();
+ 			System.out.println(" Selecting radio option " +arg2);
+ 		}else if (arg2.equals("X5B")){
+ 			 arg2 = "nsa5bexpgroup";
+ 			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+ 			driver.findElement(By.xpath(myxpath)).click();
+ 			System.out.println(" Selecting radio option " +arg2);
+ 		}else if (arg2.equals("XAB")){
+ 			 arg2 = "nsa5a5bxpgroup";
+ 			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+ 			driver.findElement(By.xpath(myxpath)).click();
+ 			System.out.println(" Selecting radio option " +arg2);
+ 		}else if (arg2.equals("XIF")){
+ 			 arg2 = "interferonexpgroup";
+ 			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+ 			driver.findElement(By.xpath(myxpath)).click();
+ 			System.out.println(" Selecting radio option " +arg2);
+ 			
+ 			// for TreatmentOutcome (this decides if Therapy is considered)
+ 		}else if (arg2.equals("NVX")){
+ 			 arg2 = "previoustherapyno";
+ 			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg2);
+ 			driver.findElement(By.xpath(myxpath)).click();
+ 			System.out.println(" Selecting radio option " +arg2);
+ 		
+       
+ 		}
+ 			
+ 		// this is for Outcome
+			
+ 				if(arg3.equals("XNX")){
+ 					 arg3 = "therapyOutcome1";
+ 					String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg3);
+ 					driver.findElement(By.xpath(myxpath)).click();
+ 					System.out.println(" Selecting radio option " +arg3);
+ 				}else if(arg3.equals("XRP")){
+ 					 arg3 = "outcomerelapsegroup";
+ 					String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg3);
+ 					driver.findElement(By.xpath(myxpath)).click();
+ 					System.out.println(" Selecting radio option " +arg3);
+ 				}else if(arg3.equals("XIN")){
+ 					 arg3 = "outcomeintolerancegroup";
+ 					String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg3);
+ 					driver.findElement(By.xpath(myxpath)).click();
+ 					System.out.println(" Selecting radio option " +arg3);
+ 				}else if(arg3.equals("XUN")){
+ 					 arg3 = "outcomeexpgroup";
+ 					String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg3);
+ 					driver.findElement(By.xpath(myxpath)).click();
+ 					System.out.println(" Selecting radio option " +arg3);
+       
+ 				}
+	}
 
+ 				
+ 				// this makes the case C or NC 
+ 				
+ 				@Then("^for ALGO I select \"(.*?)\"$")
+ 				public void for_ALGO_I_select(String arg1) throws Throwable {
+ 					if(arg1.equals("CX")){
+ 					
+ 					String arg2 =  "aprilevl";
+ 							String arg3 =  "ast"    ;  
+ 									String arg4=  "Platelet" ;
+ 									String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerById(arg2);
+ 									driver.findElement(By.xpath(myxpath)).sendKeys("20");
+ 									
+ 									//for ast
+ 									String myxpath2 = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerById(arg3);
+ 									driver.findElement(By.xpath(myxpath2)).sendKeys("20");
+ 									
+ 									
+ 									// for platel
+ 									String myxpath3 = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerById(arg4);
+ 									driver.findElement(By.xpath(myxpath3)).sendKeys("20");
+ 							
+ 					}else{
+ 						
+ 						String arg2 =  "aprilevl";
+							String arg3 =  "ast"    ;  
+									String arg4=  "Platelet" ;
+									String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerById(arg2);
+									driver.findElement(By.xpath(myxpath)).sendKeys("20");
+									
+									//for ast
+									String myxpath2 = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerById(arg3);
+									driver.findElement(By.xpath(myxpath2)).sendKeys("20");
+									
+									
+									// for platel
+									String myxpath3 = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerById(arg4);
+									driver.findElement(By.xpath(myxpath3)).sendKeys("200");
+							
+ 										
+ 	 				
+ 				}
+
+	
+	}
+	
 }
 
