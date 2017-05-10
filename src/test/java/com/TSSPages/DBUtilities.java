@@ -190,19 +190,31 @@ public class DBUtilities extends XPathGenerator {
 	 	 
 	 	 
 	 	 
-		 public void clickOnImage(String arg1)
+		 public String clickOnImage(String arg1)
 		 {
 			 
 	 		 DBUtilities createXpath = new DBUtilities(driver);
 			 String myXpath = createXpath.xpathMakerByImageName(arg1);
-			 WebElement some_image = driver.findElement(By.xpath(myXpath));
-			 System.out.println("clicking on image " +some_image);
-			 some_image.click();
-			 
+			 System.out.println("clicking in image " +myXpath);
+//			// WebElement some_image = driver.findElement(By.xpath(myXpath));
+//			 WebElement image = driver.findElement(By.xpath(myXpath));
+//			 System.out.println("clicking on image " +image);
+			// image.click();
+			 return myXpath;
 
 		 }
 		 
-	 	 
+		 public String clickOn2ndOptionOnPopup(String arg1)
+		 {
+			 
+	 		 DBUtilities createXpath = new DBUtilities(driver);
+			 String myXpath = createXpath.xpathMakerContainsID2ndOption(arg1);
+			 System.out.println("clicking in image " +myXpath);
+
+			 return myXpath;
+
+		 }
+		 
 		 public void hitEnter() {
 	    	
 		 Actions action = new Actions(driver); 
@@ -461,11 +473,15 @@ public class DBUtilities extends XPathGenerator {
 						
 							
 						DBUtilities createXpath = new DBUtilities(driver);
-						// delete later if code works
-//						if(name.equals("DOB")){
-//							myXpath = createXpath.xpathMakerById(name);
-//							
-											
+//  	                   myXpath = createXpath.xpathMakerByInputId(data.get(i).get(0));
+//						  System.out.println(i);
+//						  System.out.println(myXpath);
+//						  System.out.println("Is " + myXpath + " Interactable? " + driver.findElement(By.xpath(myXpath)).isEnabled());
+//						  driver.findElement(By.xpath(myXpath)).clear();
+						
+						
+											//******following is under test for impact
+						
 						
 						try {
 							  myXpath = createXpath.xpathMakerByInputId(data.get(i).get(0));

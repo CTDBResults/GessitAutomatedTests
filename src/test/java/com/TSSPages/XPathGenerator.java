@@ -64,6 +64,13 @@ public class XPathGenerator {
 		String xpath = "(//*[contains(text(),'"+buttonName+"')])[2]";
 		 return xpath;
 	    }
+	 public String xpathMakerContainsID2ndOption(String arg1)
+	    {
+		  String xpath = "(//input[contains(@id, '"+arg1+"')])[2]";
+	
+		System.out.println("Element found*** " +xpath);
+		 return xpath;
+	    }
 	//span[@class='nav-selection']
 	 public String xpathMakerSpanClass(String buttonName)
 	    {
@@ -110,7 +117,15 @@ public class XPathGenerator {
 	 public String xpathMakerByImageName(String arg1)
 	 {
 	 String xpath = "//img[contains(@src,'"+arg1+"')]";
-		//img[contains(@src,'icon_menu')]
+		
+	 return xpath;
+
+	 }
+	 
+	 public String clickOn2ndOptionOnPopup(String arg1)
+	 {
+	 String xpath = "(//img[contains(@src,'"+arg1+"')])[2]";
+		System.out.println(" ssssssssssssssooooooooooooooooo" +xpath);
 	 return xpath;
 
 	 }

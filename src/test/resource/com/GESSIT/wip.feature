@@ -1,11 +1,7 @@
 Feature: some feature
+@wip
 
-  #take firstname from above
-  @wip
-
-
-
-  Scenario Outline: GES-172 As a GP/Specialist, I want the ability to add treatment tasks to an approved treatment plan
+  Scenario Outline: GES-172 As Specialist, I want the ability to add treatment tasks to an approved treatment plan
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
     Then "<Item>" is displayed as "<ItemName>"
@@ -16,13 +12,16 @@ Feature: some feature
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
-    And I check I am on "My Patients" page
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
+    And I wait for "1000" millisecond
+    And I click on " My Patients"
     Then I see the table "myPatientsTable" displayed
     And I enter the details as
       | Fields          | Value      |
       | searchtextInput | <LastName> |
     And I hit Enter
-    Then I see text "<FirstName>" displayed
+    Then I see text "<LastName>" displayed
     And I click on "<FirstName>"
     And I wait for "1000" millisecond
     And I check I am on "Patient Profile" page
@@ -44,16 +43,18 @@ Feature: some feature
     And I click on button "typedropdown"
     And on popup I select "Appointment" from "typedropdown"
     And I click on button "responsibilitydropdown"
-    And on popup I select "Victor Chang" from "responsibilitydropdown"
+    And on popup I select "James Kildare" from "responsibilitydropdown"
     # Babu to add the id to description field.
-    And I click on button "Description *"
+    And I enter popup values as
+      | Fields             | Value                 |    
+      | duedays            |                     3 |
+      | addTaskDescription | automate and get lazy |
+      And I enter pop field "taskName" as "jungle main oye oye"
+    And I click on button "saveTask"
+    Then I see text "jungle main oye oye" displayed
+   
 
-    #  Scenario 1: User views the â€˜Add Taskâ€™ pop-up
-    #  Scenario 2: Mandatory fields not filled in
-    #  Scenario 3: Mandatory fields filled in
-    #  Scenario 4: New task added by GP
-    #   Scenario 5: New task added by Specialist
     # Test16402
     Examples: 
-      | PortalName | email                       | Password | FirstName | EmailInput   | LastName           | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message       |
-      | Gessit     | demospecialist123@gmail.com | pass123  | pass123   | abwc@abc.com | PatientIsCirrhotic |    042211111 |      786 |     2222 |       40 |  50 |       20 | Complications |
+      | PortalName | email                       | Password | FirstName      | EmailInput   | LastName           | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message       |
+      | Gessit     | demospecialist123@gmail.com | pass123  | TestOnesixfour | abwc@abc.com | PatientIsCirrhotic |    042211111 |        7 |     2222 |       40 |  50 |       20 | Complications |

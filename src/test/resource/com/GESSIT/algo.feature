@@ -9,8 +9,18 @@ Feature: wip
       | email         | demospecialist123@gmail.com |
       | inputPassword | pass123                     |
     And I hit Enter
-    Then I click on "New Patient"
-    #  And I check I am on "New Patient Record" page
+ 	  And I check I am on "My Tasks" page
+   Then I click on image "icon_menu"
+    And I wait for "1000" millisecond
+    And I click on "Create New Patient"
+    And I wait for "1000" millisecond
+    And I see popup "consentModal" displayed
+    And I wait for "1000" millisecond
+    And I click on "agreeButton" on popup
+    And I wait for "1000" millisecond
+    And I click on "Create Patient"
+	  And I check I am on "Personal Details" page
+
     And I enter the details as
       | Fields         | Value             |
       | FirstName      | testAlgo          |
@@ -72,72 +82,19 @@ Feature: wip
     And for ALGO I select "<Fibrosis>"
 
     Examples: 
+
       | PortalName | email               | Password | GenoType | Fibrosis | PreviousTherapy | TreatmentExperiance | Outcome | Renal | Result | Expected UI Value |  |
       | algo       | demogp123@gmail.com | pass123  | 1AL      | NC       | NVX             |                     |         | G30   |        | HEPC1             |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AU      | NC       | NVX             |                     |         | L30   |        | HEPC1             |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AU      | NC       |                 | X5B                 | XIN     | G30   |        | HEPC2             |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AL      | NC       | NVX             | X5B                 | XPN     | G30   | HEPC1  |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AU      | NC       | XNX             | X5B                 | XIF     | G30   | HEPC2  |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AL      | CX       | NVX             | X5B                 | XPN     | G30   | HEPC2  |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1BU      | NC       | NVX             | X5B                 | X5B     |       | G30    | HEPC2             |  |
-      | algo       | demogp123@gmail.com | pass123  | 1BU      | CX       | XRP             | X5B                 | XIF     | G30   | HEPC3  |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AG      | CX       | XNX             | X5B                 | XIF     | G30   | HEPC3  |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AU      | NC       | XUN             | X5B                 | XIF     | G30   | HEPC4  |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1BL      | NC       | XRP             | X5B                 | XPN     | G30   | HEPC4  |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 3XX      | NC       | XRP             | X5B                 | X5B     | XIF   | G30    | HEPC4             |  |
-      | algo       | demogp123@gmail.com | pass123  | 1BU      | CX       | XIN             | X5B                 | XIF     | G30   | HEPC5  |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1BL      | CX       | XRP             | X5B                 | XPN     | G30   | HEPC5  |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AG      | CX       | XIN             | X5B                 | XPN     | G30   | HEPC5  |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AU      | NC       | XIN             | X5B                 | XPN     | G30   | HEPC6  |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1BU      | CX       | NVX             | X5B                 | XPN     | G30   | HEPC6  |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 3XX      | CX       | XIN             | X5B                 | XPN     | G30   | HEPC6  |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AL      | CX       | NVX             | X5B                 |         | G30   | HEPC6  |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1BL      | CX       | XNX             | X5B                 | XIF     | L30   | HEPC8  |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1BU      | NC       | XIN             | X5B                 | XIF     | L30   | HEPC8  |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1BL      | CX       | XUN             | X5B                 | XPN     | G30   | HEPC8  |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AL      | CX       | XRP             | X5B                 | XIF     | G30   | HEPC9  |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AU      | NC       | XNX             | X5B                 | XIF     | L30   | HEPC9  |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AL      | CX       | XRP             | X5B                 |         | G30   | HEPC9  |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AG      | NC       | NVX             | X5B                 | XPN     | G30   | HEPC9  |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AU      | CX       | XUN             | X5B                 | XIF     | G30   | HEPC10 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AL      | CX       | XNX             | X5B                 | XIF     | L30   | HEPC10 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 2XX      | NC       | XIN             | X5B                 | XPN     | G30   | HEPC11 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 3XX      | CX       | XNX             | X5B                 | XIF     | G30   | HEPC12 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 4XX      | NC       | XIN             | X5B                 | XPN     | G30   | HEPC13 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 6XX      | NC       | XIN             | X5B                 | XIF     | G30   | HEPC13 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 5XX      | NC       | XRP             | X5B                 | XPN     | G30   | HEPC13 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 3XX      | CX       | XNX             | X5B                 |         | G30   | HEPC13 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 4XX      | NC       | XRP             | X5B                 | XIF     | G30   | HEPC14 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AL      | CX       | XRP             | X5B                 |         | L30   | HEPC14 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1BU      | NC       | NVX             | X5B                 | XIF     | L30   | HEPC14 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1BL      | CX       | XUN             | X5B                 | XIF     | G30   | HEPC14 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AL      | NC       | XRP             | X5B                 | XPN     | G30   | HEPC14 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 4XX      | CX       | XRP             | X5B                 | XIF     | G30   | HEPC14 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AL      | CX       | XNX             | X5B                 | XPN     | G30   | HEPC15 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AU      | CX       | XIN             | X5B                 | XIF     | L30   | HEPC15 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 4XX      | NC       | XIN             | X5B                 | XPN     | G30   | HEPC15 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AG      | NC       | XUN             | X5B                 | XIF     | L30   | HEPC15 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AL      | CX       | XNX             | X5B                 | X5B     | L30   | HEPC16 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AG      | NC       | XNX             | X5B                 | X5A     | G30   | HEPC16 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 4XX      | NC       | XUN             | X5B                 | X5A     | G30   | HEPC16 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1BU      | CX       | XRP             | X5B                 | XAB     | G30   | HEPC16 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 2XX      | NC       | XNX             | X5B                 | XPN     | L30   | HEPC16 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 6XX      | NC       | XIN             | X5B                 | XPN     | L30   | HEPC16 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 5XX      | CX       | XNX             | X5B                 | XPN     | L30   | HEPC16 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AL      | CX       | NVX             | X5B                 | XAB     | L30   | HEPC16 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1BU      | NC       | XUN             | X5B                 | XAB     | L30   | HEPC16 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 2XX      | NC       | XNX             | X5B                 | X5A     | G30   | HEPC16 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 3XX      | CX       | XRP             | X5B                 | X5A     | L30   | HEPC16 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AU      | CX       | XUN             | X5B                 | X5B     | L30   | HEPC16 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 6XX      | NC       | XIN             | X5B                 | X5B     | G30   | HEPC16 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 5XX      | NC       | XRP             | X5B                 | X5B     | L30   | HEPC16 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AL      | CX       | XNX             | X5B                 | XPN     | L30   | HEPC16 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 2XX      | NC       | NVX             | X5B                 |         | L30   | HEPC16 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 2XX      | NC       | XIN             | X5B                 |         | L30   | HEPC16 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 6XX      | CX       | XNX             | X5B                 |         | L30   | HEPC16 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 2XX      | CX       | NVX             | X5B                 |         | L30   | HEPC16 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 2XX      | CX       | XRP             | X5B                 |         | L30   | HEPC16 |                   |  |
-      | algo       | demogp123@gmail.com | pass123  | 1AL      | NC       | NVX             | X5B                 | XPN     | G30   | HEPC1  |                   |  |
+      #| algo       | demogp123@gmail.com | pass123  | 1AU      | NC       | NVX             |                     |         | L30   |        | HEPC9 HEPC14      |  |
+      #| algo       | demogp123@gmail.com | pass123  | 1AU      | NC       |                 | X5B                 | XIN     | G30   |        | HEPC16            |  |
+      #| algo       | demogp123@gmail.com | pass123  | 1AL      | NC       |                 | XPN                 |         | G30   | HEPC1  | HEPC2 HEPC6       |  |
+      #| algo       | demogp123@gmail.com | pass123  | 1AU      | NC       |                 | XAB                 | XRP     | G30   | HEPC2  | HEPC16            |  |
+      #| algo       | demogp123@gmail.com | pass123  | 1AL      | CX       |                 | X5B                 | XUN     | G30   | HEPC2  | HEPC16            |  |
+      #| algo       | demogp123@gmail.com | pass123  | 1BU      | NC       |                 | X5B                 | XNX     |       | G30    | HEPC16            |  |
+      #| algo       | demogp123@gmail.com | pass123  | 1BU      | CX       |                 | X5B                 | XNX     | G30   | HEPC3  | HEPC16            |  |
+      #| algo       | demogp123@gmail.com | pass123  | 1AG      | CX       |                 | XAB                 | XNX     | G30   | HEPC3  | HEPC16            |  |
+      #| algo       | demogp123@gmail.com | pass123  | 1AU      | NC       |                 | X5B                 | XNX     | G30   | HEPC4  | HEPC16            |  |
+  
   #Scenario Outline: Tool Check
     #Scenario 1: Treatment option displayed
     #Given I want to login to portal "<PortalName>"

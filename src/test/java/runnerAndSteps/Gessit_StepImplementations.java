@@ -63,7 +63,7 @@ public class Gessit_StepImplementations {
 
 	@After()
 		  public void tearDown() {	
-	   // driver.quit();
+	      driver.quit();
 		   	  }
 	//******************************************************************************   
 	    
@@ -241,8 +241,11 @@ public class Gessit_StepImplementations {
 			try{
 			driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 			LandingPage lp = PageFactory.initElements(driver, LandingPage.class);
-			lp.clickOnImage(arg1);
-			}catch (Exception e){ System.out.println("Shori saab, Element not visible on Screen");}
+			String imgToBeClicked = PageFactory.initElements(driver, Gessit_AddPatientPage.class).clickOnImage(arg1);
+			//lp.clickOnImage(arg1);
+			WebElement exist =	driver.findElement(By.xpath(imgToBeClicked));	
+			exist.click();
+			}catch (Exception e){ System.out.println("Shori saab, Element image not visible on Screen");}
 		}
 		
 		// click on text
@@ -352,6 +355,14 @@ public class Gessit_StepImplementations {
 	public void i_click_on_popup(String arg1) throws Throwable {
 		// give time for page loading
 
+		if(arg1.equals("agreeButton")){
+			DBUtilities createXpath = new DBUtilities(driver);
+			String myxpath = createXpath.xpathMakerByExactId(arg1);
+			System.out.println("cliclking on popup" +myxpath);
+			Assert.assertTrue(driver.findElement(By.xpath(myxpath)).isDisplayed());
+			Thread.sleep(1000);
+			driver.findElement(By.xpath(myxpath)).click();
+		}else{
 	
 			DBUtilities createXpath = new DBUtilities(driver);
 			String myxpath = createXpath.xpathMakerById(arg1);
@@ -362,17 +373,26 @@ public class Gessit_StepImplementations {
 			
 		
 		Thread.sleep(1000);
-		
+		}
 	}
 	
 
 @Given("^I enter popup values as$")
 public void i_enter_popup_values_as(DataTable table) throws Throwable {
     PageFactory.initElements(driver, DBUtilities.class).enterCucumbertableValuesInUI(table);
+    
 }
 
 
 
+// only in emergency as gessit has some pop up values that has duplicates thanks to poor programming practices
+
+@Given("^I enter pop field \"(.*?)\" as \"(.*?)\"$")
+public void i_enter_pop_field_as(String arg1, String arg2) throws Throwable {
+	String myxpath = PageFactory.initElements(driver, DBUtilities.class).clickOn2ndOptionOnPopup(arg1);
+	driver.findElement(By.xpath(myxpath)).sendKeys(arg2);
+	
+}
 
 
 //for drop down
@@ -487,11 +507,7 @@ public void i_enter_popup_values_as(DataTable table) throws Throwable {
 	//***************************************************Landing Page********************************************************
 	@Then("^\"(.*?)\" is displayed as \"(.*?)\"$")
 	public void is_displayed_as(String arg1, String arg2, DataTable table) throws Throwable {
-//		if(arg2.equals("Checkbox")
-//				||arg2.equals("I'm not a robot")
-//				||arg2.equals("recaptcha-anchor")){
-//			PageFactory.initElements(driver, LandingPage.class).checkElementPresentOnScreen(table);
-//		}else{
+
 		PageFactory.initElements(driver, LandingPage.class).checkElementPresentOnScreen(table);
 		}
 //	}
