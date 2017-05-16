@@ -392,7 +392,7 @@ Feature: Some feature
       | PortalName | email                       | Password |
       | Gessit     | demospecialist123@gmail.com | pass123  |
 
-@Gessit_Regression
+
  Scenario Outline: GES-142 As a GP/Specialist, I want to create an Assessment form for a diagnosis and enter the HCV details so that I know what treatment options are applicable
     # GES-34 As a GP/Specialist, I want the ability to record a diagnosis against a patient's record so that the relevant assessment can be performed
     #Scenario 34/1: Hep C diagnosis
@@ -2538,7 +2538,7 @@ Scenario Outline: Check Cirrosi Logic
       | PortalName | email                       | Password | FirstName              | EmailInput   | LastName | CU    | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message | text | addnote   | noteinput     | addnote2   | noteinput2                              |
       | Gessit     | demospecialist123@gmail.com | pass123  | testTTTloginSpecialist | abwc@abc.com | SPC      | Royal |   0422000000 |        7 |     2222 |       40 |  50 |       20 |         |      | I am a GP | entering note | SPecialist | Check if specialist can add to approved |
 
-  Scenario Outline: GES-233 - As a GP, I should be able to add notes to a Cirrotic treatment plan page
+  Scenario Outline: GES-810, GES-233 - As a GP, I should be able to add notes to a Cirrotic treatment plan page
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
     And I enter the details as
@@ -2546,6 +2546,7 @@ Scenario Outline: Check Cirrosi Logic
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
+    #GES810- Scenario1
    	  And I check I am on "My Tasks" page
    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
@@ -2673,7 +2674,7 @@ Scenario Outline: Check Cirrosi Logic
     Examples: 
       | PortalName | email                       | Password | FirstName              | EmailInput   | LastName | contactInput | medicare | CU    | postCode | aprilevl | ast | Platelet | Message | text | addnote   | noteinput     | addnote2   | noteinput2                              |
       | Gessit     | demospecialist123@gmail.com | pass123  | testTTTloginSpecialist | abwc@abc.com | SPC      |   0422000000 |        7 | Royal |     2222 |       40 |  50 |       20 |         |      | I am a GP | entering note | SPecialist | Check if specialist can add to approved |
-@test
+
   Scenario Outline: GES-502 Password reset for an account
     Given I want to login to portal "<PortalName>"
     And I wait for "2000" millisecond
@@ -2754,3 +2755,71 @@ Scenario Outline: Check Cirrosi Logic
     Examples: 
       | PortalName | email                       | Password | FirstName      | EmailInput   | LastName           | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message       |
       | Gessit     | demospecialist123@gmail.com | pass123  | TestOnesixfour | abwc@abc.com | PatientIsCirrhotic |    042211111 |        7 |     2222 |       40 |  50 |       20 | Complications |
+
+      
+      
+       Scenario Outline: GES-820 As a System Admin I want to view the menu items so that I know what functions I have access to based on my role
+
+    Given I want to login to portal "<PortalName>"
+    And I wait for "10000" millisecond
+    And I enter the details as
+      | Fields        | Value      |
+      | email         | <email>    |
+      | inputPassword | <Password> |
+    And I hit Enter
+    Then I click on image "icon_menu"
+    And I wait for "1000" millisecond
+    And I click on "Practitioners"
+    And I check I am on "Manage Practitioners" page
+    Then I see the table "practitionerTable" displayed
+    Then "<Item>" is displayed as "<ItemName>"
+      | Item  | ItemName       |
+      | item1 | First Name     |
+      | item2 | Last Name      |
+      | item4 | Email Address  |
+      | item5 | Contact Number |
+    #check care units Items
+    Then I click on image "icon_menu"
+    And I wait for "1000" millisecond
+    And I click on "Care Units"
+    And I check I am on "Care Units" page
+    # Check reports
+    Then I click on image "icon_menu"
+    And I wait for "1000" millisecond
+    Then "<Item>" is displayed as "<ItemName>"
+      | Item  | ItemName                    |
+      | item1 | Reports                     |
+      | item2 | Generate Initiations Report |
+      | item4 | Download Initiations Report |
+      |item5 | Algorithm - Single Combination|
+      |item5 | Algorithm - All Combination|
+
+    Examples: 
+      | PortalName | email                         | Password | FirstName | CU    | EmailInput   | LastName | contactInput | medicare | postCode | ResidentialAddress1 | Weight | Height | ResidentialAddress2 | Suburb   |
+      | Gessit     | hemant.shori@dbresults.com.au | pass123  | Bobby     | Royal | abwc@abc.com | Smith    |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
+      
+      
+       Scenario Outline: GES-810 As a GP/Specialist I want to view the menu items so that I know what functions I have access to based on my role
+    Given I want to login to portal "<PortalName>"
+    And I wait for "10000" millisecond
+    And I enter the details as
+      | Fields        | Value      |
+      | email         | <email>    |
+      | inputPassword | <Password> |
+    And I hit Enter
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
+    And I wait for "1000" millisecond
+    Then "<Item>" link is displayed as "<ItemName>"
+      | Item  | ItemName           |
+      | item1 | Tasks              |
+      | item2 | Messages           |
+      | item5 | Create New Patient |
+      | item6 | My Patients        |
+      | item7 | Logout             |
+
+    Examples: 
+      | PortalName | email                       | Password | FirstName | CU    | EmailInput   | LastName | contactInput | medicare | postCode | ResidentialAddress1 | Weight | Height | ResidentialAddress2 | Suburb   |
+      | Gessit     | demogp123@gmail.com         | pass123  | Bobby     | Royal | abwc@abc.com | Smith    |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
+      | Gessit     | demospecialist123@gmail.com | pass123  | Bobby     | Royal | abwc@abc.com | Smith    |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
+      

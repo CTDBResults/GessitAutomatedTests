@@ -79,7 +79,7 @@ public class Gessit_StepImplementations {
 
 	@After()
 		  public void tearDown() {	
-	    // driver.quit();
+	     driver.quit();
 		   	  }
 	//******************************************************************************   
 	    
@@ -526,6 +526,15 @@ public void i_enter_pop_field_as(String arg1, String arg2) throws Throwable {
 	public void is_displayed_as(String arg1, String arg2, DataTable table) throws Throwable {
 
 		PageFactory.initElements(driver, LandingPage.class).checkElementPresentOnScreen(table);
+		}
+//	}
+	
+	// this is for item link
+	
+	@Then("^\"(.*?)\" link is displayed as \"(.*?)\"$")
+	public void link_is_displayed_as(String arg1, String arg2, DataTable table) throws Throwable {
+
+		PageFactory.initElements(driver, LandingPage.class).checkElementLinkPresentOnScreen(table);
 		}
 //	}
 

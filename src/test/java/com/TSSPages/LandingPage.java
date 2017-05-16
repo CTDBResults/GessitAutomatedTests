@@ -85,7 +85,27 @@ public class LandingPage extends DBUtilities {
 	
 	}
 	
-
+	
+	public void checkElementLinkPresentOnScreen(DataTable table) throws InterruptedException
+	{
+		Thread.sleep(3000);
+		List<List<String>> data = table.raw();
+		System.out.println(" value is ++" +data);
+		for (int i = 1; i <data.size(); i++){
+			
+			String name = data.get(i).get(1);
+			System.out.println(" and the name is+++++" +name);
+		String myxpath = new DBUtilities(driver).xpathMakerDivContainsText(name);
+		System.out.println("*checking for*  " +myxpath); if(driver.findElements(By.xpath(myxpath)).size() != 0){
+			System.out.println("Element is Present");
+			}else{
+			System.out.println("Element is Absent");
+			}
+		Thread.sleep(2000);
+		Assert.assertTrue(" Varification failede as " +myxpath +"NOT FOUND",driver.findElement(By.xpath(myxpath)).isDisplayed());
+		}
+		
+	}
       
       public void checkUIElementTEXTIsDisplayed (String arg1) throws InterruptedException
 	  {
