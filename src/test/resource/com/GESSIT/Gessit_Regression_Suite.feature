@@ -347,7 +347,7 @@ Feature: Some feature
       | PortalName | email                       | Password | FirstName      | CU    | EmailInput   | LastName | contactInput | medicare | postCode | ResidentialAddress1 | Weight | Height | ResidentialAddress2 | Suburb   |
       | Gessit     | demospecialist123@gmail.com | pass123  | TestThirtyFour | Royal | abwc@abc.com | test     |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
   
-
+# get username from above
  Scenario Outline: GES-8 patient search, GES-351 As a GP/Specialist, I want to create an Assessment form for a diagnosis and enter a patients clinical details and intercurrent conditions
     #Scenario 1: Basically just the form check on Medical history tab
     Given I want to login to portal "<PortalName>"
@@ -392,7 +392,7 @@ Feature: Some feature
       | PortalName | email                       | Password |
       | Gessit     | demospecialist123@gmail.com | pass123  |
 
-
+@Gessit_Regression
  Scenario Outline: GES-142 As a GP/Specialist, I want to create an Assessment form for a diagnosis and enter the HCV details so that I know what treatment options are applicable
     # GES-34 As a GP/Specialist, I want the ability to record a diagnosis against a patient's record so that the relevant assessment can be performed
     #Scenario 34/1: Hep C diagnosis
@@ -514,7 +514,7 @@ Feature: Some feature
       | Gessit     | demospecialist123@gmail.com | pass123  | Bobby     | Royal | abwc@abc.com | Smith    |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
  
  
-  #Covered in shakeout
+
    Scenario Outline: GES-164
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond

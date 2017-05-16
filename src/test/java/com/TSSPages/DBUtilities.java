@@ -299,7 +299,7 @@ public class DBUtilities extends XPathGenerator {
 				   Calendar cal = Calendar.getInstance();
 				   String datentime = dateFormat.format(cal.getTime());
 				   System.out.println(" Current System DNT is "+ datentime);
-				   String truncateddatentime = datentime.substring(5);
+				   String truncateddatentime = datentime.substring(4);
 				   System.out.println(" Truncated Current System DNT is "+ datentime);
 				   System.out.println(" Truncated Current System DNT is "+ truncateddatentime);
 				   return truncateddatentime;
