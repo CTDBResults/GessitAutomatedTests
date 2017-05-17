@@ -157,11 +157,22 @@ public class DBUtilities extends XPathGenerator {
 	 	
 	 	public void scrollDownThePage(String arg1) throws InterruptedException{
 	 	
-	 		
+	 		if(arg1.equals("down")){
 	 			JavascriptExecutor jse = (JavascriptExecutor)driver;
 	 			jse.executeScript("window.scrollBy(0,5000)", "");
+	 		}else{
+				JavascriptExecutor jse = (JavascriptExecutor)driver;
+	 			jse.executeScript("window.scrollBy(5000,0)", "");
+	 		}
 	 		}
 	 
+	 	
+	 	// scroll down till element is visible
+	 	public void scrollDownForElement(String arg1) throws InterruptedException{
+	 		JavascriptExecutor scrollTillVisible = (JavascriptExecutor)driver;
+	 		scrollTillVisible.executeScript("arguments[0].scrollIntoView(true);",driver.findElement(By.xpath(arg1)));
+	 		
+ 		}
 	 	
 	// action performed on element(coming as arg)
 	 	 public void actionPerformedClick (String arg1)

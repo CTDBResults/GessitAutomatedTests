@@ -200,7 +200,7 @@ public class XPathGenerator {
 		 return xpath;
 	 }
 	 
-	 public String xpathMakerDivContainsText(String arg1){
+	 public String xpathMakerDivContainsText(String arg1){ 	
 		 String xpath = "//div[contains(text(), '"+arg1+"')]";
 		 System.out.println(" its " +xpath);
 		 return xpath;

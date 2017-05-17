@@ -1,4 +1,4 @@
-@Gessit_Regression
+
 Feature: Some feature
 
   Scenario Outline: GES-70, GES-72
@@ -34,7 +34,7 @@ Feature: Some feature
       | inputPassword | <Password> |
     And I hit Enter
     And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on "Create New Patient"
     And I wait for "1000" millisecond
@@ -45,7 +45,7 @@ Feature: Some feature
     And I click on "Create Patient"
     Then "<Item>" is displayed as "<ItemName>"
       | Item  | ItemName                   |
-      |item1|Care Unit is mandatory|
+      | item1 | Care Unit is mandatory     |
       | item1 | First Name is mandatory    |
       | item2 | Last Name is mandatory     |
       | item3 | Email is mandatory         |
@@ -65,7 +65,7 @@ Feature: Some feature
     Examples: 
       | PortalName | email                       | Password |
       | Gessit     | demospecialist123@gmail.com | pass123  |
-      
+
   Scenario Outline: GES-3 Scenario 4 Create patient tests (from,LHS menu), Postal address different from residential address
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -75,7 +75,7 @@ Feature: Some feature
       | inputPassword | <Password> |
     And I hit Enter
     And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on "Create New Patient"
     And I wait for "1000" millisecond
@@ -84,7 +84,7 @@ Feature: Some feature
     And I click on "agreeButton" on popup
     And I wait for "1000" millisecond
     And I click on "Create Patient"
-      And I check I am on "Personal Details" page
+    And I check I am on "Personal Details" page
     And I enter the details as
       | Fields         | Value          |
       | FirstName      | <FirstName>    |
@@ -108,7 +108,6 @@ Feature: Some feature
       | Suburb              | <Suburb>              |
       | ResidentialAddress2 | <ResidentialAddress2> |
     And I select "VIC" from "State"
-   
 
     # DO not submit
     Examples: 
@@ -125,8 +124,8 @@ Feature: Some feature
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
-     And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on "Create New Patient"
     And I wait for "1000" millisecond
@@ -174,8 +173,8 @@ Feature: Some feature
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
-     And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on " My Patients"
     Then I see the table "myPatientsTable" displayed
@@ -222,7 +221,7 @@ Feature: Some feature
       | PortalName | email                       | Password | FirstName | EmailInput   | LastName  | CU    | contactInput | medicare | postCode | ResidentialAddress1 | Weight | Height | ResidentialAddress2 | Suburb   |
       | Gessit     | demospecialist123@gmail.com | pass123  | Hemantwwf | abwc@abc.com | testTwoww | Royal |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
 
-    Scenario Outline: GES-9 As a GP/Specialist, I want the ability to record the patient's medications so that the appropriate treatment plan can be selected
+  Scenario Outline: GES-9 As a GP/Specialist, I want the ability to record the patient's medications so that the appropriate treatment plan can be selected
     #Scenario 1:Medication search unsuccessful
     #Scenario 2: User goes back
     Given I want to login to portal "<PortalName>"
@@ -232,8 +231,8 @@ Feature: Some feature
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
-     And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on " My Patients"
     Then I see the table "myPatientsTable" displayed
@@ -258,7 +257,7 @@ Feature: Some feature
     Examples: 
       | PortalName | email                       | Password | FirstName | EmailInput   | LastName | contactInput | medicare | postCode | ResidentialAddress1 | Weight | Height | ResidentialAddress2 | Suburb   |
       | Gessit     | demospecialist123@gmail.com | pass123  | Bobby     | abwc@abc.com | Smith    |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
-  
+
   Scenario Outline: GES-34 As a GP/Specialist, I want the ability to record a diagnosis against a patient's record so that the relevant assessment can be performed
     #Scenario 1: Hep C diagnosis
     Given I want to login to portal "<PortalName>"
@@ -268,8 +267,8 @@ Feature: Some feature
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
- And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on "Create New Patient"
     And I wait for "1000" millisecond
@@ -278,7 +277,7 @@ Feature: Some feature
     And I click on "agreeButton" on popup
     And I wait for "1000" millisecond
     And I click on "Create Patient"
-	  And I check I am on "Personal Details" page
+    And I check I am on "Personal Details" page
     And I enter the details as
       | Fields         | Value          |
       | FirstName      | <FirstName>    |
@@ -326,9 +325,9 @@ Feature: Some feature
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
-    	And I hit Enter
-     And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I hit Enter
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on " My Patients"
     Then I see the table "myPatientsTable" displayed
@@ -346,9 +345,10 @@ Feature: Some feature
     Examples: 
       | PortalName | email                       | Password | FirstName      | CU    | EmailInput   | LastName | contactInput | medicare | postCode | ResidentialAddress1 | Weight | Height | ResidentialAddress2 | Suburb   |
       | Gessit     | demospecialist123@gmail.com | pass123  | TestThirtyFour | Royal | abwc@abc.com | test     |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
-  
-# get username from above
- Scenario Outline: GES-8 patient search, GES-351 As a GP/Specialist, I want to create an Assessment form for a diagnosis and enter a patients clinical details and intercurrent conditions
+
+  # get username from above
+ 
+  Scenario Outline: GES-8 patient search, GES-351 As a GP/Specialist, I want to create an Assessment form for a diagnosis and enter a patients clinical details and intercurrent conditions
     #Scenario 1: Basically just the form check on Medical history tab
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -357,15 +357,14 @@ Feature: Some feature
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
-
-     And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on " My Patients"
     Then I see the table "myPatientsTable" displayed
     Then I see the table "myPatientsTable" displayed
     And I enter the details as
-      | Fields          | Value    |
+      | Fields          | Value          |
       | searchtextInput | TestThirtyFour |
     And I hit Enter
     Then I see text "test" displayed
@@ -382,18 +381,17 @@ Feature: Some feature
       | item4 | Renal Failure (eGFR < 30mls/min) |
       | item5 | Contraception                    |
       | item5 | Clinical details                 |
-      #| item5 | Average Standard Drinks / Week   |
-      #| item5 | Alcohol consumption              |
-      #| item5 | Smoking                          |
-      #| item5 | Number of Packs / Day            |
-      #| item5 | Years of Smoking                 |
 
+    #| item5 | Average Standard Drinks / Week   |
+    #| item5 | Alcohol consumption              |
+    #| item5 | Smoking                          |
+    #| item5 | Number of Packs / Day            |
+    #| item5 | Years of Smoking                 |
     Examples: 
       | PortalName | email                       | Password |
       | Gessit     | demospecialist123@gmail.com | pass123  |
 
-
- Scenario Outline: GES-142 As a GP/Specialist, I want to create an Assessment form for a diagnosis and enter the HCV details so that I know what treatment options are applicable
+  Scenario Outline: GES-142 As a GP/Specialist, I want to create an Assessment form for a diagnosis and enter the HCV details so that I know what treatment options are applicable
     # GES-34 As a GP/Specialist, I want the ability to record a diagnosis against a patient's record so that the relevant assessment can be performed
     #Scenario 34/1: Hep C diagnosis
     Given I want to login to portal "<PortalName>"
@@ -403,8 +401,8 @@ Feature: Some feature
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
-	  And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on "Create New Patient"
     And I wait for "1000" millisecond
@@ -413,7 +411,7 @@ Feature: Some feature
     And I click on "agreeButton" on popup
     And I wait for "1000" millisecond
     And I click on "Create Patient"
-	  And I check I am on "Personal Details" page
+    And I check I am on "Personal Details" page
     And I enter the details as
       | Fields         | Value          |
       | FirstName      | <FirstName>    |
@@ -480,6 +478,7 @@ Feature: Some feature
       | item5 | Renal Failure is mandatory |
       | item6 | Contraception is mandatory |
     #Scenario 4: User navigates to next page with ALL mandatory fields filled in
+    And I scroll "down" the page
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
     And I click on "hepatitisyes" radio option
@@ -512,10 +511,8 @@ Feature: Some feature
     Examples: 
       | PortalName | email                       | Password | FirstName | CU    | EmailInput   | LastName | contactInput | medicare | postCode | ResidentialAddress1 | Weight | Height | ResidentialAddress2 | Suburb   |
       | Gessit     | demospecialist123@gmail.com | pass123  | Bobby     | Royal | abwc@abc.com | Smith    |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
- 
- 
 
-   Scenario Outline: GES-164
+ Scenario Outline: GES-164 , Also covers E2E scenarios
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
     Then "<Item>" is displayed as "<ItemName>"
@@ -526,8 +523,8 @@ Feature: Some feature
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
-  	  And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on "Create New Patient"
     And I wait for "1000" millisecond
@@ -536,7 +533,7 @@ Feature: Some feature
     And I click on "agreeButton" on popup
     And I wait for "1000" millisecond
     And I click on "Create Patient"
-	  And I check I am on "Personal Details" page
+    And I check I am on "Personal Details" page
     And I enter the details as
       | Fields         | Value          |
       | FirstName      | <FirstName>    |
@@ -618,11 +615,11 @@ Feature: Some feature
 
     #Ges-164
     Examples: 
-      | PortalName | email                       | Password | FirstName      | EmailInput   | LastName           | CU    | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message       |
-      | Gessit     | demogp123@gmail.com         | pass123  | TestOnesixfour | abwc@abc.com | NOTCirrhotic       | Bay   |   0422000000 |        7 |     2222 |       40 |  50 |      200 | Non-Cirrhotic |
-      | Gessit     | demospecialist123@gmail.com | pass123  | TestOnesixfour | abwc@abc.com | NOTCirrhotic       | Royal |   0422000000 |        7 |     2222 |       40 |  50 |      200 |               |
-      | Gessit     | demospecialist123@gmail.com | pass123  | TestOnesixfour | abwc@abc.com | PatientIsCirrhotic | Royal |    042211111 |        7 |     2222 |       40 |  50 |       20 | Complications |
- 
+      | PortalName | email                       | Password | FirstName                     | EmailInput   | LastName           | CU    | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message       |
+      | Gessit     | demogp123@gmail.com         | pass123  | TestOnesixfour                | abwc@abc.com | NOTCirrhotic       | Bay   |   0422000000 |        7 |     2222 |       40 |  50 |      200 | Non-Cirrhotic |
+     | Gessit     | demospecialist123@gmail.com | pass123  | TestOnesixfour                | abwc@abc.com | NOTCirrhotic       | Royal |   0422000000 |        7 |     2222 |       40 |  50 |      200 |               |
+      | Gessit     | demospecialist123@gmail.com | pass123  | TestOnesixfourSpecilToApprove | abwc@abc.com | PatientIsCirrhotic | Royal |    042211111 |        7 |     2222 |       40 |  50 |       20 | Complications |
+
   Scenario Outline: Search for the person created above
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -634,12 +631,11 @@ Feature: Some feature
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
-         And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on " My Patients"
     Then I see the table "myPatientsTable" displayed
-
     And I enter the details as
       | Fields          | Value      |
       | searchtextInput | <LastName> |
@@ -650,6 +646,7 @@ Feature: Some feature
     And I check I am on "Patient Profile" page
     And I click on "Edit Patient Details "
     And I click on "Fibrosis/ Cirrhosis Assessment"
+     And I scroll "down" the page
     And I enter the details as
       | Fields   | Value      |
       | aprilevl | <aprilevl> |
@@ -663,6 +660,7 @@ Feature: Some feature
       | inr        |   100 |
       | albumin    |   100 |
       | creatinine |   100 |
+       And I scroll "down" the page
     And I click on "Poorly controlled"
     And I click on "Minimum"
     And I click on "variscesyes" radio option
@@ -691,10 +689,10 @@ Feature: Some feature
     #Test16402
     Examples: 
       | PortalName | email                       | Password | FirstName      | EmailInput   | LastName           | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message       |
-      | Gessit     | demospecialist123@gmail.com | pass123  | TestOnesixfour | abwc@abc.com | PatientIsCirrhotic |    042211111 |        7 |     2222 |       40 |  50 |       20 | Complications |
-  
-  
+      | Gessit     | demospecialist123@gmail.com | pass123  | TestOnesixfourSpecilToApprove | abwc@abc.com | PatientIsCirrhotic |    042211111 |        7 |     2222 |       40 |  50 |       20 | Complications |
+
   #patient name should be same as above TC (get data from above)
+ 
   Scenario Outline: GES-529 As a GP/Specialist, I want the ability to save the draft treatment plan to view that at a later stage
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -706,8 +704,8 @@ Feature: Some feature
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
-     And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on " My Patients"
     Then I see the table "myPatientsTable" displayed
@@ -753,13 +751,15 @@ Feature: Some feature
     And I click on "Approve Plan"
     And I wait for "2000" millisecond
     Then I see text "Treatment Plan (Approved)" displayed
+    
+    # To do add further validation by going to My Taskpage and add validation. Currently in error.
 
     #Test16402
     Examples: 
       | PortalName | email                       | Password | FirstName      | EmailInput   | LastName           | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message       |
-      | Gessit     | demospecialist123@gmail.com | pass123  | TestOnesixfour | abwc@abc.com | PatientIsCirrhotic |    042211111 |        7 |     2222 |       40 |  50 |       20 | Complications |
- 
-Scenario Outline: Check Cirrosi Logic
+      | Gessit     | demospecialist123@gmail.com | pass123  | TestOnesixfourSpecilToApprove | abwc@abc.com | PatientIsCirrhotic |    042211111 |        7 |     2222 |       40 |  50 |       20 | Complications |
+
+  Scenario Outline: Check Cirrosi Logic
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
     And I enter the details as
@@ -767,8 +767,8 @@ Scenario Outline: Check Cirrosi Logic
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
-   	  And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on "Create New Patient"
     And I wait for "1000" millisecond
@@ -777,7 +777,7 @@ Scenario Outline: Check Cirrosi Logic
     And I click on "agreeButton" on popup
     And I wait for "1000" millisecond
     And I click on "Create Patient"
-	  And I check I am on "Personal Details" page
+    And I check I am on "Personal Details" page
     And I enter the details as
       | Fields         | Value          |
       | FirstName      | <FirstName>    |
@@ -923,8 +923,8 @@ Scenario Outline: Check Cirrosi Logic
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
-  	  And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on "Create New Patient"
     And I wait for "1000" millisecond
@@ -933,7 +933,7 @@ Scenario Outline: Check Cirrosi Logic
     And I click on "agreeButton" on popup
     And I wait for "1000" millisecond
     And I click on "Create Patient"
-	  And I check I am on "Personal Details" page
+    And I check I am on "Personal Details" page
     And I enter the details as
       | Fields         | Value          |
       | FirstName      | <FirstName>    |
@@ -1037,14 +1037,15 @@ Scenario Outline: Check Cirrosi Logic
     And I click on button "complete-task-button"
     Then I see text "Treatment Plan (Approved)" displayed
     Then I see sytem date displayed in "dateDiv"
+    And I scroll "down" the page
     And I click on "Follow up"
     And I click on button "complete-task-button"
 
     Examples: 
       | PortalName | email               | Password | FirstName      | CU  | EmailInput   | LastName | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message1      |
       | Gessit     | demogp123@gmail.com | pass123  | GPApprovedPlan | Bay | abwc@abc.com | GAP      |   0422000000 |        7 |     2222 |       40 |  50 |      200 | Non-Cirrhotic |
- 
-   Scenario Outline: GES-521, As a GP/Specialist, I want to be able to view a task on a draft treatment plan in both a simplified and detailed view
+
+  Scenario Outline: GES-521, As a GP/Specialist, I want to be able to view a task on a draft treatment plan in both a simplified and detailed view
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
     And I enter the details as
@@ -1052,8 +1053,8 @@ Scenario Outline: Check Cirrosi Logic
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
-   	  And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on "Create New Patient"
     And I wait for "1000" millisecond
@@ -1062,7 +1063,7 @@ Scenario Outline: Check Cirrosi Logic
     And I click on "agreeButton" on popup
     And I wait for "1000" millisecond
     And I click on "Create Patient"
-	  And I check I am on "Personal Details" page
+    And I check I am on "Personal Details" page
     And I enter the details as
       | Fields         | Value          |
       | FirstName      | <FirstName>    |
@@ -1143,7 +1144,6 @@ Scenario Outline: Check Cirrosi Logic
     # Test1
     And I enter the details as
       | Fields   | Value      |
-      
       | aprilevl | <aprilevl> |
       | ast      | <ast>      |
       | Platelet | <Platelet> |
@@ -1163,7 +1163,7 @@ Scenario Outline: Check Cirrosi Logic
     Examples: 
       | PortalName | email               | Password | FirstName                | EmailInput   | LastName | contactInput | medicare | postCode | CU  | aprilevl | ast | Platelet | Message1      | Suburb     | ResidentialAddress1 | Weight | Height | ResidentialAddress2 |
       | Gessit     | demogp123@gmail.com | pass123  | TestFiveTwentyOnetaketwo | abwc@abc.com | GAP      |   0422000000 |        7 |     2222 | Bay |       40 |  50 |      200 | Non-Cirrhotic | Chandigarh | Chandigarh          |     78 |    175 | bheelowal           |
- 
+
   Scenario Outline: GES-521, As a GP/Specialist, I want to be able to view a task on a draft treatment plan in both a simplified and detailed view
     Given I want to login to portal "<PortalName>"
     And I wait for "8000" millisecond
@@ -1172,8 +1172,8 @@ Scenario Outline: Check Cirrosi Logic
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
-         And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on " My Patients"
     Then I see the table "myPatientsTable" displayed
@@ -1199,7 +1199,7 @@ Scenario Outline: Check Cirrosi Logic
       | PortalName | email               | Password | FirstName                | EmailInput   | LastName | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message1      |
       | Gessit     | demogp123@gmail.com | pass123  | TestFiveTwentyOnetaketwo | abwc@abc.com | GAP      |   0422000000 |        7 |     2222 |       40 |  50 |      200 | Non-Cirrhotic |
 
-    Scenario Outline: GES-521, As a GP/Specialist, I want to be able to view a task on a draft treatment plan in both a simplified and detailed view
+  Scenario Outline: GES-521, As a GP/Specialist, I want to be able to view a task on a draft treatment plan in both a simplified and detailed view
     Given I want to login to portal "<PortalName>"
     And I wait for "8000" millisecond
     And I enter the details as
@@ -1207,8 +1207,8 @@ Scenario Outline: Check Cirrosi Logic
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
-        And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on " My Patients"
     Then I see the table "myPatientsTable" displayed
@@ -1228,10 +1228,9 @@ Scenario Outline: Check Cirrosi Logic
     Then I see text "Commence medication" displayed
 
     Examples: 
-      | PortalName | email               | Password | FirstName       | EmailInput   | LastName | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message1      |
+      | PortalName | email               | Password | FirstName      | EmailInput   | LastName | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message1      |
       | Gessit     | demogp123@gmail.com | pass123  | GPApprovedPlan | abwc@abc.com | GAP      |   0422000000 |        7 |     2222 |       40 |  50 |      200 | Non-Cirrhotic |
 
- 
   Scenario Outline: GES-499, As a Specialist, I want the ability to approve a draft treatment plan that I have created
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -1240,8 +1239,8 @@ Scenario Outline: Check Cirrosi Logic
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
-	  And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on "Create New Patient"
     And I wait for "1000" millisecond
@@ -1250,8 +1249,7 @@ Scenario Outline: Check Cirrosi Logic
     And I click on "agreeButton" on popup
     And I wait for "1000" millisecond
     And I click on "Create Patient"
-	  And I check I am on "Personal Details" page
-	
+    And I check I am on "Personal Details" page
     And I enter the details as
       | Fields         | Value          |
       | FirstName      | <FirstName>    |
@@ -1348,7 +1346,6 @@ Scenario Outline: Check Cirrosi Logic
   #***********************************************************************************************************************
   #***********************************************************************************************************************
   #***********************************************************************************************************************
-
   Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approve
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -1357,8 +1354,8 @@ Scenario Outline: Check Cirrosi Logic
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
-   	  And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on "Create New Patient"
     And I wait for "1000" millisecond
@@ -1367,8 +1364,7 @@ Scenario Outline: Check Cirrosi Logic
     And I click on "agreeButton" on popup
     And I wait for "1000" millisecond
     And I click on "Create Patient"
-	  And I check I am on "Personal Details" page
-	
+    And I check I am on "Personal Details" page
     And I enter the details as
       | Fields         | Value          |
       | FirstName      | <FirstName>    |
@@ -1452,10 +1448,10 @@ Scenario Outline: Check Cirrosi Logic
     Examples: 
       | PortalName | email               | Password | FirstName  | EmailInput   | LastName | CU  | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message |
       | Gessit     | demogp123@gmail.com | pass123  | EtoESetTwo | abwc@abc.com | GAP      | Bay |   0422000000 |        7 |     2222 |       40 |  50 |      200 |         |
- 
 
   #################################################### E2E Set2 #####################################################
- 
+  
+
   Scenario Outline: Set 1..... login as gp.......create a draft (C)....... SHOULD NOT BE ABLE TO APPROVE (different popup options)....send it to specialist
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -1468,8 +1464,8 @@ Scenario Outline: Check Cirrosi Logic
       | inputPassword | <Password> |
     And I hit Enter
     # Create a Patient who is Cirrhotic
-   	  And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on "Create New Patient"
     And I wait for "1000" millisecond
@@ -1478,8 +1474,7 @@ Scenario Outline: Check Cirrosi Logic
     And I click on "agreeButton" on popup
     And I wait for "1000" millisecond
     And I click on "Create Patient"
-	  And I check I am on "Personal Details" page
-	
+    And I check I am on "Personal Details" page
     And I enter the details as
       | Fields         | Value          |
       | FirstName      | <FirstName>    |
@@ -1553,6 +1548,7 @@ Scenario Outline: Check Cirrosi Logic
       | albumin    |   100 |
       | creatinine |   100 |
     And I click on "Poorly controlled"
+    And I scroll "down" the page
     And I click on "Minimum"
     And I click on "variscesyes" radio option
     And I click on "bleedingyes" radio option
@@ -1580,6 +1576,8 @@ Scenario Outline: Check Cirrosi Logic
       | Gessit     | demogp123@gmail.com | pass123  | CheckStatusForCPrav | abwc@abc.com | GAP      | Bay |   0422000000 |        7 |     2222 |       40 |  50 |       20 | Complications |
 
   ########################################### Set 3 E2E#########################################
+  
+
   Scenario Outline: Set 2..... login as gp.......Create NC....... approve
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -1588,8 +1586,8 @@ Scenario Outline: Check Cirrosi Logic
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
- 	  And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on "Create New Patient"
     And I wait for "1000" millisecond
@@ -1598,8 +1596,7 @@ Scenario Outline: Check Cirrosi Logic
     And I click on "agreeButton" on popup
     And I wait for "1000" millisecond
     And I click on "Create Patient"
-	  And I check I am on "Personal Details" page
-	
+    And I check I am on "Personal Details" page
     And I enter the details as
       | Fields         | Value          |
       | FirstName      | <FirstName>    |
@@ -1692,8 +1689,8 @@ Scenario Outline: Check Cirrosi Logic
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
-	  And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on "Create New Patient"
     And I wait for "1000" millisecond
@@ -1702,8 +1699,7 @@ Scenario Outline: Check Cirrosi Logic
     And I click on "agreeButton" on popup
     And I wait for "1000" millisecond
     And I click on "Create Patient"
-	  And I check I am on "Personal Details" page
-	
+    And I check I am on "Personal Details" page
     And I enter the details as
       | Fields         | Value          |
       | FirstName      | <FirstName>    |
@@ -1787,8 +1783,8 @@ Scenario Outline: Check Cirrosi Logic
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
-	  And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on "Create New Patient"
     And I wait for "1000" millisecond
@@ -1797,8 +1793,7 @@ Scenario Outline: Check Cirrosi Logic
     And I click on "agreeButton" on popup
     And I wait for "1000" millisecond
     And I click on "Create Patient"
-	  And I check I am on "Personal Details" page
-	
+    And I check I am on "Personal Details" page
     And I enter the details as
       | Fields         | Value          |
       | FirstName      | <FirstName>    |
@@ -1862,6 +1857,7 @@ Scenario Outline: Check Cirrosi Logic
       | albumin    |   100 |
       | creatinine |   100 |
     And I click on "Poorly controlled"
+    And I scroll "down" the page
     And I click on "Minimum"
     And I click on "variscesyes" radio option
     And I click on "bleedingyes" radio option
@@ -1912,8 +1908,8 @@ Scenario Outline: Check Cirrosi Logic
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
-	  And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on "Create New Patient"
     And I wait for "1000" millisecond
@@ -1922,8 +1918,7 @@ Scenario Outline: Check Cirrosi Logic
     And I click on "agreeButton" on popup
     And I wait for "1000" millisecond
     And I click on "Create Patient"
-	  And I check I am on "Personal Details" page
-	
+    And I check I am on "Personal Details" page
     And I enter the details as
       | Fields         | Value          |
       | FirstName      | <FirstName>    |
@@ -1987,6 +1982,7 @@ Scenario Outline: Check Cirrosi Logic
       | albumin    |   100 |
       | creatinine |   100 |
     And I click on "Poorly controlled"
+    And I scroll "down" the page
     And I click on "Minimum"
     And I click on "variscesyes" radio option
     And I click on "bleedingyes" radio option
@@ -2011,96 +2007,94 @@ Scenario Outline: Check Cirrosi Logic
       | PortalName | email                       | Password | FirstName | EmailInput   | LastName | contactInput | CU    | medicare | postCode | aprilevl | ast | Platelet | Message       |
       | Gessit     | demospecialist123@gmail.com | pass123  | SetTwo    | abwc@abc.com | GAP      |   0422000000 | Royal |        7 |     2222 |       40 |  50 |       20 | Complications |
 
-
-#@arvind defect give me admin logins
+  #@arvind defect give me admin logins
   #Scenario Outline: GES-119, GES-621 As an Administrator, I want the ability to create and view Care Units
-    # Scenario 1: Administrator accesses Create Care Unit function
-    #Given I want to login to portal "<PortalName>"
-    #And I wait for "10000" millisecond
-    #And I enter the details as
-      #| Fields        | Value      |
-      #| email         | <email>    |
-      #| inputPassword | <Password> |
-    #And I hit Enter
-    #Then I click on image "icon_menu"
-    #And I wait for "1000" millisecond
-    #And I click on "Care Units"
-    #And I wait for "1000" millisecond
-    #And I click on "New Care Unit"
-    #And I click on "Submit"
-    #Then "<Item>" is displayed as "<ItemName>"
-      #| Item  | ItemName                    |
-      #| item1 | State is mandatory          |
-      #| item2 | Care Unit Name is mandatory |
-      #| item3 | Address Line 1 is mandatory |
-      #| item1 | Postcode is mandatory       |
-      #| item2 | Contact number is mandatory |
-      #| item3 | Email address is mandatory  |
-      #| item3 | Suburb is mandatory         |
-    #Then I see text "Add New Care Unit" displayed
-    #And I enter the details as
-      #| Fields        | Value               |
-      #| name          | <CareUnitNameValue> |
-      #| contactEmail  | adb@ads             |
-      #| address_1     | <Address Line 1>    |
-      #| contactNumber | <Contact Number>    |
-      #| postcode      | <Postcode>          |
-      #| suburb        | <Suburb>            |
-    #And I click on "Submit"
-    #Then "<Item>" is displayed as "<ItemName>"
-      #| Item  | ItemName                               |
-      #| item1 | Email address is not in a valid format |
-    #And I enter the details as
-      #| Fields        | Value               |
-      #| name          | <CareUnitNameValue> |
-      #| contactEmail  | <Contact Email>     |
-      #| address_1     | <Address Line 1>    |
-      #| contactNumber | <Contact Number>    |
-      #| postcode      | <Postcode>          |
-      #| suburb        | <Suburb>            |
-    #And I click on "Select"
-    #And on popup I select "VIC" from "state"
-    #And I hit Enter
-    #And I wait for "2000" millisecond
-    #And I click on "Submit"
-    #Then I click on image "icon_menu"
-    #And I wait for "1000" millisecond
-    #Then I click on image "logout"
-    #And I check I am on "Logout" page
-    #And I wait for "1000" millisecond
-    #Then I click on button "loginAgain"
-    #And I wait for "1000" millisecond
-    #And I enter the details as
-      #| Fields        | Value      |
-      #| email         | <email>    |
-      #| inputPassword | <Password> |
-    #And I hit Enter
-    #Then I click on image "icon_menu"
-    #And I wait for "1000" millisecond
-    #And I click on "Care Units"
-    #And I wait for "1000" millisecond
-    #And I click on "New Care Unit"
-    #And I enter the details as
-      #| Fields        | Value               |
-      #| name          | <CareUnitNameValue> |
-      #| contactEmail  | <Contact Email>     |
-      #| address_1     | <Address Line 1>    |
-      #| contactNumber | <Contact Number>    |
-      #| postcode      | <Postcode>          |
-      #| suburb        | <Suburb>            |
-    #And I click on "Select"
-    #And on popup I select "VIC" from "state"
-    #And I click on "Submit"
-    #Then I see text "Care Unit already exist" displayed
-#
-    #Examples: 
-      #| PortalName | email                       | Password | CareUnitNameValue | Postcode | Address Line 1 | Contact Number | Contact Email | Suburb    |
-      #| Gessit     | demospecialist123@gmail.com | pass123  | Test119and621     |     3000 | 13 Kona St     |       99880099 | test@test.com | Melbourne |
-
+  # Scenario 1: Administrator accesses Create Care Unit function
+  #Given I want to login to portal "<PortalName>"
+  #And I wait for "10000" millisecond
+  #And I enter the details as
+  #| Fields        | Value      |
+  #| email         | <email>    |
+  #| inputPassword | <Password> |
+  #And I hit Enter
+  #Then I click on image "icon_menu"
+  #And I wait for "1000" millisecond
+  #And I click on "Care Units"
+  #And I wait for "1000" millisecond
+  #And I click on "New Care Unit"
+  #And I click on "Submit"
+  #Then "<Item>" is displayed as "<ItemName>"
+  #| Item  | ItemName                    |
+  #| item1 | State is mandatory          |
+  #| item2 | Care Unit Name is mandatory |
+  #| item3 | Address Line 1 is mandatory |
+  #| item1 | Postcode is mandatory       |
+  #| item2 | Contact number is mandatory |
+  #| item3 | Email address is mandatory  |
+  #| item3 | Suburb is mandatory         |
+  #Then I see text "Add New Care Unit" displayed
+  #And I enter the details as
+  #| Fields        | Value               |
+  #| name          | <CareUnitNameValue> |
+  #| contactEmail  | adb@ads             |
+  #| address_1     | <Address Line 1>    |
+  #| contactNumber | <Contact Number>    |
+  #| postcode      | <Postcode>          |
+  #| suburb        | <Suburb>            |
+  #And I click on "Submit"
+  #Then "<Item>" is displayed as "<ItemName>"
+  #| Item  | ItemName                               |
+  #| item1 | Email address is not in a valid format |
+  #And I enter the details as
+  #| Fields        | Value               |
+  #| name          | <CareUnitNameValue> |
+  #| contactEmail  | <Contact Email>     |
+  #| address_1     | <Address Line 1>    |
+  #| contactNumber | <Contact Number>    |
+  #| postcode      | <Postcode>          |
+  #| suburb        | <Suburb>            |
+  #And I click on "Select"
+  #And on popup I select "VIC" from "state"
+  #And I hit Enter
+  #And I wait for "2000" millisecond
+  #And I click on "Submit"
+  #Then I click on image "icon_menu"
+  #And I wait for "1000" millisecond
+  #Then I click on image "logout"
+  #And I check I am on "Logout" page
+  #And I wait for "1000" millisecond
+  #Then I click on button "loginAgain"
+  #And I wait for "1000" millisecond
+  #And I enter the details as
+  #| Fields        | Value      |
+  #| email         | <email>    |
+  #| inputPassword | <Password> |
+  #And I hit Enter
+  #Then I click on image "icon_menu"
+  #And I wait for "1000" millisecond
+  #And I click on "Care Units"
+  #And I wait for "1000" millisecond
+  #And I click on "New Care Unit"
+  #And I enter the details as
+  #| Fields        | Value               |
+  #| name          | <CareUnitNameValue> |
+  #| contactEmail  | <Contact Email>     |
+  #| address_1     | <Address Line 1>    |
+  #| contactNumber | <Contact Number>    |
+  #| postcode      | <Postcode>          |
+  #| suburb        | <Suburb>            |
+  #And I click on "Select"
+  #And on popup I select "VIC" from "state"
+  #And I click on "Submit"
+  #Then I see text "Care Unit already exist" displayed
+  #
+  #Examples:
+  #| PortalName | email                       | Password | CareUnitNameValue | Postcode | Address Line 1 | Contact Number | Contact Email | Suburb    |
+  #| Gessit     | demospecialist123@gmail.com | pass123  | Test119and621     |     3000 | 13 Kona St     |       99880099 | test@test.com | Melbourne |
   ##############################################################
   #######################NOTES BY GP AND SP#########################
   ###############################################################
-
+  
   Scenario Outline: GES-233 - As a GP/Specialist, I should be able to add notes to a treatment plan page
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -2108,9 +2102,9 @@ Scenario Outline: Check Cirrosi Logic
       | Fields        | Value      |
       | email         | <email>    |
       | inputPassword | <Password> |
-      And I hit Enter
-    	  And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I hit Enter
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on "Create New Patient"
     And I wait for "1000" millisecond
@@ -2119,8 +2113,7 @@ Scenario Outline: Check Cirrosi Logic
     And I click on "agreeButton" on popup
     And I wait for "1000" millisecond
     And I click on "Create Patient"
-	  And I check I am on "Personal Details" page
-	
+    And I check I am on "Personal Details" page
     And I enter the details as
       | Fields         | Value          |
       | FirstName      | <FirstName>    |
@@ -2197,6 +2190,7 @@ Scenario Outline: Check Cirrosi Logic
     And I wait for "1000" millisecond
     Then I see text "Treatment Plan (Draft)" displayed
     # Add notes
+     And I scroll "down" the page
     And I click on text "+ Add Note"
     Then "<Item>" is displayed as "<ItemName>"
       | Item  | ItemName |
@@ -2266,8 +2260,8 @@ Scenario Outline: Check Cirrosi Logic
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
-   And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on "Create New Patient"
     And I wait for "1000" millisecond
@@ -2276,7 +2270,7 @@ Scenario Outline: Check Cirrosi Logic
     And I click on "agreeButton" on popup
     And I wait for "1000" millisecond
     And I click on "Create Patient"
-	  And I check I am on "Personal Details" page
+    And I check I am on "Personal Details" page
     And I enter the details as
       | Fields         | Value          |
       | FirstName      | <FirstName>    |
@@ -2344,6 +2338,7 @@ Scenario Outline: Check Cirrosi Logic
       | albumin    |   100 |
       | creatinine |   100 |
     And I click on "Poorly controlled"
+    And I scroll "down" the page
     And I click on "Minimum"
     And I click on "variscesyes" radio option
     And I click on "bleedingyes" radio option
@@ -2359,6 +2354,7 @@ Scenario Outline: Check Cirrosi Logic
     And I wait for "1000" millisecond
     Then I see text "Treatment Plan (Draft)" displayed
     # Add notes
+    And I scroll "down" the page
     And I click on text "+ Add Note"
     Then "<Item>" is displayed as "<ItemName>"
       | Item  | ItemName |
@@ -2377,6 +2373,7 @@ Scenario Outline: Check Cirrosi Logic
     Then I click on "Submit"
     And I click on button "sendRequestCirrhosis"
     Then I see text "Treatment Plan (Pending Approval)" displayed
+      And I scroll "down" the page
     And I click on text "+ Add Note"
     Then "<Item>" is displayed as "<ItemName>"
       | Item  | ItemName |
@@ -2405,8 +2402,8 @@ Scenario Outline: Check Cirrosi Logic
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
-    	  And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on "Create New Patient"
     And I wait for "1000" millisecond
@@ -2415,8 +2412,7 @@ Scenario Outline: Check Cirrosi Logic
     And I click on "agreeButton" on popup
     And I wait for "1000" millisecond
     And I click on "Create Patient"
-	  And I check I am on "Personal Details" page
-	
+    And I check I am on "Personal Details" page
     And I enter the details as
       | Fields         | Value          |
       | FirstName      | <FirstName>    |
@@ -2450,6 +2446,8 @@ Scenario Outline: Check Cirrosi Logic
       | item2 | Torsten Wiesel |
     And I click on "Next"
     And I check I am on "Medical History" page
+    And I scroll "down" the page
+    
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
     And I click on "hepatitisyes" radio option
@@ -2484,6 +2482,7 @@ Scenario Outline: Check Cirrosi Logic
       | albumin    |   100 |
       | creatinine |   100 |
     And I click on "Poorly controlled"
+    And I scroll "down" the page
     And I click on "Minimum"
     And I click on "variscesyes" radio option
     And I click on "bleedingyes" radio option
@@ -2499,6 +2498,7 @@ Scenario Outline: Check Cirrosi Logic
     And I wait for "1000" millisecond
     Then I see text "Treatment Plan (Draft)" displayed
     # Add notes
+    And I scroll "down" the page
     And I click on text "+ Add Note"
     Then "<Item>" is displayed as "<ItemName>"
       | Item  | ItemName |
@@ -2547,8 +2547,8 @@ Scenario Outline: Check Cirrosi Logic
       | inputPassword | <Password> |
     And I hit Enter
     #GES810- Scenario1
-   	  And I check I am on "My Tasks" page
-   Then I click on image "icon_menu"
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     And I click on "Create New Patient"
     And I wait for "1000" millisecond
@@ -2557,8 +2557,7 @@ Scenario Outline: Check Cirrosi Logic
     And I click on "agreeButton" on popup
     And I wait for "1000" millisecond
     And I click on "Create Patient"
-	  And I check I am on "Personal Details" page
-	
+    And I check I am on "Personal Details" page
     And I enter the details as
       | Fields         | Value          |
       | FirstName      | <FirstName>    |
@@ -2588,6 +2587,7 @@ Scenario Outline: Check Cirrosi Logic
     And I click on "Save"
     And I click on "Next"
     And I check I am on "Medical History" page
+  
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
     And I click on "hepatitisyes" radio option
@@ -2622,6 +2622,7 @@ Scenario Outline: Check Cirrosi Logic
       | albumin    |   100 |
       | creatinine |   100 |
     And I click on "Poorly controlled"
+      And I scroll "down" the page
     And I click on "Minimum"
     And I click on "variscesyes" radio option
     And I click on "bleedingyes" radio option
@@ -2637,6 +2638,7 @@ Scenario Outline: Check Cirrosi Logic
     And I wait for "1000" millisecond
     Then I see text "Treatment Plan (Draft)" displayed
     # Add notes
+    And I scroll "down" the page
     And I click on text "+ Add Note"
     Then "<Item>" is displayed as "<ItemName>"
       | Item  | ItemName |
@@ -2654,7 +2656,9 @@ Scenario Outline: Check Cirrosi Logic
       | item1 | <noteinput> |
     Then I click on "Submit"
     And I click on text "Approve Plan"
+    And I scroll "up" the page
     Then I see text "Treatment Plan (Approved)" displayed
+    And I scroll "down" the page
     And I click on text "+ Add Note"
     Then "<Item>" is displayed as "<ItemName>"
       | Item  | ItemName |
@@ -2697,7 +2701,7 @@ Scenario Outline: Check Cirrosi Logic
     Examples: 
       | PortalName | Message                 | invalid email         | Message2                |
       | Gessit     | field must be filled in | invalidemail@test.com | ReCaptcha must be done. |
-
+@Gessit_Regression
   Scenario Outline: GES-172 As Specialist, I want the ability to add treatment tasks to an approved treatment plan
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -2743,23 +2747,19 @@ Scenario Outline: Check Cirrosi Logic
     And on popup I select "James Kildare" from "responsibilitydropdown"
     # Babu to add the id to description field.
     And I enter popup values as
-      | Fields             | Value                 |    
+      | Fields             | Value                 |
       | duedays            |                     3 |
       | addTaskDescription | automate and get lazy |
-      And I enter pop field "taskName" as "jungle main oye oye"
+    And I enter pop field "taskName" as "jungle main oye oye"
     And I click on button "saveTask"
     Then I see text "jungle main oye oye" displayed
-   
 
     # Test16402
     Examples: 
       | PortalName | email                       | Password | FirstName      | EmailInput   | LastName           | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message       |
       | Gessit     | demospecialist123@gmail.com | pass123  | TestOnesixfour | abwc@abc.com | PatientIsCirrhotic |    042211111 |        7 |     2222 |       40 |  50 |       20 | Complications |
-
-      
-      
-       Scenario Outline: GES-820 As a System Admin I want to view the menu items so that I know what functions I have access to based on my role
-
+@Gessit_Regression
+  Scenario Outline: GES-820 As a System Admin I want to view the menu items so that I know what functions I have access to based on my role
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
     And I enter the details as
@@ -2787,19 +2787,18 @@ Scenario Outline: Check Cirrosi Logic
     Then I click on image "icon_menu"
     And I wait for "1000" millisecond
     Then "<Item>" is displayed as "<ItemName>"
-      | Item  | ItemName                    |
-      | item1 | Reports                     |
-      | item2 | Generate Initiations Report |
-      | item4 | Download Initiations Report |
-      |item5 | Algorithm - Single Combination|
-      |item5 | Algorithm - All Combination|
+      | Item  | ItemName                       |
+      | item1 | Reports                        |
+      | item2 | Generate Initiations Report    |
+      | item4 | Download Initiations Report    |
+      | item5 | Algorithm - Single Combination |
+      | item5 | Algorithm - All Combination    |
 
     Examples: 
       | PortalName | email                         | Password | FirstName | CU    | EmailInput   | LastName | contactInput | medicare | postCode | ResidentialAddress1 | Weight | Height | ResidentialAddress2 | Suburb   |
       | Gessit     | hemant.shori@dbresults.com.au | pass123  | Bobby     | Royal | abwc@abc.com | Smith    |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
-      
-      
-       Scenario Outline: GES-810 As a GP/Specialist I want to view the menu items so that I know what functions I have access to based on my role
+
+  Scenario Outline: GES-810 As a GP/Specialist I want to view the menu items so that I know what functions I have access to based on my role
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
     And I enter the details as
@@ -2822,4 +2821,3 @@ Scenario Outline: Check Cirrosi Logic
       | PortalName | email                       | Password | FirstName | CU    | EmailInput   | LastName | contactInput | medicare | postCode | ResidentialAddress1 | Weight | Height | ResidentialAddress2 | Suburb   |
       | Gessit     | demogp123@gmail.com         | pass123  | Bobby     | Royal | abwc@abc.com | Smith    |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
       | Gessit     | demospecialist123@gmail.com | pass123  | Bobby     | Royal | abwc@abc.com | Smith    |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
-      

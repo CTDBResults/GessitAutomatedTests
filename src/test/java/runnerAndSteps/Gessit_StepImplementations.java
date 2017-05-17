@@ -69,6 +69,8 @@ public class Gessit_StepImplementations {
 		
 		driver = new ChromeDriver(options);
 		
+		
+		
 		//driver = new ChromeDriver();
 
 	  //  driver.manage().window().maximize();
@@ -79,7 +81,7 @@ public class Gessit_StepImplementations {
 
 	@After()
 		  public void tearDown() {	
-	     driver.quit();
+	//     driver.quit();
 		   	  }
 	//******************************************************************************   
 	    
@@ -226,6 +228,7 @@ public class Gessit_StepImplementations {
 	public void i_want_to_login_to_portal(String arg1) throws Throwable {
 		HomePage home = PageFactory.initElements(driver, HomePage.class);
 		home.navigateTo(arg1);	
+
 	}
 
 
@@ -352,10 +355,22 @@ public class Gessit_StepImplementations {
 		else {
 			DBUtilities createXpath = new DBUtilities(driver);
 			String myxpath = createXpath.xpathMaker(arg1);
+		//	createXpath.scrollDownForElement(myxpath);
 			System.out.println("cliclking on " +myxpath);
-			Assert.assertTrue(driver.findElement(By.xpath(myxpath)).isDisplayed());
+			
+			if(driver.findElement(By.xpath(myxpath)).isDisplayed())
+					{
+				System.out.println("Element is Present" +myxpath);
+				}else{
+				System.out.println("Element is Absent SOOOOOO SCROLLING DOWN" +myxpath);
+				createXpath.scrollDownForElement(myxpath);
+				}
 			Thread.sleep(1000);
+		
+			
+		
 			driver.findElement(By.xpath(myxpath)).click();
+	
 			
 		}
 		Thread.sleep(1000);
@@ -710,9 +725,15 @@ public void i_enter_pop_field_as(String arg1, String arg2) throws Throwable {
 		//myXpath = createXpath.xpathMakerById(arg1);
 		WebElement elementToBeClicked =	driver.findElement(By.xpath(myxpath));
 		System.out.println(elementToBeClicked.getText());
-		JavascriptExecutor jse = (JavascriptExecutor)driver;
-
-		jse.executeScript("scroll(0, 250)");
+		if(driver.findElements(By.xpath(myxpath)).size() !=0)
+		{
+	System.out.println("Element is Present");
+	}else{
+	System.out.println("Element is Absent SOOOOOO SCROLLING DOWN");
+	DBUtilities createXpath = new DBUtilities(driver);
+	createXpath.scrollDownForElement(myxpath);
+	}
+       Thread.sleep(1000);
 		elementToBeClicked.click();
 		
 		
