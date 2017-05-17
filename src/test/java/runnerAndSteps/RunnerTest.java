@@ -21,7 +21,7 @@ import cucumber.api.junit.Cucumber;
 		
     //********************for wip********************************
     
-  // features = "src/test/resource/com/GESSIT/wip.feature") 
+ //  features = "src/test/resource/com/GESSIT/wip.feature") 
 
 
 //***************************for algo**************************

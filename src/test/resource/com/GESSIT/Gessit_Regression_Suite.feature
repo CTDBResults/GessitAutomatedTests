@@ -1,4 +1,4 @@
-
+@Gessit_Regression
 Feature: Some feature
 
   Scenario Outline: GES-70, GES-72
@@ -1451,7 +1451,7 @@ Feature: Some feature
 
   #################################################### E2E Set2 #####################################################
   
-
+#GES-736 check meddication search
   Scenario Outline: Set 1..... login as gp.......create a draft (C)....... SHOULD NOT BE ABLE TO APPROVE (different popup options)....send it to specialist
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -1494,7 +1494,15 @@ Feature: Some feature
     And I check I am on "Medications" page
     And I enter the details as
       | Fields                | Value |
-      | searchMedicationInput | el    |
+      | searchMedicationInput | milk  |
+    Then "<Item>" is displayed as "<ItemName>"
+      | Item  | ItemName                                                                  |
+      | item1 | milk powder lactose free formula                                          |
+      | item2 | milk protein and fat formula with vitamins and minerals carbohydrate free |
+      | item3 | milk powder synthetic low calcium                                         |
+      | item4 | milk powder lactose modified predigested                                  |
+      | item5 | milk powder lactose free formula predigested                              |
+
     And I wait for "2000" millisecond
     And I hit Enter
     Then I click on "Add"
@@ -2758,7 +2766,7 @@ Feature: Some feature
     Examples: 
       | PortalName | email                       | Password | FirstName      | EmailInput   | LastName           | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message       |
       | Gessit     | demospecialist123@gmail.com | pass123  | TestOnesixfour | abwc@abc.com | PatientIsCirrhotic |    042211111 |        7 |     2222 |       40 |  50 |       20 | Complications |
-@Gessit_Regression
+
   Scenario Outline: GES-820 As a System Admin I want to view the menu items so that I know what functions I have access to based on my role
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
