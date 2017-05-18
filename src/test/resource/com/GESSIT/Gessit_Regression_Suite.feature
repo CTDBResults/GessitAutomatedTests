@@ -114,7 +114,7 @@ Feature: Some feature
       | PortalName | email                       | Password | FirstName | EmailInput   | LastName | contactInput | medicare | CU    | postCode | ResidentialAddress1 | Weight | Height | ResidentialAddress2 | Suburb   |
       | Gessit     | demospecialist123@gmail.com | pass123  | Test      | abwc@abc.com | Patient  |   0422000000 |        7 | Royal |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
 
-  Scenario Outline: GES-3 Create patient tests (from,RHS), Postal address different from residential address
+ Scenario Outline: GES-3 Create patient tests (from,RHS), Postal address different from residential address
     #  GES-141 :As a GP/Specialist, I want a prompt message displayed when I enter a new patient in the system and it identifies the patient already exists.
     #Scenario 1: Creation of Patient
     Given I want to login to portal "<PortalName>"
@@ -166,60 +166,10 @@ Feature: Some feature
     Then I click on image "icon_menu"
     And I wait for "2000" millisecond
     Then I click on image "logout"
-    And I click on "Login again"
-    And I wait for "1000" millisecond
-    And I enter the details as
-      | Fields        | Value      |
-      | email         | <email>    |
-      | inputPassword | <Password> |
-    And I hit Enter
-    And I check I am on "My Tasks" page
-    Then I click on image "icon_menu"
-    And I wait for "1000" millisecond
-    And I click on " My Patients"
-    Then I see the table "myPatientsTable" displayed
-    And I enter the details as
-      | Fields          | Value       |
-      | searchtextInput | <FirstName> |
-    And I hit Enter
-    Then I see text "<FirstName>" displayed
-    Then I click on "New Patient"
-    And I wait for "1000" millisecond
-    And I see popup "consentModal" displayed
-    And I wait for "1000" millisecond
-    And I click on "agreeButton" on popup
-    And I check I am on "Personal Details" page
-    And I enter the details as
-      | Fields         | Value          |
-      | FirstName      | <FirstName>    |
-      | EmailInput     | <EmailInput>   |
-      | LastNameInput  | <LastName>     |
-      | contactInput   | <contactInput> |
-      | medicareInput  | <medicare>     |
-      | postCodeInput  | <postCode>     |
-      | FirstNameInput | <FirstName>    |
-      | FirstNameInput | <FirstName>    |
-    And I use "DOB" to enter "12122001"
-    And I select "<CU>" from "Care Unit"
-    And I select "Male" from "Gender"
-    Then I click on button "OptionalFields"
-    And I enter the details as
-      | Fields              | Value                 |
-      | ResidentialAddress1 | <ResidentialAddress1> |
-      | WeightInput         | <Weight>              |
-      | Height              | <Height>              |
-      | ResidentialAddress2 | <ResidentialAddress2> |
-      | Suburb              | <Suburb>              |
-      | ResidentialAddress2 | <ResidentialAddress2> |
-    And I select "VIC" from "State"
-    And I wait for "2000" millisecond
-    And I click on "Create Patient"
 
-    # Then I see text "A patient already exists with the details that you have entered." displayed
-    #Scenario 1: Create patient
     Examples: 
       | PortalName | email                       | Password | FirstName | EmailInput   | LastName  | CU    | contactInput | medicare | postCode | ResidentialAddress1 | Weight | Height | ResidentialAddress2 | Suburb   |
-      | Gessit     | demospecialist123@gmail.com | pass123  | Hemantwwf | abwc@abc.com | testTwoww | Royal |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
+      | Gessit     | demospecialist123@gmail.com | pass123  | Hemantautooo | abwc@abc.com | testTwoww | Royal |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
 
   Scenario Outline: GES-9 As a GP/Specialist, I want the ability to record the patient's medications so that the appropriate treatment plan can be selected
     #Scenario 1:Medication search unsuccessful
@@ -238,9 +188,9 @@ Feature: Some feature
     Then I see the table "myPatientsTable" displayed
     And I enter the details as
       | Fields          | Value     |
-      | searchtextInput | Hemantwwf |
+      | searchtextInput | <FirstName> |
     And I hit Enter
-    And I click on "Hemantwwf"
+    And I click on "<FirstName>"
     And I check I am on "Patient Profile" page
     And I click on "Edit Patient Details "
     And I wait for "1000" millisecond
@@ -256,7 +206,10 @@ Feature: Some feature
 
     Examples: 
       | PortalName | email                       | Password | FirstName | EmailInput   | LastName | contactInput | medicare | postCode | ResidentialAddress1 | Weight | Height | ResidentialAddress2 | Suburb   |
-      | Gessit     | demospecialist123@gmail.com | pass123  | Bobby     | abwc@abc.com | Smith    |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
+      | Gessit     | demospecialist123@gmail.com | pass123  | Hemantautooo     | abwc@abc.com | Smith    |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
+
+
+
 
   Scenario Outline: GES-34 As a GP/Specialist, I want the ability to record a diagnosis against a patient's record so that the relevant assessment can be performed
     #Scenario 1: Hep C diagnosis
@@ -382,11 +335,6 @@ Feature: Some feature
       | item5 | Contraception                    |
       | item5 | Clinical details                 |
 
-    #| item5 | Average Standard Drinks / Week   |
-    #| item5 | Alcohol consumption              |
-    #| item5 | Smoking                          |
-    #| item5 | Number of Packs / Day            |
-    #| item5 | Years of Smoking                 |
     Examples: 
       | PortalName | email                       | Password |
       | Gessit     | demospecialist123@gmail.com | pass123  |

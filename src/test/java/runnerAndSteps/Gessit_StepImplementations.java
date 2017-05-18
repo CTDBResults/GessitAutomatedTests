@@ -452,7 +452,9 @@ public void i_enter_pop_field_as(String arg1, String arg2) throws Throwable {
 	// same as above BUT this is for pop up as multiple elements detected.
 	@Then("^on popup I select \"(.*?)\" from \"(.*?)\"$")
 	public void on_popup_I_select_from(String arg1, String arg2) throws Throwable {
-      PageFactory.initElements(driver, DBUtilities.class).xpathMakerByExactId(arg2);
+      String myXpath = PageFactory.initElements(driver, DBUtilities.class).xpathMakerByExactId(arg2);
+      WebElement clickOn = driver.findElement(By.xpath(myXpath));
+      clickOn.click();
       PageFactory.initElements(driver, DBUtilities.class).hitDown();
       PageFactory.initElements(driver, DBUtilities.class).hitEnter();
   
