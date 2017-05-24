@@ -18,15 +18,18 @@ public class HomePage extends DBUtilities {
 			//************************************** SET  TEST Environment ***********************************************
 			//for production
 		//driver.get("https://ssc.dbresults.com.au/CSSPortal");
-		//following is for SIT ................disabling for prod..
-		//driver.get("https://test.healthelink.com.au/");
+		//following is for SIT 
+			
+		driver.get("https://test.healthelink.com.au/");
+		
+		//following is for prod..
 		//	driver.get("https://www.healthelink.com.au/login");
 	
 		//following is for UAT
 		//		driver.get("https://uat.healthelink.com.au/");
 			
 		// for dev
-		driver.get("https://dev.healthelink.com.au/");
+	//	driver.get("https://dev.healthelink.com.au/");
 			// for p10
 		//driver.get("https://dbresults-p10-dev.outsystemscloud.com/CSSPortal");
 		//for algo

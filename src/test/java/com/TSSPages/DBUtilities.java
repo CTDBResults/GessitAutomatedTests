@@ -522,8 +522,18 @@ public class DBUtilities extends XPathGenerator {
 						 String nameAfterAddingSuffix = nameToBeEntered+dnt;
 						 System.out.println(nameAfterAddingSuffix);
 						 driver.findElement(By.xpath(myXpath)).sendKeys(nameAfterAddingSuffix);
-					 }else{
-					 		
+					 }else if(myXpath.contains("EmailInput")){
+						 String nameToBeEntered= data.get(i).get(1);
+							System.out.println(nameToBeEntered);
+							driver.findElement(By.xpath(myXpath));
+							String dnt =	DNT();
+							System.out.println(dnt);
+								
+							 String nameAfterAddingSuffix = dnt+nameToBeEntered;
+							 System.out.println(nameAfterAddingSuffix);
+							 driver.findElement(By.xpath(myXpath)).sendKeys(nameAfterAddingSuffix);
+						 
+						}else{
 						 driver.findElement(By.xpath(myXpath)).sendKeys(data.get(i).get(1));
 						System.out.println("Entering value in table " +myXpath +"as" +name);  
 						}

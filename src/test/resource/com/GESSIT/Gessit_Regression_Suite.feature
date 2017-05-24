@@ -261,7 +261,8 @@ Feature: Some feature
     And I click on "Add HCV diagnosis"
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Adelaide - James Kildare (Oncologist)" from "Specialist"
+      And I click on button "GroupSpecialistInput"
+    And I select " Kildare" from "Specialist"
     And I click on "Save"
     And I click on "close"
     #defect from lhs logout
