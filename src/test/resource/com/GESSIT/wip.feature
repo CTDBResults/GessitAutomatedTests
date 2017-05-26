@@ -1,134 +1,114 @@
-@wip
 Feature: some feature
 
-  Scenario Outline: Set 1..... login as gp.......create a draft (C)....... SHOULD NOT BE ABLE TO APPROVE (different popup options)....send it to specialist
+  Scenario Outline: preceded by below  test case and create a care unit which will be attached to above practitioner
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
-    Then "<Item>" is displayed as "<ItemName>"
-      | Item  | ItemName |
-      | item1 | Logo     |
     And I enter the details as
       | Fields        | Value      |
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
-    # Create a Patient who is Cirrhotic
-    And I check I am on "My Tasks" page
     Then I click on image "icon_menu"
     And I wait for "1000" millisecond
-    And I click on "Create New Patient"
+    And I click on "Care Units"
     And I wait for "1000" millisecond
-    And I see popup "consentModal" displayed
-    And I wait for "1000" millisecond
-    And I click on "agreeButton" on popup
-    And I wait for "1000" millisecond
-    And I click on "Create Patient"
-    And I check I am on "Personal Details" page
+    And I click on "New Care Unit"
     And I enter the details as
-      | Fields         | Value          |
-      | FirstName      | <FirstName>    |
-      | EmailInput     | <EmailInput>   |
-      | LastNameInput  | <LastName>     |
-      | contactInput   | <contactInput> |
-      | medicareInput  | <medicare>     |
-      | postCodeInput  | <postCode>     |
-      | FirstNameInput | <FirstName>    |
-      | FirstNameInput | <FirstName>    |
-    And I use "DOB" to enter "12122001"
-    And I select "<CU>" from "CareUnit"
-    And I select "Male" from "Gender"
-    And I click on "Create Patient"
-    And I check I am on "Personal Details" page
-    Then I click on "Next"
-    And I check I am on "Medications" page
-    And I enter the details as
-      | Fields                | Value |
-      | searchMedicationInput | milk  |
-    Then "<Item>" is displayed as "<ItemName>"
-      | Item  | ItemName                                                                  |
-      | item1 | milk powder lactose free formula                                          |
-      | item2 | milk protein and fat formula with vitamins and minerals carbohydrate free |
-      | item3 | milk powder synthetic low calcium                                         |
-      | item4 | milk powder lactose modified predigested                                  |
-      | item5 | milk powder lactose free formula predigested                              |
-    And I wait for "2000" millisecond
-    And I hit Enter
-    Then I click on "Add"
-    And I enter the details as
-      | Fields    | Value       |
-      | frequency | twice a day |
-    And I wait for "1000" millisecond
-    Then I click on button "addMedication"
-    And I wait for "1000" millisecond
-    Then I click on "Next"
-    And I click on "Add HCV diagnosis"
-    And I click on "Add Assessment"
-    And I check I am on "Basic Information" page
-    And I click on button "GroupSpecialistInput"
-    And I select "Kildare, James" from "Specialist"
-    #  And I select "Wiesel, Torsten" from "GP"
-    And I click on "Next"
-    And I click on "diabetesyes" radio option
-    And I click on "obesityyes" radio option
-    And I click on "hepatitisyes" radio option
-    And I click on "renalfailyes" radio option
-    And I click on "contraceptionno" radio option
-    And I click on "hivno" radio option
-    And I click on "Next"
-    And I check I am on "Current Medications" page
-    And I click on "Next"
-    And I check I am on "HepC History" page
-    And I click on "genotype2" radio option
-    #And I enter the details as
-    #| Fields           | Value |
-    #| acquisitionInput |  2000 |
-    And I select "2015" from "acquisitionInput"
-    And I click on "Unknown" checkbox
-    And I click on "opioidyes" radio option
-    And I click on "genotype1a" radio option
-    And I click on "viralload6mless" radio option
-    And I click on "previoustherapyno" radio option
-    And I click on "Next"
-    # Scenario 3 : Check mandatory fields
-    And I check I am on "Fibrosis Assessment" page
-    And I enter the details as
-      | Fields   | Value      |
-      | aprilevl | <aprilevl> |
-      | ast      | <ast>      |
-      | Platelet | <Platelet> |
-    # as part of bug  specialist should not see this message when non cirrotic.
-    Then I see text "<Message>" displayed
-    And I enter the details as
-      | Fields     | Value |
-      | billrubin  |   100 |
-      | inr        |   100 |
-      | albumin    |   100 |
-      | creatinine |   100 |
-    And I click on "Poorly controlled"
-    And I scroll "down" the page
-    And I click on "Minimum"
-    And I click on "variscesyes" radio option
-    And I click on "bleedingyes" radio option
-    And I click on "Submit Assessment"
-    And I check I am on "Treatment Options" page
-    Then I see the table "treatmentoptiontable" displayed
-    Then I "check" text "Elbasvir + Grazoprevir" displayed in table "treatmentoptiontable"
-    # DCP-227:As a GP/Specialist, I want the ability to discard a draft  Scenario2: User selects No
-    #Then I "check" text "Paritaprevir/ RTV + Ombitasvir + Dasabuvir + Ribavirin" displayed in table "treatmentoptiontable"
-    Then I "click" text "Paritaprevir/ RTV + Ombitasvir + Dasabuvir + Ribavirin" displayed in table "treatmentoptiontable"
-    And I click on "Select Treatment"
-    And I check I am on "Treatment Plans" page
+      | Fields        | Value            |
+      | name          | <name>           |
+      | contactEmail  | <Contact Email>  |
+      | address_1     | <Address Line 1> |
+      | contactNumber | <Contact Number> |
+      | postcode      | <Postcode>       |
+      | suburb        | <Suburb>         |
+    And I click on "Select"
+    And on popup I select "VIC" from "state"
+    And I capture "name"
     And I click on "Submit"
-    And I click on text "Request Referral to Liver Clinic"
-    #ask arvind to change it to "approve request"
-    And I click on button "sendRequestCirrhosis"
-    # check that status has changed
-    Then I see text "Treatment Plan (Pending Approval)" displayed
-    Then "<Item>" is NOT displayed as "<ItemName>"
-      | Item  | ItemName |
-      | item1 | Submit   |
 
     Examples: 
-      | PortalName | email               | Password | FirstName          | EmailInput    | LastName  | CU  | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message       |
-      | Gessit     | demogp123@gmail.com | pass123  | CheckLeverReferral | abwc4@abc.com | GAPprodtt | Bay |   0422000000 |        7 |     2222 |       40 |  50 |       20 | Complications |
-  ########################################### Set 3 E2E#########################################
+      | PortalName | email                         | Password | name    | Postcode | Address Line 1 | Contact Number | Contact Email | Suburb    |
+      | Gessit     | hemant.shori@dbresults.com.au | pass123  | bhonsdu |     3000 | 13 Kona St     |       99880099 | test@test.com | Melbourne |
+
+  @wip
+  Scenario Outline: As an Administrator, I want the ability to create a Practitioner GES-192
+    Given I want to login to portal "<PortalName>"
+    And I wait for "10000" millisecond
+    And I enter the details as
+      | Fields        | Value      |
+      | email         | <email>    |
+      | inputPassword | <Password> |
+    And I hit Enter
+    Then I click on image "icon_menu"
+    And I wait for "1000" millisecond
+    And I click on "Practitioners"
+    And I click on "New Practitioner"
+    And I see popup "createPractitionerModalLabel" displayed
+    And I enter the details as
+      | Fields          | Value            |
+      | emailAddress    | <emailAddress>   |
+      | firstName       | <firstName>      |
+      | lastName        | <lastName>       |
+      | contactNumber   | <contactNumber>  |
+      | specialisation  | <specialisation> |
+      | password        | <password>       |
+      | confirmPassword | <password>       |
+    And on popup I select "Dr" from "title"
+    And on popup I select "Specialist" from "role"
+    And I capture "emailAddress"
+    And I hit Enter
+    And I click on button "submitCreate"
+    And I enter the details as
+      | Fields          | Value       |
+      | searchtextInput | <firstName> |
+    And I click on button "searchButtonInput"
+    Then "<Item>" is displayed as "<ItemName>"
+      | Item  | ItemName    |
+      | item1 | <firstName> |
+      | item2 | <lastName>  |
+    # Adding CU created above TC
+    And I click on captured "email"
+    And I wait for "1000" millisecond
+    And I click on "addToCareUnit" on popup
+    And I wait for "1000" millisecond
+    And on popup I select "firstone" from "associateCareUnit"
+    And I click on "addAssociation" on popup
+    And I enter popup values as
+      | Fields                 | Value    |
+      | careUnitProviderNumber | <ProviderNo> |
+      And I click on "addAssociation" on popup
+      And I click on "cancelEdit" on popup
+      
+       And I enter the details as
+      | Fields          | Value       |
+      | searchtextInput | <firstName> |
+    And I click on button "searchButtonInput"
+    Then "<Item>" is displayed as "<ItemName>"
+      | Item  | ItemName    |
+      | item1 | <firstName> |
+      | item2 | <lastName>  |
+    # Adding CU created above TC
+    And I click on captured "email"
+    
+        Then "<Item>" is displayed as "<ItemName>"
+      | Item  | ItemName    |
+      | item1 | <ProviderNo> |
+    
+# verify if CU added successfully
+
+    #Then I click on image "icon_menu"
+    #And I wait for "1000" millisecond
+    #Then I click on image "logout"
+    # login again as practitioner created above
+    #And I wait for "1000" millisecond
+    #Then I click on button "loginAgain"
+    #And I wait for "1000" millisecond
+    #And I paste "email"
+    #And I enter the details as
+    #| Fields        | Value            |
+    #| inputPassword | <specialisation> |
+    #And I hit Enter
+    #And I check I am on "My Tasks" page
+    Examples: 
+      | PortalName | email                         | Password | FirstName   | firstName             | lastName               |ProviderNo| contactNumber | emailAddress      | specialisation | password       |
+      | Gessit     | hemant.shori@dbresults.com.au | pass123  | Bobbyprodtt | chooktafatta| practionerdasecondname |12345674 |     00001111 | h@1d0n0texixt.com | Anypassword123 | Anypassword123 |

@@ -1,4 +1,4 @@
-@Gessit_Regression
+
 Feature: Some feature
 
   Scenario Outline: GES-70, GES-72
@@ -207,7 +207,7 @@ Feature: Some feature
     Examples: 
       | PortalName | email                       | Password | FirstName         | EmailInput   | LastName    | contactInput | medicare | postCode | ResidentialAddress1 | Weight | Height | ResidentialAddress2 | Suburb   |
       | Gessit     | demospecialist123@gmail.com | pass123  | Hemantautoprodott | abwc@abc.com | Smithprodtt |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
-
+@Gessit_Regression
   Scenario Outline: GES-34 As a GP/Specialist, I want the ability to record a diagnosis against a patient's record so that the relevant assessment can be performed
     #Scenario 1: Hep C diagnosis
     Given I want to login to portal "<PortalName>"
@@ -240,7 +240,7 @@ Feature: Some feature
       | FirstNameInput | <FirstName>    |
     And I use "DOB" to enter "12122001"
     And I wait for "10000" millisecond
-    And I select "<CU>" from "Care Unit"
+    And I select "<CU>" from "patientCareUnit"
     And I select "Male" from "Gender"
     Then I click on button "OptionalFields"
     And I enter the details as
@@ -261,8 +261,9 @@ Feature: Some feature
     And I click on "Add HCV diagnosis"
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-      And I click on button "GroupSpecialistInput"
-    And I select " Kildare" from "Specialist"
+     And I click on button "GroupSpecialistInput"
+       And I select "Kildare, James" from "Specialist"
+    And I select "Wiesel, Torsten" from "GP"
     And I click on "Save"
     And I click on "close"
     #defect from lhs logout
@@ -398,8 +399,8 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Adelaide - James Kildare (Oncologist)" from "Specialist"
-    And I select "Port Melbourne - Torsten Wiesel (GP)" from "GP"
+    And I select "Kildare, James" from "Specialist"
+    And I select "Wiesel, Torsten" from "GP"
     And I click on "Save"
     #Scenario 142/ 2: User views previous page
     And I click on "Back"
@@ -761,8 +762,8 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Adelaide - James Kildare (Oncologist)" from "Specialist"
-    And I select "Port Melbourne - Torsten Wiesel (GP)" from "GP"
+    And I select "Kildare, James" from "Specialist"
+    And I select "Wiesel, Torsten" from "GP"
     And I click on "Save"
     #Scenario 142/ 2: User views previous page
     And I click on "Back"
@@ -910,8 +911,8 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Adelaide - James Kildare (Oncologist)" from "Specialist"
-    And I select "Port Melbourne - Torsten Wiesel (GP)" from "GP"
+    And I select "Kildare, James" from "Specialist"
+    And I select "Wiesel, Torsten" from "GP"
     And I click on "Save"
     #Scenario 142/ 2: User views previous page
     And I click on "Back"
@@ -1048,7 +1049,7 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Adelaide - James Kildare (Oncologist)" from "Specialist"
+    And I select "Kildare, James" from "Specialist"
     #And I select "Darwin - Torsten Wiesel (GP)" from "GP"
     And I click on "Save"
     #Scenario 142/ 2: User views previous page
@@ -1226,9 +1227,9 @@ Feature: Some feature
     And I click on "Add HCV diagnosis"
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Adelaide - James Kildare (Oncologist)" from "Specialist"
+    And I select "Kildare, James" from "Specialist"
     And I wait for "2000" millisecond
-    And I select "Port Melbourne - Torsten Wiesel (GP)" from "GP"
+    And I select "Wiesel, Torsten" from "GP"
     And I click on "Save"
     #Scenario 142/ 2: User views previous page
     And I click on "Next"
@@ -1333,7 +1334,7 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Adelaide - James Kildare (Oncologist)" from "Specialist"
+    And I select "Kildare, James" from "Specialist"
     And I click on "Save"
     Then "<Item>" is displayed as "<ItemName>"
       | Item  | ItemName       |
@@ -1457,7 +1458,7 @@ Feature: Some feature
     And I click on "Add HCV diagnosis"
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Adelaide - James Kildare (Oncologist)" from "Specialist"
+    And I select "Kildare, James" from "Specialist"
     #  And I select "Darwin - Torsten Wiesel (GP)" from "GP"
     And I click on "Next"
     And I click on "diabetesyes" radio option
@@ -1569,7 +1570,7 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Adelaide - James Kildare (Oncologist)" from "Specialist"
+    And I select "Kildare, James" from "Specialist"
     And I click on "Save"
     Then "<Item>" is displayed as "<ItemName>"
       | Item  | ItemName       |
@@ -1672,8 +1673,8 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Adelaide - James Kildare (Oncologist)" from "Specialist"
-    And I select "Port Melbourne - Torsten Wiesel (GP)" from "GP"
+    And I select "Kildare, James" from "Specialist"
+    And I select "Wiesel, Torsten" from "GP"
     And I click on "Save"
     And I click on "Next"
     And I check I am on "Medical History" page
@@ -1766,8 +1767,8 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Adelaide - James Kildare (Oncologist)" from "Specialist"
-    And I select "Port Melbourne - Torsten Wiesel (GP)" from "GP"
+    And I select "Kildare, James" from "Specialist"
+    And I select "Wiesel, Torsten" from "GP"
     And I click on "Save"
     And I click on "Next"
     And I check I am on "Medical History" page
@@ -1891,8 +1892,8 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Adelaide - James Kildare (Oncologist)" from "Specialist"
-    And I select "Port Melbourne - Torsten Wiesel (GP)" from "GP"
+    And I select "Kildare, James" from "Specialist"
+    And I select "Wiesel, Torsten" from "GP"
     And I click on "Save"
     And I click on "Next"
     And I check I am on "Medical History" page
@@ -2085,7 +2086,7 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Adelaide - James Kildare (Oncologist)" from "Specialist"
+    And I select "Kildare, James" from "Specialist"
     # And I select "Darwin - Torsten Wiesel (GP)" from "GP"
     And I click on "Save"
     Then "<Item>" is displayed as "<ItemName>"
@@ -2242,7 +2243,7 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Adelaide - James Kildare (Oncologist)" from "Specialist"
+    And I select "Kildare, James" from "Specialist"
     And I click on "Save"
     Then "<Item>" is displayed as "<ItemName>"
       | Item  | ItemName       |
@@ -2384,7 +2385,7 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Port Melbourne - Torsten Wiesel (GP)" from "GP"
+    And I select "Wiesel, Torsten" from "GP"
     And I click on "Save"
     Then "<Item>" is displayed as "<ItemName>"
       | Item  | ItemName       |
@@ -2528,7 +2529,7 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Port Melbourne - Torsten Wiesel (GP)" from "GP"
+    And I select "Wiesel, Torsten" from "GP"
     And I click on "Save"
     And I click on "Next"
     And I check I am on "Medical History" page
@@ -2646,7 +2647,7 @@ Feature: Some feature
       | PortalName | Message                 | invalid email         | Message2                |
       | Gessit     | field must be filled in | invalidemail@test.com | ReCaptcha must be done. |
 
-  @Gessit_Regression
+  
   Scenario Outline: GES-172 As Specialist, I want the ability to add treatment tasks to an approved treatment plan
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -2855,3 +2856,119 @@ Feature: Some feature
     Examples: 
       | PortalName | email                         | Password | CareUnitNameValue  | Postcode | Address Line 1 | Contact Number | Contact Email | Suburb    |
       | Gessit     | hemant.shori@dbresults.com.au | pass123  | Test119and621tnine |     3000 | 13 Kona St     |       99880099 | test@test.com | Melbourne |
+      
+      
+      
+    Scenario Outline: preceded by below  test case and create a care unit which will be attached to above practitioner
+    Given I want to login to portal "<PortalName>"
+    And I wait for "10000" millisecond
+    And I enter the details as
+      | Fields        | Value      |
+      | email         | <email>    |
+      | inputPassword | <Password> |
+    And I hit Enter
+    Then I click on image "icon_menu"
+    And I wait for "1000" millisecond
+    And I click on "Care Units"
+    And I wait for "1000" millisecond
+    And I click on "New Care Unit"
+    And I enter the details as
+      | Fields        | Value            |
+      | name          | <name>           |
+      | contactEmail  | <Contact Email>  |
+      | address_1     | <Address Line 1> |
+      | contactNumber | <Contact Number> |
+      | postcode      | <Postcode>       |
+      | suburb        | <Suburb>         |
+    And I click on "Select"
+    And on popup I select "VIC" from "state"
+    And I capture "name"
+    And I click on "Submit"
+
+    Examples: 
+      | PortalName | email                         | Password | name    | Postcode | Address Line 1 | Contact Number | Contact Email | Suburb    |
+      | Gessit     | hemant.shori@dbresults.com.au | pass123  | bhonsdu |     3000 | 13 Kona St     |       99880099 | test@test.com | Melbourne |
+
+ 
+  Scenario Outline: As an Administrator, I want the ability to create a Practitioner GES-192
+    Given I want to login to portal "<PortalName>"
+    And I wait for "10000" millisecond
+    And I enter the details as
+      | Fields        | Value      |
+      | email         | <email>    |
+      | inputPassword | <Password> |
+    And I hit Enter
+    Then I click on image "icon_menu"
+    And I wait for "1000" millisecond
+    And I click on "Practitioners"
+    And I click on "New Practitioner"
+    And I see popup "createPractitionerModalLabel" displayed
+    And I enter the details as
+      | Fields          | Value            |
+      | emailAddress    | <emailAddress>   |
+      | firstName       | <firstName>      |
+      | lastName        | <lastName>       |
+      | contactNumber   | <contactNumber>  |
+      | specialisation  | <specialisation> |
+      | password        | <password>       |
+      | confirmPassword | <password>       |
+    And on popup I select "Dr" from "title"
+    And on popup I select "Specialist" from "role"
+    And I capture "emailAddress"
+    And I hit Enter
+    And I click on button "submitCreate"
+    And I enter the details as
+      | Fields          | Value       |
+      | searchtextInput | <firstName> |
+    And I click on button "searchButtonInput"
+    Then "<Item>" is displayed as "<ItemName>"
+      | Item  | ItemName    |
+      | item1 | <firstName> |
+      | item2 | <lastName>  |
+    # Adding CU created above TC
+    And I click on captured "email"
+    And I wait for "1000" millisecond
+    And I click on "addToCareUnit" on popup
+    And I wait for "1000" millisecond
+    And on popup I select "firstone" from "associateCareUnit"
+    And I click on "addAssociation" on popup
+    And I enter popup values as
+      | Fields                 | Value    |
+      | careUnitProviderNumber | <ProviderNo> |
+      And I click on "addAssociation" on popup
+      And I click on "cancelEdit" on popup
+      
+       And I enter the details as
+      | Fields          | Value       |
+      | searchtextInput | <firstName> |
+    And I click on button "searchButtonInput"
+    Then "<Item>" is displayed as "<ItemName>"
+      | Item  | ItemName    |
+      | item1 | <firstName> |
+      | item2 | <lastName>  |
+    # Adding CU created above TC
+    And I click on captured "email"
+    
+        Then "<Item>" is displayed as "<ItemName>"
+      | Item  | ItemName    |
+      | item1 | <ProviderNo> |
+    
+# verify if CU added successfully
+
+    #Then I click on image "icon_menu"
+    #And I wait for "1000" millisecond
+    #Then I click on image "logout"
+    # login again as practitioner created above
+    #And I wait for "1000" millisecond
+    #Then I click on button "loginAgain"
+    #And I wait for "1000" millisecond
+    #And I paste "email"
+    #And I enter the details as
+    #| Fields        | Value            |
+    #| inputPassword | <specialisation> |
+    #And I hit Enter
+    #And I check I am on "My Tasks" page
+    Examples: 
+      | PortalName | email                         | Password | FirstName   | firstName             | lastName               |ProviderNo| contactNumber | emailAddress      | specialisation | password       |
+      | Gessit     | hemant.shori@dbresults.com.au | pass123  | Bobbyprodtt | chooktafatta| practionerdasecondname |12345674 |     00001111 | h@1d0n0texixt.com | Anypassword123 | Anypassword123 |
+   
