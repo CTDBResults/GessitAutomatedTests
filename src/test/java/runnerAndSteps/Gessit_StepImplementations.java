@@ -48,6 +48,12 @@ public class Gessit_StepImplementations {
 	WebDriver driver;
 	private String bolt;
 	static String CapturedValue;
+	
+//	//cons
+//	Gessit_StepImplementations(String CapturedValue)
+//	{
+//		this.CapturedValue = CapturedValue;
+//	}
 
 	@Before()
 	public void startUp() {
@@ -82,7 +88,7 @@ public class Gessit_StepImplementations {
 
 	@After()
 	public void tearDown() {
-		// driver.quit();
+		 driver.quit();
 	}
 	// ******************************************************************************
 
@@ -143,9 +149,12 @@ public class Gessit_StepImplementations {
 		System.out.println(Gessit_StepImplementations.CapturedValue);
 		String htmlToBePasted = Gessit_StepImplementations.CapturedValue;
 		System.out.println(htmlToBePasted);
-		driver.findElement(By.xpath("//*[contains(@id, 'inputemail')]")).click();
-		driver.findElement(By.xpath("//*[contains(@id, 'inputemail')]"))
-				.sendKeys(Gessit_StepImplementations.CapturedValue);
+//		driver.findElement(By.xpath("//*[contains(@id, 'inputemail')]")).click();
+//		driver.findElement(By.xpath("//*[contains(@id, 'inputemail')]"))
+//				.sendKeys(Gessit_StepImplementations.CapturedValue);
+		DBUtilities createXpath = new DBUtilities(driver);
+		String myXpath = createXpath.xpathMakerById(arg1);
+		driver.findElement(By.xpath(myXpath)).sendKeys(Gessit_StepImplementations.CapturedValue);
 	}
 
 	@And("^I click on captured \"(.*?)\"$")

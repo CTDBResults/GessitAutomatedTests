@@ -1,4 +1,4 @@
-
+@Gessit_Regression
 Feature: Some feature
 
   Scenario Outline: GES-70, GES-72
@@ -20,7 +20,6 @@ Feature: Some feature
       | PortalName | email          | Password | Message                                  |
       | Gessit     | test1@test.com | pass123  | Invalid login details. Please try again. |
       | Gessit     |                | pass123  | Invalid login details. Please try again. |
-      | Gessit     | test1@test.com |          | Invalid login details. Please try again. |
 
   Scenario Outline: GES-72
     Given I want to login to portal "<PortalName>"
@@ -96,8 +95,8 @@ Feature: Some feature
       | FirstNameInput | <FirstName>    |
       | FirstNameInput | <FirstName>    |
     And I use "DOB" to enter "12122001"
-    And I select "<CU>" from "Care Unit"
-    And I select "Male" from "Gender"
+    And I select "<CU>" from "patientCareUnit"
+    And I select "Male" from "gender"
     Then I click on button "OptionalFields"
     And I enter the details as
       | Fields              | Value                 |
@@ -107,7 +106,7 @@ Feature: Some feature
       | ResidentialAddress2 | <ResidentialAddress2> |
       | Suburb              | <Suburb>              |
       | ResidentialAddress2 | <ResidentialAddress2> |
-    And I select "VIC" from "State"
+    And I select "VIC" from "state"
 
     # DO not submit
     Examples: 
@@ -146,8 +145,8 @@ Feature: Some feature
       | FirstNameInput | <FirstName>    |
       | FirstNameInput | <FirstName>    |
     And I use "DOB" to enter "12122001"
-    And I select "<CU>" from "Care Unit"
-    And I select "Male" from "Gender"
+    And I select "<CU>" from "patientCareUnit"
+    And I select "Male" from "gender"
     Then I click on button "OptionalFields"
     And I enter the details as
       | Fields              | Value                 |
@@ -157,7 +156,7 @@ Feature: Some feature
       | ResidentialAddress2 | <ResidentialAddress2> |
       | Suburb              | <Suburb>              |
       | ResidentialAddress2 | <ResidentialAddress2> |
-    And I select "VIC" from "State"
+    And I select "VIC" from "state"
     And I wait for "2000" millisecond
     And I click on "Create Patient"
     And I wait for "1000" millisecond
@@ -207,7 +206,7 @@ Feature: Some feature
     Examples: 
       | PortalName | email                       | Password | FirstName         | EmailInput   | LastName    | contactInput | medicare | postCode | ResidentialAddress1 | Weight | Height | ResidentialAddress2 | Suburb   |
       | Gessit     | demospecialist123@gmail.com | pass123  | Hemantautoprodott | abwc@abc.com | Smithprodtt |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
-@Gessit_Regression
+
   Scenario Outline: GES-34 As a GP/Specialist, I want the ability to record a diagnosis against a patient's record so that the relevant assessment can be performed
     #Scenario 1: Hep C diagnosis
     Given I want to login to portal "<PortalName>"
@@ -241,7 +240,7 @@ Feature: Some feature
     And I use "DOB" to enter "12122001"
     And I wait for "10000" millisecond
     And I select "<CU>" from "patientCareUnit"
-    And I select "Male" from "Gender"
+    And I select "Male" from "gender"
     Then I click on button "OptionalFields"
     And I enter the details as
       | Fields              | Value                 |
@@ -251,7 +250,7 @@ Feature: Some feature
       | ResidentialAddress2 | <ResidentialAddress2> |
       | Suburb              | <Suburb>              |
       | ResidentialAddress2 | <ResidentialAddress2> |
-    And I select "VIC" from "State"
+    #And I select "VIC" from "state"
     And I wait for "2000" millisecond
     And I click on "Create Patient"
     And I click on "Next"
@@ -261,11 +260,11 @@ Feature: Some feature
     And I click on "Add HCV diagnosis"
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-     And I click on button "GroupSpecialistInput"
-       And I select "Kildare, James" from "Specialist"
-    And I select "Wiesel, Torsten" from "GP"
+    #   And I click on button "GroupSpecialistInput"
+    #   And I select "Kildare, James" from "Specialist"
+    And I select "Wiesel, Torsten" from "gp"
     And I click on "Save"
-    And I click on "close"
+    And I click on "Close"
     #defect from lhs logout
     Then I click on image "icon_menu"
     And I wait for "1000" millisecond
@@ -299,6 +298,7 @@ Feature: Some feature
       | Gessit     | demospecialist123@gmail.com | pass123  | TestThirtyFourprodtt | Royal | abwc@abc.com | testprodtt |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
 
   # get username from above
+  
   Scenario Outline: GES-8 patient search, GES-351 As a GP/Specialist, I want to create an Assessment form for a diagnosis and enter a patients clinical details and intercurrent conditions
     #Scenario 1: Basically just the form check on Medical history tab
     Given I want to login to portal "<PortalName>"
@@ -319,7 +319,7 @@ Feature: Some feature
       | searchtextInput | TestThirtyFour |
     And I hit Enter
     Then I see text "test" displayed
-    And I click on "TestThirtyFour"
+     And I click on "<FirstName>"
     And I check I am on "Patient Profile" page
     And I click on "Edit Patient Details "
     And I click on "Medical History"
@@ -334,8 +334,8 @@ Feature: Some feature
       | item5 | Clinical details                 |
 
     Examples: 
-      | PortalName | email                       | Password |
-      | Gessit     | demospecialist123@gmail.com | pass123  |
+      | PortalName | email                       | Password |FirstName|
+      | Gessit     | demospecialist123@gmail.com | pass123  |TestThirtyFourprodtt|
 
   Scenario Outline: GES-142 As a GP/Specialist, I want to create an Assessment form for a diagnosis and enter the HCV details so that I know what treatment options are applicable
     # GES-34 As a GP/Specialist, I want the ability to record a diagnosis against a patient's record so that the relevant assessment can be performed
@@ -370,8 +370,8 @@ Feature: Some feature
       | FirstNameInput | <FirstName>    |
     And I wait for "1000" millisecond
     And I use "DOB" to enter "12122001"
-    And I select "<CU>" from "Care Unit"
-    And I select "Male" from "Gender"
+    And I select "<CU>" from "patientCareUnit"
+    And I select "Male" from "gender"
     Then I click on button "OptionalFields"
     And I enter the details as
       | Fields              | Value                 |
@@ -381,7 +381,7 @@ Feature: Some feature
       | ResidentialAddress2 | <ResidentialAddress2> |
       | Suburb              | <Suburb>              |
       | ResidentialAddress2 | <ResidentialAddress2> |
-    And I select "VIC" from "State"
+    And I select "VIC" from "state"
     And I wait for "2000" millisecond
     And I click on "Create Patient"
     And I click on "Next"
@@ -399,18 +399,18 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Kildare, James" from "Specialist"
-    And I select "Wiesel, Torsten" from "GP"
+    #  And I select "Kildare, James" from "Specialist"
+    And I select "Wiesel, Torsten" from "gp"
     And I click on "Save"
     #Scenario 142/ 2: User views previous page
     And I click on "Back"
     And I check I am on "Diagnosis" page
     And I click on "Basic Information"
     And I check I am on "Basic Information" page
-    Then "<Item>" is displayed as "<ItemName>"
-      | Item  | ItemName     |
-      | item1 | Victor Chang |
-      | item2 | Doctor Who   |
+    #Then "<Item>" is displayed as "<ItemName>"
+    #| Item  | ItemName     |
+    #| item1 | Kildare |
+    #| item2 |  Wiesel, Torsten |
     And I click on "Next"
     And I check I am on "Medical History" page
     And I click on "Next"
@@ -458,7 +458,8 @@ Feature: Some feature
       | PortalName | email                       | Password | FirstName  | CU    | EmailInput   | LastName    | contactInput | medicare | postCode | ResidentialAddress1 | Weight | Height | ResidentialAddress2 | Suburb   |
       | Gessit     | demospecialist123@gmail.com | pass123  | Bobbyprott | Royal | abwc@abc.com | Smithprodtt |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
 
-  Scenario Outline: GES-164 , Also covers E2E scenarios
+
+  Scenario Outline: GES-164 , Also covers E2E scenarios login as gp
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
     Then "<Item>" is displayed as "<ItemName>"
@@ -491,8 +492,8 @@ Feature: Some feature
       | FirstNameInput | <FirstName>    |
       | FirstNameInput | <FirstName>    |
     And I use "DOB" to enter "12122001"
-    And I select "<CU>" from "Care Unit"
-    And I select "Male" from "Gender"
+    And I select "<CU>" from "patientCareUnit"
+    And I select "Male" from "gender"
     And I click on "Create Patient"
     And I check I am on "Personal Details" page
     Then I click on "Next"
@@ -513,8 +514,7 @@ Feature: Some feature
     And I click on "Add HCV diagnosis"
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Victor Chang" from "Specialist"
-    And I select "Doctor Who" from "GP"
+    And I select "Kildare, James" from "specialist"
     And I click on "Next"
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
@@ -563,6 +563,109 @@ Feature: Some feature
     Examples: 
       | PortalName | email                       | Password | FirstName                           | EmailInput   | LastName                 | CU    | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message       |
       | Gessit     | demogp123@gmail.com         | pass123  | TestOnesixfourprodtt                | abwc@abc.com | NOTCirrhoticprodtt       | Bay   |   0422000000 |        7 |     2222 |       40 |  50 |      200 | Non-Cirrhotic |
+
+ 
+  Scenario Outline: GES-164 , Also covers E2E scenarios
+    Given I want to login to portal "<PortalName>"
+    And I wait for "10000" millisecond
+    Then "<Item>" is displayed as "<ItemName>"
+      | Item  | ItemName |
+      | item1 | Logo     |
+    And I enter the details as
+      | Fields        | Value      |
+      | email         | <email>    |
+      | inputPassword | <Password> |
+    And I hit Enter
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
+    And I wait for "1000" millisecond
+    And I click on "Create New Patient"
+    And I wait for "1000" millisecond
+    And I see popup "consentModal" displayed
+    And I wait for "1000" millisecond
+    And I click on "agreeButton" on popup
+    And I wait for "1000" millisecond
+    And I click on "Create Patient"
+    And I check I am on "Personal Details" page
+    And I enter the details as
+      | Fields         | Value          |
+      | FirstName      | <FirstName>    |
+      | EmailInput     | <EmailInput>   |
+      | LastNameInput  | <LastName>     |
+      | contactInput   | <contactInput> |
+      | medicareInput  | <medicare>     |
+      | postCodeInput  | <postCode>     |
+      | FirstNameInput | <FirstName>    |
+      | FirstNameInput | <FirstName>    |
+    And I use "DOB" to enter "12122001"
+    And I select "<CU>" from "patientCareUnit"
+    And I select "Male" from "gender"
+    And I click on "Create Patient"
+    And I check I am on "Personal Details" page
+    Then I click on "Next"
+    And I check I am on "Medications" page
+    And I enter the details as
+      | Fields                | Value |
+      | searchMedicationInput | el    |
+    And I wait for "2000" millisecond
+    And I hit Enter
+    Then I click on "Add"
+    And I enter the details as
+      | Fields    | Value       |
+      | frequency | twice a day |
+    And I wait for "1000" millisecond
+    Then I click on button "addMedication"
+    And I wait for "1000" millisecond
+    Then I click on "Next"
+    And I click on "Add HCV diagnosis"
+    And I click on "Add Assessment"
+    And I check I am on "Basic Information" page
+    And I select "Wiesel, Torsten" from "gp"
+    And I click on "Next"
+    And I click on "diabetesyes" radio option
+    And I click on "obesityyes" radio option
+    And I click on "hepatitisyes" radio option
+    And I click on "renalfailyes" radio option
+    And I click on "contraceptionno" radio option
+    And I click on "hivno" radio option
+    And I click on "Next"
+    And I check I am on "Current Medications" page
+    And I click on "Next"
+    And I check I am on "HepC History" page
+    And I click on "genotype2" radio option
+    #And I enter the details as
+    #| Fields           | Value |
+    #| acquisitionInput |  2000 |
+    And I select "2015" from "acquisitionInput"
+    And I click on "Unknown" checkbox
+    And I click on "opioidyes" radio option
+    And I click on "genotype1a" radio option
+    And I click on "viralload6mless" radio option
+    And I click on "previoustherapyno" radio option
+    And I click on "Next"
+    # Scenario 3 : Check mandatory fields
+    And I click on "Submit Assessment"
+    Then "<Item>" is displayed as "<ItemName>"
+      | Item  | ItemName                                 |
+      | item1 | Validation Errors                        |
+      | item1 | AST Level is mandatory                   |
+      | item1 | AST (Upper limit of normal) is mandatory |
+      | item1 | Platelet count is mandatory              |
+      | item1 | APRI Score is mandatory                  |
+      | item1 | Cirrohsis diagnosed is mandatory         |
+    # Scenario 1: system will return a result of Cirrhosis and record the result against the algorithm
+    # 40, 50, 200 will trigger no and 40,50,20 will trigger yes
+    And I check I am on "Fibrosis Assessment" page
+    And I enter the details as
+      | Fields   | Value      |
+      | aprilevl | <aprilevl> |
+      | ast      | <ast>      |
+      | Platelet | <Platelet> |
+    # as part of bug  specialist should not see this message when non cirrotic.
+    Then I see text "<Message>" displayed
+    Then I click on "Save"
+    Examples:
+      | PortalName | email                       | Password | FirstName                           | EmailInput   | LastName                 | CU    | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message       |
       | Gessit     | demospecialist123@gmail.com | pass123  | TestOnesixfourprodtt                | abwc@abc.com | NOTCirrhoticprodtt       | Royal |   0422000000 |        7 |     2222 |       40 |  50 |      200 |               |
       | Gessit     | demospecialist123@gmail.com | pass123  | TestOnesixfourSpecilToApproveprodtt | abwc@abc.com | PatientIsCirrhoticprodtt | Royal |    042211111 |        7 |     2222 |       40 |  50 |       20 | Complications |
 
@@ -624,12 +727,13 @@ Feature: Some feature
     And I wait for "1000" millisecond
     And I click on "Discard Draft"
     Then I see text "Are you sure you want to Discard this Draft Treatment Plan?" displayed
-    And I click on "No"
+    And I click on button "no-button"
+    
     And I check I am on "Treatment Plans" page
     # DCP-227:As a GP/Specialist, I want the ability to discard a draft  Scenario1: User selects Yes
     And I click on "Discard Draft"
     Then I see text "Are you sure you want to Discard this Draft Treatment Plan?" displayed
-    And I click on "Yes"
+    And I click on button "yes-button"
     Then I check I am on "Treatment Options" page
 
     #Test16402
@@ -638,6 +742,7 @@ Feature: Some feature
       | Gessit     | demospecialist123@gmail.com | pass123  | TestOnesixfourSpecilToApproveprodtt | abwc@abc.com | PatientIsCirrhoticprodtt |    042211111 |        7 |     2222 |       40 |  50 |       20 | Complications |
 
   #patient name should be same as above TC (get data from above)
+
   Scenario Outline: GES-529 As a GP/Specialist, I want the ability to save the draft treatment plan to view that at a later stage
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -677,7 +782,7 @@ Feature: Some feature
     And I click on "Save Draft"
     And I click on "Discard Draft"
     Then I see text "Are you sure you want to Discard this Draft Treatment Plan?" displayed
-    And I click on "Yes"
+   And I click on button "yes-button"
     Then I see text "Back" displayed
     # GES-529 : Scenario 3: User doesn’t not save a draft copy
     And I click on "Back"
@@ -702,7 +807,7 @@ Feature: Some feature
     Examples: 
       | PortalName | email                       | Password | FirstName                           | EmailInput   | LastName                 | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message       |
       | Gessit     | demospecialist123@gmail.com | pass123  | TestOnesixfourSpecilToApproveprodtt | abwc@abc.com | PatientIsCirrhoticprodtt |    042211111 |        7 |     2222 |       40 |  50 |       20 | Complications |
-
+ 
   Scenario Outline: Check Cirrosi Logic
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -734,8 +839,8 @@ Feature: Some feature
       | FirstNameInput | <FirstName>    |
     And I wait for "1000" millisecond
     And I use "DOB" to enter "12122001"
-    And I select "<CU>" from "Care Unit"
-    And I select "Male" from "Gender"
+    And I select "<CU>" from "patientCareUnit"
+    And I select "Male" from "gender"
     Then I click on button "OptionalFields"
     And I enter the details as
       | Fields              | Value                 |
@@ -744,7 +849,7 @@ Feature: Some feature
       | Height              | <Height>              |
       | ResidentialAddress2 | <ResidentialAddress2> |
       | Suburb              | <Suburb>              |
-    And I select "VIC" from "State"
+    And I select "VIC" from "state"
     And I wait for "2000" millisecond
     And I click on "Create Patient"
     And I click on "Next"
@@ -762,8 +867,8 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Kildare, James" from "Specialist"
-    And I select "Wiesel, Torsten" from "GP"
+    #And I select "Kildare, James" from "specialist"
+    And I select "Wiesel, Torsten" from "gp"
     And I click on "Save"
     #Scenario 142/ 2: User views previous page
     And I click on "Back"
@@ -771,9 +876,8 @@ Feature: Some feature
     And I click on "Basic Information"
     And I check I am on "Basic Information" page
     Then "<Item>" is displayed as "<ItemName>"
-      | Item  | ItemName     |
-      | item1 | Victor Chang |
-      | item2 | Doctor Who   |
+      | Item  | ItemName |
+      | item1 | James    |
     And I click on "Next"
     And I check I am on "Medical History" page
     #  And I wait for "2000" millisecond
@@ -812,7 +916,7 @@ Feature: Some feature
       | Item  | ItemName            |
       | item1 | Cirrhosis Diagnosed |
       | item2 | F0-F2               |
-      | item2 | F3                  |
+     
     And I click on "Imaging"
     Then "<Item>" is displayed as "<ItemName>"
       | Item  | ItemName                                                         |
@@ -858,7 +962,7 @@ Feature: Some feature
     Examples: 
       | PortalName | email                       | Password | FirstName                 | EmailInput   | LastName           | CU    | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message1 | Suburb     | ResidentialAddress1 | Weight | Height   | ResidentialAddress2 |
       | Gessit     | demospecialist123@gmail.com | pass123  | CheckCirrhosisLogicprodtt | abwc@abc.com | NOTCirrhoticprodtt | Royal |   0422000000 |        7 |     2222 |       40 |  50 |      200 |          | Chandigarh |                  84 |    175 | Bhilowal |                     |
-
+ 
   Scenario Outline: GES-249, As a GP, I want the ability to start a treatment plan without needing to send it to a Specialist for approval and completed added as well.
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -875,8 +979,6 @@ Feature: Some feature
     And I see popup "consentModal" displayed
     And I wait for "1000" millisecond
     And I click on "agreeButton" on popup
-    And I wait for "1000" millisecond
-    And I click on "Create Patient"
     And I check I am on "Personal Details" page
     And I enter the details as
       | Fields         | Value          |
@@ -890,10 +992,11 @@ Feature: Some feature
       | FirstNameInput | <FirstName>    |
     And I wait for "1000" millisecond
     And I use "DOB" to enter "12122001"
-    And I select "<CU>" from "Care Unit"
-    And I select "Male" from "Gender"
+    And I select "<CU>" from "patientCareUnit"
+    And I select "Male" from "gender"
     Then I click on button "OptionalFields"
-    And I select "VIC" from "State"
+     And I scroll "down" the page
+    And I select "VIC" from "state"
     And I wait for "2000" millisecond
     And I click on "Create Patient"
     And I click on "Next"
@@ -911,18 +1014,14 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Kildare, James" from "Specialist"
-    And I select "Wiesel, Torsten" from "GP"
+    And I select "Kildare, James" from "specialist"
+ 
     And I click on "Save"
     #Scenario 142/ 2: User views previous page
     And I click on "Back"
     And I check I am on "Diagnosis" page
     And I click on "Basic Information"
     And I check I am on "Basic Information" page
-    Then "<Item>" is displayed as "<ItemName>"
-      | Item  | ItemName     |
-      | item1 | Victor Chang |
-      | item2 | Doctor Who   |
     And I click on "Next"
     And I check I am on "Medical History" page
     #  And I wait for "2000" millisecond
@@ -978,7 +1077,13 @@ Feature: Some feature
     Then I see text "Treatment Plan (Approved)" displayed
     # then gp completes the above plan, GES-87 covered partially here
     And I click on "Commence medication"
-    And I click on button "complete-task-button"
+    And I see popup "modal-content" displayed
+    And I click on button "complete-commence-task-button"
+    # newly introduced popup
+    And I see popup "modal-dialog modal-md" displayed
+   
+    And I click on button "commence-med-yes"
+    
     Then I see text "Treatment Plan (Approved)" displayed
     Then I see sytem date displayed in "dateDiv"
     And I scroll "down" the page
@@ -988,7 +1093,7 @@ Feature: Some feature
     Examples: 
       | PortalName | email               | Password | FirstName            | CU  | EmailInput   | LastName  | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message1      |
       | Gessit     | demogp123@gmail.com | pass123  | GPApprovedPlanprodtt | Bay | abwc@abc.com | GAPprodtt |   0422000000 |        7 |     2222 |       40 |  50 |      200 | Non-Cirrhotic |
-
+ 
   Scenario Outline: GES-521, As a GP/Specialist, I want to be able to view a task on a draft treatment plan in both a simplified and detailed view
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -1020,8 +1125,8 @@ Feature: Some feature
       | FirstNameInput | <FirstName>    |
     And I wait for "1000" millisecond
     And I use "DOB" to enter "12122001"
-    And I select "<CU>" from "Care Unit"
-    And I select "Male" from "Gender"
+    And I select "<CU>" from "patientCareUnit"
+    And I select "Male" from "gender"
     Then I click on button "OptionalFields"
     And I enter the details as
       | Fields              | Value                 |
@@ -1031,7 +1136,7 @@ Feature: Some feature
       | ResidentialAddress2 | <ResidentialAddress2> |
       | Suburb              | <Suburb>              |
       | ResidentialAddress2 | <ResidentialAddress2> |
-    And I select "VIC" from "State"
+    And I select "VIC" from "state"
     And I wait for "2000" millisecond
     And I click on "Create Patient"
     And I click on "Next"
@@ -1049,18 +1154,14 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Kildare, James" from "Specialist"
+    And I select "Kildare, James" from "specialist"
     #And I select "Darwin - Torsten Wiesel (GP)" from "GP"
     And I click on "Save"
     #Scenario 142/ 2: User views previous page
     And I click on "Back"
     And I check I am on "Diagnosis" page
     And I click on "Basic Information"
-    And I check I am on "Basic Information" page
-    Then "<Item>" is displayed as "<ItemName>"
-      | Item  | ItemName     |
-      | item1 | Victor Chang |
-      | item2 | Doctor Who   |
+    And I check I am on "Basic Information" page    
     And I click on "Next"
     And I check I am on "Medical History" page
     #Scenario 4: User navigates to next page with ALL mandatory fields filled in
@@ -1206,8 +1307,8 @@ Feature: Some feature
       | FirstNameInput | <FirstName>    |
     And I wait for "1000" millisecond
     And I use "DOB" to enter "12122001"
-    And I select "<CU>" from "Care Unit"
-    And I select "Male" from "Gender"
+    And I select "<CU>" from "patientCareUnit"
+    And I select "Male" from "gender"
     Then I click on button "OptionalFields"
     And I enter the details as
       | Fields              | Value                 |
@@ -1217,7 +1318,7 @@ Feature: Some feature
       | ResidentialAddress2 | <ResidentialAddress2> |
       | Suburb              | <Suburb>              |
       | ResidentialAddress2 | <ResidentialAddress2> |
-    And I select "VIC" from "State"
+    And I select "VIC" from "state"
     And I wait for "2000" millisecond
     And I click on "Create Patient"
     And I click on "Next"
@@ -1227,9 +1328,9 @@ Feature: Some feature
     And I click on "Add HCV diagnosis"
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Kildare, James" from "Specialist"
+  
     And I wait for "2000" millisecond
-    And I select "Wiesel, Torsten" from "GP"
+    And I select "Wiesel, Torsten" from "gp"
     And I click on "Save"
     #Scenario 142/ 2: User views previous page
     And I click on "Next"
@@ -1290,6 +1391,7 @@ Feature: Some feature
   #***********************************************************************************************************************
   #***********************************************************************************************************************
   #***********************************************************************************************************************
+ 
   Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approve
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -1321,8 +1423,8 @@ Feature: Some feature
       | FirstNameInput | <FirstName>    |
     And I wait for "1000" millisecond
     And I use "DOB" to enter "12122001"
-    And I select "<CU>" from "Care Unit"
-    And I select "Male" from "Gender"
+    And I select "<CU>" from "patientCareUnit"
+    And I select "Male" from "gender"
     And I click on "Create Patient"
     And I click on "Next"
     And I check I am on "Medications" page
@@ -1334,12 +1436,8 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Kildare, James" from "Specialist"
+    And I select "Kildare, James" from "specialist"
     And I click on "Save"
-    Then "<Item>" is displayed as "<ItemName>"
-      | Item  | ItemName       |
-      | item1 | James Kildare  |
-      | item2 | Torsten Wiesel |
     And I click on "Next"
     And I check I am on "Medical History" page
     And I click on "diabetesyes" radio option
@@ -1395,6 +1493,7 @@ Feature: Some feature
 
   #################################################### E2E Set2 #####################################################
   #GES-736 check meddication search
+  
   Scenario Outline: Set 1..... login as gp.......create a draft (C)....... SHOULD NOT BE ABLE TO APPROVE (different popup options)....send it to specialist
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -1429,8 +1528,8 @@ Feature: Some feature
       | FirstNameInput | <FirstName>    |
       | FirstNameInput | <FirstName>    |
     And I use "DOB" to enter "12122001"
-    And I select "<CU>" from "Care Unit"
-    And I select "Male" from "Gender"
+    And I select "<CU>" from "patientCareUnit"
+    And I select "Male" from "gender"
     And I click on "Create Patient"
     And I check I am on "Personal Details" page
     Then I click on "Next"
@@ -1458,8 +1557,7 @@ Feature: Some feature
     And I click on "Add HCV diagnosis"
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Kildare, James" from "Specialist"
-    #  And I select "Darwin - Torsten Wiesel (GP)" from "GP"
+    And I select "Kildare, James" from "specialist"
     And I click on "Next"
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
@@ -1526,6 +1624,7 @@ Feature: Some feature
       | Gessit     | demogp123@gmail.com | pass123  | CheckStatusForCPravprodtt | abwc@abc.com | GAPprodtt | Bay |   0422000000 |        7 |     2222 |       40 |  50 |       20 | Complications |
 
   ########################################### Set 3 E2E#########################################
+  
   Scenario Outline: Set 2..... login as gp.......Create NC....... approve
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -1557,8 +1656,8 @@ Feature: Some feature
       | FirstNameInput | <FirstName>    |
     And I wait for "1000" millisecond
     And I use "DOB" to enter "12122001"
-    And I select "<CU>" from "Care Unit"
-    And I select "Male" from "Gender"
+    And I select "<CU>" from "patientCareUnit"
+    And I select "Male" from "gender"
     And I click on "Create Patient"
     And I click on "Next"
     And I check I am on "Medications" page
@@ -1570,12 +1669,7 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Kildare, James" from "Specialist"
-    And I click on "Save"
-    Then "<Item>" is displayed as "<ItemName>"
-      | Item  | ItemName       |
-      | item1 | James Kildare  |
-      | item2 | Torsten Wiesel |
+    And I select "Kildare, James" from "specialist"
     And I click on "Next"
     And I check I am on "Medical History" page
     And I click on "diabetesyes" radio option
@@ -1660,8 +1754,8 @@ Feature: Some feature
       | FirstNameInput | <FirstName>    |
     And I wait for "1000" millisecond
     And I use "DOB" to enter "12122001"
-    And I select "<CU>" from "Care Unit"
-    And I select "Male" from "Gender"
+    And I select "<CU>" from "patientCareUnit"
+    And I select "Male" from "gender"
     And I click on "Create Patient"
     And I click on "Next"
     And I check I am on "Medications" page
@@ -1673,8 +1767,8 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Kildare, James" from "Specialist"
-    And I select "Wiesel, Torsten" from "GP"
+
+    And I select "Wiesel, Torsten" from "gp"
     And I click on "Save"
     And I click on "Next"
     And I check I am on "Medical History" page
@@ -1754,8 +1848,8 @@ Feature: Some feature
       | FirstNameInput | <FirstName>    |
     And I wait for "1000" millisecond
     And I use "DOB" to enter "12122001"
-    And I select "<CU>" from "Care Unit"
-    And I select "Male" from "Gender"
+    And I select "<CU>" from "patientCareUnit"
+    And I select "Male" from "gender"
     And I click on "Create Patient"
     And I click on "Next"
     And I check I am on "Medications" page
@@ -1767,8 +1861,8 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Kildare, James" from "Specialist"
-    And I select "Wiesel, Torsten" from "GP"
+    #And I select "Kildare, James" from "Specialist"
+    And I select "Wiesel, Torsten" from "gp"
     And I click on "Save"
     And I click on "Next"
     And I check I am on "Medical History" page
@@ -1826,6 +1920,7 @@ Feature: Some feature
     Then I see the table "treatmentplantable" displayed
     Then I see text "0 days" displayed
     Then I see text "Commence medication" displayed
+    And I wait for "1000" millisecond
     And I click on "Commence medication"
     And I see popup "viewTaskModal" displayed
     #    Scenario Outline:GES-226 As a GP/Specialist, I want the ability to edit treatment tasks on an approved treatment plan
@@ -1838,9 +1933,14 @@ Feature: Some feature
     And I click on "saveEditTask" on popup
     Then I see text "786 days" displayed
     #  GES-226  Scenario 2: Edit button (post-commencement)
+    And I wait for "2000" millisecond
+     And I scroll "down" the page
     And I click on "Commence medication"
     And I see popup "viewTaskModal" displayed
-    And I click on "complete-task-button" on popup
+    And I click on "complete-commence-task-button" on popup
+# new popup addition
+    And I see popup "modal-dialog modal-md" displayed
+    And I click on "commence-med-yes" on popup
     Then I see sytem date displayed in "dateDiv"
 
     Examples: 
@@ -1879,8 +1979,8 @@ Feature: Some feature
       | FirstNameInput | <FirstName>    |
     And I wait for "1000" millisecond
     And I use "DOB" to enter "12122001"
-    And I select "<CU>" from "Care Unit"
-    And I select "Male" from "Gender"
+    And I select "<CU>" from "patientCareUnit"
+    And I select "Male" from "gender"
     And I click on "Create Patient"
     And I click on "Next"
     And I check I am on "Medications" page
@@ -1892,8 +1992,8 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Kildare, James" from "Specialist"
-    And I select "Wiesel, Torsten" from "GP"
+   # And I select "Kildare, James" from "Specialist"
+    And I select "Wiesel, Torsten" from "gp"
     And I click on "Save"
     And I click on "Next"
     And I check I am on "Medical History" page
@@ -1946,102 +2046,107 @@ Feature: Some feature
     Then I see text "Treatment Plan (Draft)" displayed
     And I click on "Discard Draft"
     And I click on text "Are you sure you want to Discard this Draft Treatment Plan?"
-    And I click on "Yes"
+    
+    And I click on "yes-button" on popup
+    
     And I check I am on "Treatment Options" page
 
     #defect 824
-    #Then I see text "Treatment Plans" not displayed
+    Then I see text "Treatment Plans" not displayed
     Examples: 
       | PortalName | email                       | Password | FirstName    | EmailInput   | LastName  | contactInput | CU    | medicare | postCode | aprilevl | ast | Platelet | Message       |
       | Gessit     | demospecialist123@gmail.com | pass123  | SetTwoprodtt | abwc@abc.com | GAPprodtt |   0422000000 | Royal |        7 |     2222 |       40 |  50 |       20 | Complications |
 
   #@arvind defect give me admin logins
-  #Scenario Outline: GES-119, GES-621 As an Administrator, I want the ability to create and view Care Units
-  # Scenario 1: Administrator accesses Create Care Unit function
-  #Given I want to login to portal "<PortalName>"
-  #And I wait for "10000" millisecond
-  #And I enter the details as
-  #| Fields        | Value      |
-  #| email         | <email>    |
-  #| inputPassword | <Password> |
-  #And I hit Enter
-  #Then I click on image "icon_menu"
+
+  Scenario Outline: GES-119, GES-621 As an Administrator, I want the ability to create and view Care Units
+   Scenario 1: Administrator accesses Create Care Unit function
+  Given I want to login to portal "<PortalName>"
+  And I wait for "10000" millisecond
+  And I enter the details as
+  | Fields        | Value      |
+  | email         | <email>    |
+  | inputPassword | <Password> |
+  And I hit Enter
+  Then I click on image "icon_menu"
+  And I wait for "1000" millisecond
+  And I click on "Care Units"
   #And I wait for "1000" millisecond
-  #And I click on "Care Units"
-  #And I wait for "1000" millisecond
-  #And I click on "New Care Unit"
-  #And I click on "Submit"
-  #Then "<Item>" is displayed as "<ItemName>"
-  #| Item  | ItemName                    |
-  #| item1 | State is mandatory          |
-  #| item2 | Care Unit Name is mandatory |
-  #| item3 | Address Line 1 is mandatory |
-  #| item1 | Postcode is mandatory       |
-  #| item2 | Contact number is mandatory |
-  #| item3 | Email address is mandatory  |
-  #| item3 | Suburb is mandatory         |
-  #Then I see text "Add New Care Unit" displayed
-  #And I enter the details as
-  #| Fields        | Value               |
-  #| name          | <CareUnitNameValue> |
-  #| contactEmail  | adb@ads             |
-  #| address_1     | <Address Line 1>    |
-  #| contactNumber | <Contact Number>    |
-  #| postcode      | <Postcode>          |
-  #| suburb        | <Suburb>            |
-  #And I click on "Submit"
-  #Then "<Item>" is displayed as "<ItemName>"
-  #| Item  | ItemName                               |
-  #| item1 | Email address is not in a valid format |
-  #And I enter the details as
-  #| Fields        | Value               |
-  #| name          | <CareUnitNameValue> |
-  #| contactEmail  | <Contact Email>     |
-  #| address_1     | <Address Line 1>    |
-  #| contactNumber | <Contact Number>    |
-  #| postcode      | <Postcode>          |
-  #| suburb        | <Suburb>            |
-  #And I click on "Select"
-  #And on popup I select "VIC" from "state"
-  #And I hit Enter
-  #And I wait for "2000" millisecond
-  #And I click on "Submit"
-  #Then I click on image "icon_menu"
-  #And I wait for "1000" millisecond
-  #Then I click on image "logout"
-  #And I check I am on "Logout" page
-  #And I wait for "1000" millisecond
-  #Then I click on button "loginAgain"
-  #And I wait for "1000" millisecond
-  #And I enter the details as
-  #| Fields        | Value      |
-  #| email         | <email>    |
-  #| inputPassword | <Password> |
-  #And I hit Enter
-  #Then I click on image "icon_menu"
-  #And I wait for "1000" millisecond
-  #And I click on "Care Units"
-  #And I wait for "1000" millisecond
-  #And I click on "New Care Unit"
-  #And I enter the details as
-  #| Fields        | Value               |
-  #| name          | <CareUnitNameValue> |
-  #| contactEmail  | <Contact Email>     |
-  #| address_1     | <Address Line 1>    |
-  #| contactNumber | <Contact Number>    |
-  #| postcode      | <Postcode>          |
-  #| suburb        | <Suburb>            |
-  #And I click on "Select"
-  #And on popup I select "VIC" from "state"
-  #And I click on "Submit"
-  #Then I see text "Care Unit already exist" displayed
-  #
-  #Examples:
-  #| PortalName | email                       | Password | CareUnitNameValue | Postcode | Address Line 1 | Contact Number | Contact Email | Suburb    |
-  #| Gessit     | demospecialist123@gmail.com | pass123  | Test119and621     |     3000 | 13 Kona St     |       99880099 | test@test.com | Melbourne |
+  And I click on "New Care Unit"
+  And I click on "Submit"
+  Then "<Item>" is displayed as "<ItemName>"
+  | Item  | ItemName                    |
+  | item1 | State is mandatory          |
+  | item2 | Care Unit Name is mandatory |
+  | item3 | Address Line 1 is mandatory |
+  | item1 | Postcode is mandatory       |
+  | item2 | Contact number is mandatory |
+  | item3 | Email address is mandatory  |
+  | item3 | Suburb is mandatory         |
+  Then I see text "Add New Care Unit" displayed
+  And I enter the details as
+  | Fields        | Value               |
+  | name          | <CareUnitNameValue> |
+  | contactEmail  | adb@ads             |
+  | address_1     | <Address Line 1>    |
+  | contactNumber | <Contact Number>    |
+  | postcode      | <Postcode>          |
+  | suburb        | <Suburb>            |
+  And I click on "Submit"
+  Then "<Item>" is displayed as "<ItemName>"
+  | Item  | ItemName                               |
+  | item1 | Email address is not in a valid format |
+  And I enter the details as
+  | Fields        | Value               |
+  | name          | <CareUnitNameValue> |
+  | contactEmail  | <Contact Email>     |
+  | address_1     | <Address Line 1>    |
+  | contactNumber | <Contact Number>    |
+  | postcode      | <Postcode>          |
+  | suburb        | <Suburb>            |
+  And I click on "Select"
+  And on popup I select "VIC" from "state"
+  And I hit Enter
+  And I wait for "2000" millisecond
+  And I capture "name"
+  And I click on "Submit"
+  Then I click on image "icon_menu"
+  And I wait for "1000" millisecond
+  Then I click on image "logout"
+  And I check I am on "Logout" page
+  And I wait for "1000" millisecond
+  Then I click on button "loginAgain"
+  And I wait for "1000" millisecond
+  And I enter the details as
+  | Fields        | Value      |
+  | email         | <email>    |
+  | inputPassword | <Password> |
+  And I hit Enter
+  Then I click on image "icon_menu"
+  And I wait for "1000" millisecond
+  And I click on "Care Units"
+  And I wait for "1000" millisecond
+  And I click on "New Care Unit"
+  And I paste "name"
+ And I enter the details as
+  | Fields        | Value               |
+  | contactEmail  | <Contact Email>     |
+  | address_1     | <Address Line 1>    |
+  | contactNumber | <Contact Number>    |
+  | postcode      | <Postcode>          |
+  | suburb        | <Suburb>            |
+  And I click on "Select"
+  And on popup I select "VIC" from "state"
+  And I click on "Submit"
+  Then I see text "Care Unit already exist" displayed
+  
+  Examples:
+  | PortalName | email                       | Password | CareUnitNameValue | Postcode | Address Line 1 | Contact Number | Contact Email | Suburb    |
+  | Gessit     | hemant.shori@dbresults.com.au | pass123  | Test119and621     |     3000 | 13 Kona St     |       99880099 | test@test.com | Melbourne |
   ##############################################################
   #######################NOTES BY GP AND SP#########################
   ###############################################################
+    
   Scenario Outline: GES-233 - As a GP/Specialist, I should be able to add notes to a treatment plan page
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -2073,8 +2178,8 @@ Feature: Some feature
       | FirstNameInput | <FirstName>    |
     And I wait for "1000" millisecond
     And I use "DOB" to enter "12122001"
-    And I select "<CU>" from "Care Unit"
-    And I select "Male" from "Gender"
+    And I select "<CU>" from "patientCareUnit"
+    And I select "Male" from "gender"
     And I click on "Create Patient"
     And I click on "Next"
     And I check I am on "Medications" page
@@ -2086,13 +2191,9 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Kildare, James" from "Specialist"
+    And I select "Kildare, James" from "specialist"
     # And I select "Darwin - Torsten Wiesel (GP)" from "GP"
     And I click on "Save"
-    Then "<Item>" is displayed as "<ItemName>"
-      | Item  | ItemName       |
-      | item1 | James Kildare  |
-      | item2 | Torsten Wiesel |
     And I click on "Next"
     And I check I am on "Medical History" page
     And I click on "diabetesyes" radio option
@@ -2230,8 +2331,8 @@ Feature: Some feature
       | FirstNameInput | <FirstName>    |
     And I wait for "1000" millisecond
     And I use "DOB" to enter "12122001"
-    And I select "<CU>" from "Care Unit"
-    And I select "Male" from "Gender"
+    And I select "<CU>" from "patientCareUnit"
+    And I select "Male" from "gender"
     And I click on "Create Patient"
     And I click on "Next"
     And I check I am on "Medications" page
@@ -2243,12 +2344,9 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Kildare, James" from "Specialist"
+    And I select "Kildare, James" from "specialist"
     And I click on "Save"
-    Then "<Item>" is displayed as "<ItemName>"
-      | Item  | ItemName       |
-      | item1 | James Kildare  |
-      | item2 | Torsten Wiesel |
+
     And I click on "Next"
     And I check I am on "Medical History" page
     And I click on "diabetesyes" radio option
@@ -2372,8 +2470,8 @@ Feature: Some feature
       | FirstNameInput | <FirstName>    |
     And I wait for "1000" millisecond
     And I use "DOB" to enter "12122001"
-    And I select "<CU>" from "Care Unit"
-    And I select "Male" from "Gender"
+    And I select "<CU>" from "patientCareUnit"
+    And I select "Male" from "gender"
     And I click on "Create Patient"
     And I click on "Next"
     And I check I am on "Medications" page
@@ -2385,12 +2483,8 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Wiesel, Torsten" from "GP"
+    And I select "Wiesel, Torsten" from "gp"
     And I click on "Save"
-    Then "<Item>" is displayed as "<ItemName>"
-      | Item  | ItemName       |
-      | item1 | James Kildare  |
-      | item2 | Torsten Wiesel |
     And I click on "Next"
     And I check I am on "Medical History" page
     And I scroll "down" the page
@@ -2516,8 +2610,8 @@ Feature: Some feature
       | FirstNameInput | <FirstName>    |
     And I wait for "1000" millisecond
     And I use "DOB" to enter "12122001"
-    And I select "<CU>" from "Care Unit"
-    And I select "Male" from "Gender"
+    And I select "<CU>" from "patientCareUnit"
+    And I select "Male" from "gender"
     And I click on "Create Patient"
     And I click on "Next"
     And I check I am on "Medications" page
@@ -2529,7 +2623,7 @@ Feature: Some feature
       | item1 | Chronic Hepatitis C Infection |
     And I click on "Add Assessment"
     And I check I am on "Basic Information" page
-    And I select "Wiesel, Torsten" from "GP"
+    And I select "Wiesel, Torsten" from "gp"
     And I click on "Save"
     And I click on "Next"
     And I check I am on "Medical History" page
@@ -2623,7 +2717,7 @@ Feature: Some feature
     Examples: 
       | PortalName | email                       | Password | FirstName                    | EmailInput   | LastName  | contactInput | medicare | CU    | postCode | aprilevl | ast | Platelet | Message | text | addnote   | noteinput     | addnote2   | noteinput2                              |
       | Gessit     | demospecialist123@gmail.com | pass123  | testTTTloginSpecialistprodtt | abwc@abc.com | SPCprodtt |   0422000000 |        7 | Royal |     2222 |       40 |  50 |       20 |         |      | I am a GP | entering note | SPecialist | Check if specialist can add to approved |
-
+@defect
   Scenario Outline: GES-502 Password reset for an account
     Given I want to login to portal "<PortalName>"
     And I wait for "2000" millisecond
@@ -2647,7 +2741,6 @@ Feature: Some feature
       | PortalName | Message                 | invalid email         | Message2                |
       | Gessit     | field must be filled in | invalidemail@test.com | ReCaptcha must be done. |
 
-  
   Scenario Outline: GES-172 As Specialist, I want the ability to add treatment tasks to an approved treatment plan
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -2669,7 +2762,7 @@ Feature: Some feature
       | searchtextInput | <LastName> |
     And I hit Enter
     Then I see text "<LastName>" displayed
-    And I click on "<FirstName>"
+    And I click on "<LastName>"
     And I wait for "1000" millisecond
     And I check I am on "Patient Profile" page
     And I click on "Edit Patient Details "
@@ -2813,6 +2906,7 @@ Feature: Some feature
       | contactNumber | <Contact Number>    |
       | postcode      | <Postcode>          |
       | suburb        | <Suburb>            |
+      And I capture "name"
     And I click on "Select"
     And on popup I select "VIC" from "state"
     And I hit Enter
@@ -2835,14 +2929,15 @@ Feature: Some feature
     And I click on "Care Units"
     And I wait for "1000" millisecond
     And I click on "New Care Unit"
+  
     And I enter the details as
       | Fields        | Value               |
-      | name          | <CareUnitNameValue> |
       | contactEmail  | <Contact Email>     |
       | address_1     | <Address Line 1>    |
       | contactNumber | <Contact Number>    |
       | postcode      | <Postcode>          |
       | suburb        | <Suburb>            |
+    And I paste "name"
     And I click on "Select"
     And on popup I select "VIC" from "state"
     And I click on "Submit"
@@ -2856,10 +2951,8 @@ Feature: Some feature
     Examples: 
       | PortalName | email                         | Password | CareUnitNameValue  | Postcode | Address Line 1 | Contact Number | Contact Email | Suburb    |
       | Gessit     | hemant.shori@dbresults.com.au | pass123  | Test119and621tnine |     3000 | 13 Kona St     |       99880099 | test@test.com | Melbourne |
-      
-      
-      
-    Scenario Outline: preceded by below  test case and create a care unit which will be attached to above practitioner
+
+  Scenario Outline: preceded by below  test case and create a care unit which will be attached to above practitioner
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
     And I enter the details as
@@ -2889,7 +2982,6 @@ Feature: Some feature
       | PortalName | email                         | Password | name    | Postcode | Address Line 1 | Contact Number | Contact Email | Suburb    |
       | Gessit     | hemant.shori@dbresults.com.au | pass123  | bhonsdu |     3000 | 13 Kona St     |       99880099 | test@test.com | Melbourne |
 
- 
   Scenario Outline: As an Administrator, I want the ability to create a Practitioner GES-192
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -2933,12 +3025,11 @@ Feature: Some feature
     And on popup I select "firstone" from "associateCareUnit"
     And I click on "addAssociation" on popup
     And I enter popup values as
-      | Fields                 | Value    |
+      | Fields                 | Value        |
       | careUnitProviderNumber | <ProviderNo> |
-      And I click on "addAssociation" on popup
-      And I click on "cancelEdit" on popup
-      
-       And I enter the details as
+    And I click on "addAssociation" on popup
+    And I click on "cancelEdit" on popup
+    And I enter the details as
       | Fields          | Value       |
       | searchtextInput | <firstName> |
     And I click on button "searchButtonInput"
@@ -2948,27 +3039,24 @@ Feature: Some feature
       | item2 | <lastName>  |
     # Adding CU created above TC
     And I click on captured "email"
-    
-        Then "<Item>" is displayed as "<ItemName>"
-      | Item  | ItemName    |
+    Then "<Item>" is displayed as "<ItemName>"
+      | Item  | ItemName     |
       | item1 | <ProviderNo> |
-    
-# verify if CU added successfully
-
-    #Then I click on image "icon_menu"
-    #And I wait for "1000" millisecond
-    #Then I click on image "logout"
+And I click on "cancelEdit" on popup
+    # verify if CU added successfully
+    Then I click on image "icon_menu"
+    And I wait for "1000" millisecond
+    Then I click on image "logout"
     # login again as practitioner created above
-    #And I wait for "1000" millisecond
-    #Then I click on button "loginAgain"
-    #And I wait for "1000" millisecond
-    #And I paste "email"
-    #And I enter the details as
-    #| Fields        | Value            |
-    #| inputPassword | <specialisation> |
-    #And I hit Enter
-    #And I check I am on "My Tasks" page
+    And I wait for "1000" millisecond
+    Then I click on button "loginAgain"
+    And I wait for "1000" millisecond
+    And I paste "email"
+    And I enter the details as
+    | Fields        | Value            |
+    | inputPassword | <specialisation> |
+    And I hit Enter
+    And I check I am on "My Tasks" page
     Examples: 
-      | PortalName | email                         | Password | FirstName   | firstName             | lastName               |ProviderNo| contactNumber | emailAddress      | specialisation | password       |
-      | Gessit     | hemant.shori@dbresults.com.au | pass123  | Bobbyprodtt | chooktafatta| practionerdasecondname |12345674 |     00001111 | h@1d0n0texixt.com | Anypassword123 | Anypassword123 |
-   
+      | PortalName | email                         | Password | FirstName   | firstName    | lastName               | ProviderNo | contactNumber | emailAddress      | specialisation | password       |
+      | Gessit     | hemant.shori@dbresults.com.au | pass123  | Bobbyprodtt | chooktafatta | practionerdasecondname |   12345674 |      00001111 | h@1d0n0texixt.com | Anypassword123 | Anypassword123 |
