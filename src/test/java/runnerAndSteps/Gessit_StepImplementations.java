@@ -1308,6 +1308,7 @@ public class Gessit_StepImplementations {
 
 	@Given("^for ALGO I select on \"(.*?)\",\"(.*?)\" and \"(.*?)\" radio option$")
 	public void for_ALGO_I_select_on_and_radio_option(String arg1, String arg2, String arg3) throws Throwable {
+
 		// for TreatmentOutcome (this decides if Therapy is considered)
 		if (arg1.equals("NVX")) {
 			arg1 = "previoustherapyno";
@@ -1319,7 +1320,10 @@ public class Gessit_StepImplementations {
 			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg1);
 			driver.findElement(By.xpath(myxpath)).click();
 			System.out.println(" Selecting radio option " + arg1);
-			// TODO put the below stuff here later
+			// going down as page expands
+			//go down
+			String upOrDown = "down";
+			new DBUtilities(driver).scrollDownThePage(upOrDown);
 			Thread.sleep(1000);
 			if (arg2.equals("XPN")) {
 				// arg2 = "genotype6";
@@ -1404,17 +1408,58 @@ public class Gessit_StepImplementations {
 			String arg2 = "aprilevl";
 			String arg3 = "ast";
 			String arg4 = "Platelet";
-			String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerById(arg2);
-			driver.findElement(By.xpath(myxpath)).sendKeys("20");
-
-			// for ast
-			String myxpath2 = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerById(arg3);
+			//update as other field are needed as well
+			String arg5 = "billrubin";
+			String arg6 = "inr";
+			String arg7 = "albumin";
+			String arg8 = "creatinine";
+			
+			String myxpath2 = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerById(arg2);
 			driver.findElement(By.xpath(myxpath2)).sendKeys("20");
+			String myxpath3 = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerById(arg3);
+			driver.findElement(By.xpath(myxpath3)).sendKeys("21");
+			String myxpath4 = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerById(arg4);
+			driver.findElement(By.xpath(myxpath4)).sendKeys("22");
+			
+			//fin in complications:
+			
+			// for ast
+			String myxpath5 = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerById(arg5);
+			driver.findElement(By.xpath(myxpath5)).sendKeys("2");
 
 			// for platel
-			String myxpath3 = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerById(arg4);
-			driver.findElement(By.xpath(myxpath3)).sendKeys("20");
+			String myxpath6= PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerById(arg6);
+			driver.findElement(By.xpath(myxpath6)).sendKeys("2");
+			
+			String myxpath7 = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerById(arg7);
+			driver.findElement(By.xpath(myxpath7)).sendKeys("2");
+			
+			
+			String myxpath8 = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerById(arg8);
+			driver.findElement(By.xpath(myxpath8)).sendKeys("2");
+			
 
+//			//update as other field are needed as well
+			String upOrDown = "down";
+			new DBUtilities(driver).scrollDownThePage(upOrDown);
+			// select the radio buttons:
+			String myxpath81 = "Poorly controlled"; 
+			String myxpath9 = "Grade 1-2";
+			String myxpath10 = "variscesyes";
+			String myxpath11 = "bleedingyes";
+			
+			String myxpath12 = 	PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMaker(myxpath81);
+			driver.findElement(By.xpath(myxpath12)).click();
+			String myxpath13 = 	PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByLabelContainsText(myxpath9);
+			driver.findElement(By.xpath(myxpath13)).click();
+			String myxpath14 = 	PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(myxpath10);
+			driver.findElement(By.xpath(myxpath14)).click();
+			String myxpath15 = 	PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(myxpath11);
+			driver.findElement(By.xpath(myxpath15)).click();
+			
+			
+	
+			
 		} else {
 
 			String arg2 = "aprilevl";

@@ -1,37 +1,7 @@
 Feature: some feature
 
-  Scenario Outline: preceded by below  test case and create a care unit which will be attached to above practitioner
-    Given I want to login to portal "<PortalName>"
-    And I wait for "10000" millisecond
-    And I enter the details as
-      | Fields        | Value      |
-      | email         | <email>    |
-      | inputPassword | <Password> |
-    And I hit Enter
-    Then I click on image "icon_menu"
-    And I wait for "1000" millisecond
-    And I click on "Care Units"
-    And I wait for "1000" millisecond
-    And I click on "New Care Unit"
-    And I enter the details as
-      | Fields        | Value            |
-      | name          | <name>           |
-      | contactEmail  | <Contact Email>  |
-      | address_1     | <Address Line 1> |
-      | contactNumber | <Contact Number> |
-      | postcode      | <Postcode>       |
-      | suburb        | <Suburb>         |
-    And I click on "Select"
-    And on popup I select "VIC" from "state"
-    And I capture "name"
-    And I click on "Submit"
-
-    Examples: 
-      | PortalName | email                         | Password | name    | Postcode | Address Line 1 | Contact Number | Contact Email | Suburb    |
-      | Gessit     | hemant.shori@dbresults.com.au | pass123  | bhonsdu |     3000 | 13 Kona St     |       99880099 | test@test.com | Melbourne |
-
   @wip
-  Scenario Outline: As an Administrator, I want the ability to create a Practitioner GES-192
+  Scenario Outline: Login as Nurse and assign the patient to gp/specialist
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
     And I enter the details as
@@ -39,76 +9,120 @@ Feature: some feature
       | email         | <email>    |
       | inputPassword | <Password> |
     And I hit Enter
+    And I check I am on "My Tasks" page
     Then I click on image "icon_menu"
     And I wait for "1000" millisecond
-    And I click on "Practitioners"
-    And I click on "New Practitioner"
-    And I see popup "createPractitionerModalLabel" displayed
-    And I enter the details as
-      | Fields          | Value            |
-      | emailAddress    | <emailAddress>   |
-      | firstName       | <firstName>      |
-      | lastName        | <lastName>       |
-      | contactNumber   | <contactNumber>  |
-      | specialisation  | <specialisation> |
-      | password        | <password>       |
-      | confirmPassword | <password>       |
-    And on popup I select "Dr" from "title"
-    And on popup I select "Specialist" from "role"
-    And I capture "emailAddress"
-    And I hit Enter
-    And I click on button "submitCreate"
-    And I enter the details as
-      | Fields          | Value       |
-      | searchtextInput | <firstName> |
-    And I click on button "searchButtonInput"
-    Then "<Item>" is displayed as "<ItemName>"
-      | Item  | ItemName    |
-      | item1 | <firstName> |
-      | item2 | <lastName>  |
-    # Adding CU created above TC
-    And I click on captured "email"
+    And I click on "Create New Patient"
     And I wait for "1000" millisecond
-    And I click on "addToCareUnit" on popup
+    And I see popup "consentModal" displayed
     And I wait for "1000" millisecond
-    And on popup I select "firstone" from "associateCareUnit"
-    And I click on "addAssociation" on popup
-    And I enter popup values as
-      | Fields                 | Value    |
-      | careUnitProviderNumber | <ProviderNo> |
-      And I click on "addAssociation" on popup
-      And I click on "cancelEdit" on popup
-      
-       And I enter the details as
-      | Fields          | Value       |
-      | searchtextInput | <firstName> |
-    And I click on button "searchButtonInput"
+    And I click on "agreeButton" on popup
+    And I wait for "1000" millisecond
+    And I check I am on "Personal Details" page
+    And I enter the details as
+      | Fields         | Value          |
+      | FirstName      | <FirstName>    |
+      | EmailInput     | <EmailInput>   |
+      | LastNameInput  | <LastName>     |
+      | contactInput   | <contactInput> |
+      | medicareInput  | <medicare>     |
+      | postCodeInput  | <postCode>     |
+      | FirstNameInput | <FirstName>    |
+      | FirstNameInput | <FirstName>    |
+    And I use "DOB" to enter "12122001"
+    And I select "<CU>" from "patientCareUnit"
+    And I select "Male" from "gender"
+    Then I click on button "OptionalFields"
+    And I enter the details as
+      | Fields              | Value                 |
+      | ResidentialAddress1 | <ResidentialAddress1> |
+      | WeightInput         | <Weight>              |
+      | Height              | <Height>              |
+      | ResidentialAddress2 | <ResidentialAddress2> |
+      | Suburb              | <Suburb>              |
+      | ResidentialAddress2 | <ResidentialAddress2> |
+    And I scroll "down" the page
+    And I select "VIC" from "state"
+    And I click on "Create Patient"
+    And I click on "Next"
+    And I check I am on "Medications" page
+    And I click on "Next"
+    And I check I am on "Diagnosis" page
+    And I click on "Add HCV diagnosis"
+    And I click on "Add Assessment"
+    And I select "Kildare, James" from "specialist"
+    And I select "Wiesel, Torsten" from "gp"
+    And I click on "Next"
+    And I check I am on "Medical History" page
+    And I click on "Next"
+    # Scenario 142/4: User navigates to next page with ALL mandatory fields filled in
     Then "<Item>" is displayed as "<ItemName>"
-      | Item  | ItemName    |
-      | item1 | <firstName> |
-      | item2 | <lastName>  |
-    # Adding CU created above TC
-    And I click on captured "email"
-    
-        Then "<Item>" is displayed as "<ItemName>"
-      | Item  | ItemName    |
-      | item1 | <ProviderNo> |
-    
-# verify if CU added successfully
+      | Item  | ItemName                   |
+      | item1 | Validation Errors          |
+      | item2 | Diabetes is mandatory      |
+      | item3 | Obesity is mandatory       |
+      | item4 | Hepatitis B is mandatory   |
+      | item5 | Renal Failure is mandatory |
+      | item6 | Contraception is mandatory |
+    #Scenario 4: User navigates to next page with ALL mandatory fields filled in
+    And I scroll "down" the page
+    And I click on "diabetesyes" radio option
+    And I click on "obesityyes" radio option
+    And I click on "hepatitisyes" radio option
+    And I click on "renalfailno" radio option
+    And I click on "contraceptionno" radio option
+    And I click on "hivno" radio option
+    And I click on "Next"
+    And I check I am on "Current Medications" page
+    And I click on "Next"
+    And I click on "Next"
+    And I check I am on "HepC History" page
+    Then "<Item>" is displayed as "<ItemName>"
+      | Item  | ItemName                                                           |
+      | item1 | Validation Errors                                                  |
+      | item2 | Likely Year of Acquisition is mandatory                            |
+      | item3 | Risk factors of Acquisition - please select one or more, or select |
+      | item4 | Opiod Substitution is mandatory                                    |
+      | item6 | Genotype is mandatory                                              |
+    #Scenario 5 Navigating to F/C History page
+    And I click on "genotype2" radio option
+    And I select "2015" from "acquisitionInput"
+    And I click on "Tattoos" checkbox
+    And I click on "opioidyes" radio option
+    And I click on "genotype1a" radio option
+    And I click on "viralload6mless" radio option
+    And I click on "previoustherapyno" radio option
+    And I click on "Next"
+    And I check I am on "Fibrosis Assessment" page
+    And I enter the details as
+      | Fields   | Value      |
+      | aprilevl | <aprilevl> |
+      | ast      | <ast>      |
+      | Platelet | <Platelet> |
+    And I click on "Submit Assessment" 
+    Then I see text "Based on the information" displayed
+    Then "<Item>" is displayed as "<ItemName>"
+      | Item  | ItemName |
+      | item1 | Back     |
+      | item1 | Continue |
+    And I click on "Continue"
+    # as a nurse go upto "Treatment Options" page
+    Then I see the table "treatmentoptiontable" displayed
+    Then I "check" text "Elbasvir + Grazoprevir" displayed in table "treatmentoptiontable"
+    Then I "check" text "Paritaprevir/ RTV + Ombitasvir + Dasabuvir + Ribavirin" displayed in table "treatmentoptiontable"
+    Then I "click" text "Paritaprevir/ RTV + Ombitasvir + Dasabuvir + Ribavirin" displayed in table "treatmentoptiontable"
 
-    #Then I click on image "icon_menu"
-    #And I wait for "1000" millisecond
-    #Then I click on image "logout"
-    # login again as practitioner created above
-    #And I wait for "1000" millisecond
-    #Then I click on button "loginAgain"
-    #And I wait for "1000" millisecond
-    #And I paste "email"
-    #And I enter the details as
-    #| Fields        | Value            |
-    #| inputPassword | <specialisation> |
-    #And I hit Enter
-    #And I check I am on "My Tasks" page
+    # Verify patient comes in nurse list
+    Then I click on image "icon_menu"
+    And I wait for "1000" millisecond
+    And I click on " My Patients"
+    Then I see the table "myPatientsTable" displayed
+    And I enter the details as
+      | Fields          | Value       |
+      | searchtextInput | <FirstName> |
+    And I hit Enter
+    And I click on "<FirstName>"
+    And I check I am on "Patient Profile" page
     Examples: 
-      | PortalName | email                         | Password | FirstName   | firstName             | lastName               |ProviderNo| contactNumber | emailAddress      | specialisation | password       |
-      | Gessit     | hemant.shori@dbresults.com.au | pass123  | Bobbyprodtt | chooktafatta| practionerdasecondname |12345674 |     00001111 | h@1d0n0texixt.com | Anypassword123 | Anypassword123 |
+      | PortalName | email                  | Password | FirstName         | EmailInput   | LastName    | contactInput | medicare | CU  | postCode | ResidentialAddress1 | Weight | Height | ResidentialAddress2 | Suburb   | aprilevl | ast | Platelet |
+      | Gessit     | demonurse123@gmail.com | pass123  | TestNurseCreation | abwc@abc.com | SomePatient |   0422000000 |        7 | Bay |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |       12 |  12 |      200 |
