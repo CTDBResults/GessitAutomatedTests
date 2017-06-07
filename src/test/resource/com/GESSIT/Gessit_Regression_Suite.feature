@@ -1,4 +1,4 @@
-
+@Gessit_Regression
 Feature: Some feature
 
   Scenario Outline: GES-70, GES-72
@@ -2860,7 +2860,7 @@ Feature: Some feature
       | PortalName | email                       | Password | FirstName   | CU    | EmailInput   | LastName    | contactInput | medicare | postCode | ResidentialAddress1 | Weight | Height | ResidentialAddress2 | Suburb   |
       | Gessit     | demogp123@gmail.com         | pass123  | Bobbyprodtt | Royal | abwc@abc.com | Smithprodtt |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
       | Gessit     | demospecialist123@gmail.com | pass123  | Bobbyprodtt | Royal | abwc@abc.com | Smithprodtt |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
-@Gessit_Regression
+
   Scenario Outline: GES-119, GES-621 As an Administrator, I want the ability to create and view Care Units
     #Scenario 1: Administrator accesses Create Care Unit function
     Given I want to login to portal "<PortalName>"
@@ -2951,7 +2951,7 @@ Feature: Some feature
     Examples: 
       | PortalName | email                         | Password | CareUnitNameValue  | Postcode | Address Line 1 | Contact Number | Contact Email | Suburb    |
       | Gessit     | hemant.shori@dbresults.com.au | pass123  | Test119and621tnine |     3000 | 13 Kona St     |       99880099 | test@test.com | Melbourne |
-@Gessit_Regression
+
   Scenario Outline: preceded by below  test case and create a care unit which will be attached to above practitioner
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -2981,7 +2981,7 @@ Feature: Some feature
     Examples: 
       | PortalName | email                         | Password | name    | Postcode | Address Line 1 | Contact Number | Contact Email | Suburb    |
       | Gessit     | hemant.shori@dbresults.com.au | pass123  | bhonsdu |     3000 | 13 Kona St     |       99880099 | test@test.com | Melbourne |
-@Gessit_Regression
+
   Scenario Outline: As an Administrator, I want the ability to create a Practitioner GES-192
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
