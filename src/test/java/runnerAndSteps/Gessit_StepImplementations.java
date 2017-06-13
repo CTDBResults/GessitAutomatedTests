@@ -127,6 +127,7 @@ public class Gessit_StepImplementations {
 		// *****************>>>>>>>>>>>>>>>>>>>>>>>> " +Capture);
 
 		DBUtilities createXpath = new DBUtilities(driver);
+		
 		String myxpath = createXpath.xpathMakerById(arg1);
 		Gessit_StepImplementations.CapturedValue = driver.findElement(By.xpath(myxpath)).getAttribute("value");
 		System.out.println("object that is captured is *****************>>>>>>>>>>>>>>>>>>>>>>>> " + CapturedValue);
