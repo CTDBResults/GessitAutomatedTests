@@ -1,4 +1,4 @@
- @Gessit_Regression
+ 
 Feature: Some feature
 
  
