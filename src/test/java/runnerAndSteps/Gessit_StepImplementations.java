@@ -88,7 +88,7 @@ public class Gessit_StepImplementations {
 
 	@After()
 	public void tearDown() {
-		 driver.quit();
+		// driver.quit();
 	}
 	// ******************************************************************************
 
@@ -762,6 +762,16 @@ public class Gessit_StepImplementations {
 
 	}
 
+	@And("^I check my \"(.*?)\"$")
+	public void i_check_my(String arg1) throws Throwable {
+		LandingPage checkMail = PageFactory.initElements(driver, LandingPage.class);
+		String myxpath = checkMail.xpathMakerByClass(arg1);
+		WebElement elementToBeClicked =  driver.findElement(By.xpath(myxpath));
+		elementToBeClicked.click();
+		
+		
+		
+	}
 	@Then("^I compare \"(.*?)\" to \"(.*?)\" to check if variation is displayed correctly$")
 	public void i_compare_to_to_check_if_variation_is_displayed_correctly(String arg1, String arg2) throws Throwable {
 		LandingPage compareValues = PageFactory.initElements(driver, LandingPage.class);

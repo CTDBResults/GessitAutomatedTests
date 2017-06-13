@@ -1,6 +1,7 @@
+
 Feature: some feature
 
-  
+
   Scenario Outline: GES-997, GP/Specialist creates a TP, Nurse should be able to COMMENCE Medication
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -120,7 +121,7 @@ Feature: some feature
     Examples: 
       | PortalName | email               | Password | FirstName               | CU  | EmailInput   | LastName  | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message1      |
       | Gessit     | demogp123@gmail.com | pass123  | NurseCommenceMedication | Bay | abwc@abc.com | GAPprodtt |   0422000000 |        7 |     2222 |       40 |  50 |      200 | Non-Cirrhotic |
-
+ 
   Scenario Outline: GES-997-2, GP/Specialist creates a TP, Nurse should be able to COMMENCE Medication
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -158,3 +159,74 @@ Feature: some feature
     Examples: 
       | PortalName | email               | Password | FirstName               | CU  | EmailInput   | LastName  | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message1      |
       | Gessit     | demonurse123@gmail.com | pass123  | NurseCommenceMedication | Bay | abwc@abc.com | GAPprodtt |   0422000000 |        7 |     2222 |       40 |  50 |      200 | Non-Cirrhotic |
+
+        
+       Scenario Outline: GES-937-2, Using above two scenarios- specialist will cancel the TP and check if GP gets notified
+    Given I want to login to portal "<PortalName>"
+    And I wait for "10000" millisecond
+    And I enter the details as
+      | Fields        | Value      |
+      | email         | <email>    |
+      | inputPassword | <Password> |
+    And I hit Enter
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
+    And I wait for "1000" millisecond
+    And I click on " My Patients"
+    Then I see the table "myPatientsTable" displayed
+    And I enter the details as
+      | Fields          | Value      |
+      | searchtextInput | <LastName> |
+    And I hit Enter
+    Then I see text "<FirstName>" displayed
+    And I click on "<FirstName>"
+    And I check I am on "Patient Profile" page
+    And I click on "Paritaprevir/ RTV + Ombitasvir + Dasabuvir + Ribavirin 12weeks"
+    # checking that nurse should be able to perform the following
+    And I wait for "1000" millisecond
+    # stupid sys....cancel marked as saveButton
+    And I click on button "saveButton"
+    #Then I see text "Cancel Plan (Early Termination of Plan)" displayed
+    And I see popup "modal-body-next" displayed
+    # And I click on "Cancel Plan" on popup
+    And I click on button "sendRequestArchive"
+    Then "<Item>" is displayed as "<ItemName>"
+      | Item  | ItemName                                          |
+      | item1 | RNA Detected is mandatory                         |
+      | item1 | Reason for early termination of plan is mandatory |
+    And I wait for "1000" millisecond
+    And I click on "Lost to Follow-up" checkbox
+    And I click on "RNADetectedYes" radio option
+    And I click on button "sendRequestArchive"
+    And I wait for "1000" millisecond
+    Then I see text "Treatment Plan (Cancelled)" displayed
+
+    Examples: 
+      | PortalName | email               | Password | FirstName               | CU  | EmailInput   | LastName  | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message1      |
+      | Gessit     | demospecialist123@gmail.com | pass123  | NurseCommenceMedication | Bay | abwc@abc.com | GAPprodtt |   0422000000 |        7 |     2222 |       40 |  50 |      200 | Non-Cirrhotic |
+      
+         @wip
+       Scenario Outline: GES-937-2, Using above two scenarios- specialist will cancel the TP and check if GP gets notified
+    Given I want to login to portal "<PortalName>"
+    And I wait for "10000" millisecond
+    And I enter the details as
+      | Fields        | Value      |
+      | email         | <email>    |
+      | inputPassword | <Password> |
+    And I hit Enter
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
+    And I wait for "10000" millisecond
+    And I click on " My Patients"
+    Then I see the table "myPatientsTable" displayed
+    And I enter the details as
+      | Fields          | Value      |
+      | searchtextInput | <LastName> |
+    And I hit Enter
+    And I check I am on "My Patients" page
+    And I check my "inbox"
+     Then I see text "Treatment Plan Cancelled" displayed
+    Examples: 
+      | PortalName | email               | Password | FirstName               | CU  | EmailInput   | LastName  | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message1      |
+      | Gessit     | demogp123@gmail.com | pass123  | NurseCommenceMedication | Bay | abwc@abc.com | GAPprodtt |   0422000000 |        7 |     2222 |       40 |  50 |      200 | Non-Cirrhotic |
+      
