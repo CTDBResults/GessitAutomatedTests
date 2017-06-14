@@ -1,4 +1,4 @@
- 
+@Gessit_Regression
 Feature: Some feature
 
 
@@ -211,7 +211,7 @@ Feature: Some feature
       | PortalName | email                       | Password | FirstName         | EmailInput   | LastName    | contactInput | medicare | postCode | ResidentialAddress1 | Weight | Height | ResidentialAddress2 | Suburb   |
       | Gessit     | demospecialist123@gmail.com | pass123  | Hemantautoprodott | abwc@abc.com | Smithprodtt |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
 
-  @Gessit_Regression
+  
   Scenario Outline: GES-34 As a GP/Specialist, I want the ability to record a diagnosis against a patient's record so that the relevant assessment can be performed
     #Scenario 1: Hep C diagnosis
     Given I want to login to portal "<PortalName>"
@@ -303,7 +303,7 @@ Feature: Some feature
       | Gessit     | demospecialist123@gmail.com | pass123  | TestThirtyFourprodtt | Royal | abwc@abc.com | testprodtt |   0422000000 |        7 |     2222 | 344 Sector 9        |     44 |    123 | 3344 secto 19       | Oakleigh |
 
   # get username from above
-   @Gessit_Regression
+   
   Scenario Outline: GES-8 patient search, GES-351 As a GP/Specialist, I want to create an Assessment form for a diagnosis and enter a patients clinical details and intercurrent conditions
     #Scenario 1: Basically just the form check on Medical history tab
     Given I want to login to portal "<PortalName>"
@@ -341,7 +341,7 @@ Feature: Some feature
     Examples: 
       | PortalName | email                       | Password | FirstName            |
       | Gessit     | demospecialist123@gmail.com | pass123  | TestThirtyFourprodtt |
- @Gessit_Regression
+  
   Scenario Outline: GES-142 As a GP/Specialist, I want to create an Assessment form for a diagnosis and enter the HCV details so that I know what treatment options are applicable
     # GES-34 As a GP/Specialist, I want the ability to record a diagnosis against a patient's record so that the relevant assessment can be performed
     #Scenario 34/1: Hep C diagnosis
