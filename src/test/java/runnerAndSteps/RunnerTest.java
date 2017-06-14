@@ -18,11 +18,11 @@ import cucumber.api.junit.Cucumber;
 		// features = "src/test/resource/com/GESSIT/SanityTestScript.feature")
 
 		// ****************for Regression****************************
-		// features = "src/test/resource/com/GESSIT/Gessit_Regression_Suite.feature")
+		 features = "src/test/resource/com/GESSIT/Gessit_Regression_Suite.feature")
 
 		// ********************for wip********************************
 
-		features = "src/test/resource/com/GESSIT/wip.feature")
+		//features = "src/test/resource/com/GESSIT/wip.feature")
 
 // ***************************for algo**************************
 // features = "src/test/resource/com/GESSIT/algo.feature")
