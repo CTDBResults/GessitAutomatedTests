@@ -407,7 +407,7 @@ public class Gessit_StepImplementations {
 	public void i_click_on_popup(String arg1) throws Throwable {
 		// give time for page loading
 
-		if (arg1.equals("agreeButton")) {
+		if (arg1.equals("agreeButton")||arg1.equals("removeMedication")) {
 			DBUtilities createXpath = new DBUtilities(driver);
 			String myxpath = createXpath.xpathMakerByExactId(arg1);
 			System.out.println("cliclking on popup" + myxpath);

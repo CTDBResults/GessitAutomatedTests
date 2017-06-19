@@ -1,4 +1,4 @@
-@Gessit_Regression
+ @Gessit_Regression
 Feature: Some feature
 
 
@@ -21,7 +21,6 @@ Feature: Some feature
       | PortalName | email          | Password | Message                                  |
       | Gessit     | test1@test.com | pass123  | Invalid login details. Please try again. |
       | Gessit     |                | pass123  | Invalid login details. Please try again. |
-
 
   Scenario Outline: GES-72
     Given I want to login to portal "<PortalName>"
@@ -341,7 +340,7 @@ Feature: Some feature
     Examples: 
       | PortalName | email                       | Password | FirstName            |
       | Gessit     | demospecialist123@gmail.com | pass123  | TestThirtyFourprodtt |
-  
+ 
   Scenario Outline: GES-142 As a GP/Specialist, I want to create an Assessment form for a diagnosis and enter the HCV details so that I know what treatment options are applicable
     # GES-34 As a GP/Specialist, I want the ability to record a diagnosis against a patient's record so that the relevant assessment can be performed
     #Scenario 34/1: Hep C diagnosis
@@ -745,6 +744,7 @@ Feature: Some feature
       | Gessit     | demospecialist123@gmail.com | pass123  | TestOnesixfourSpecilToApproveprodtt | abwc@abc.com | PatientIsCirrhoticprodtt |    042211111 |        7 |     2222 |       40 |  50 |       20 | Complications |
 
   #patient name should be same as above TC (get data from above)
+ 
   Scenario Outline: GES-529 As a GP/Specialist, I want the ability to save the draft treatment plan to view that at a later stage
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -1391,6 +1391,7 @@ Feature: Some feature
   #***********************************************************************************************************************
   #***********************************************************************************************************************
   #***********************************************************************************************************************
+
   Scenario Outline: Set 1..... login as gp.......create a draft (NC)....... approve
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -1492,6 +1493,7 @@ Feature: Some feature
 
   #################################################### E2E Set2 #####################################################
   #GES-736 check meddication search
+  
   Scenario Outline: Set 1..... login as gp.......create a draft (C)....... SHOULD NOT BE ABLE TO APPROVE (different popup options)....send it to specialist
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -1622,6 +1624,7 @@ Feature: Some feature
       | Gessit     | demogp123@gmail.com | pass123  | CheckStatusForCPravprodtt | abwc@abc.com | GAPprodtt | Bay |   0422000000 |        7 |     2222 |       40 |  50 |       20 | Complications |
 
   ########################################### Set 3 E2E#########################################
+  
   Scenario Outline: Set 2..... login as gp.......Create NC....... approve
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -3229,7 +3232,7 @@ Feature: Some feature
       | PortalName | email                    | Password |
       | Gessit     | demopatient987@gmail.com | pass123  |
       
-      
+
        Scenario Outline: GES-939 , Add and delete medication
   
 Given I want to login to portal "<PortalName>"
@@ -3300,6 +3303,7 @@ Given I want to login to portal "<PortalName>"
     And I click on button "removeMedicationHRef"
     And I see popup "modal-content" displayed
     And I click on "removeMedication" on popup
+    And I wait for "1000" millisecond
     Then I see text "milk powder lactose free formula" not displayed
 
     Examples: 
@@ -3427,7 +3431,7 @@ Given I want to login to portal "<PortalName>"
     Examples: 
       | PortalName | email               | Password | FirstName               | CU  | EmailInput   | LastName  | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message1      |
       | Gessit     | demogp123@gmail.com | pass123  | NurseCommenceMedication | Bay | abwc@abc.com | GAPprodtt |   0422000000 |        7 |     2222 |       40 |  50 |      200 | Non-Cirrhotic |
- 
+ @Gessit_Regression
   Scenario Outline: GES-997-2, GP/Specialist creates a TP, Nurse should be able to COMMENCE Medication
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -3535,4 +3539,142 @@ Given I want to login to portal "<PortalName>"
     Examples: 
       | PortalName | email               | Password | FirstName               | CU  | EmailInput   | LastName  | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message1      |
       | Gessit     | demogp123@gmail.com | pass123  | NurseCommenceMedication | Bay | abwc@abc.com | GAPprodtt |   0422000000 |        7 |     2222 |       40 |  50 |      200 | Non-Cirrhotic |
+      
+      ######################## START ###############################
+      Scenario Outline: GES1124 - As a GP/Specialist, I should be able to add notes to a treatment plan page
+    Given I want to login to portal "<PortalName>"
+    And I wait for "10000" millisecond
+    And I enter the details as
+      | Fields        | Value      |
+      | email         | <email>    |
+      | inputPassword | <Password> |
+    And I hit Enter
+    And I check I am on "My Tasks" page
+    Then I click on image "icon_menu"
+    And I wait for "1000" millisecond
+    And I click on "Create New Patient"
+    And I wait for "1000" millisecond
+    And I see popup "consentModal" displayed
+    And I wait for "1000" millisecond
+    And I click on "agreeButton" on popup
+    And I wait for "1000" millisecond
+    And I click on "Create Patient"
+    And I check I am on "Personal Details" page
+    And I enter the details as
+      | Fields         | Value          |
+      | FirstName      | <FirstName>    |
+      | EmailInput     | <EmailInput>   |
+      | LastNameInput  | <LastName>     |
+      | contactInput   | <contactInput> |
+      | medicareInput  | <medicare>     |
+      | postCodeInput  | <postCode>     |
+      | FirstNameInput | <FirstName>    |
+      | FirstNameInput | <FirstName>    |
+    And I wait for "1000" millisecond
+    And I use "DOB" to enter "12122001"
+    And I select "<CU>" from "patientCareUnit"
+    And I select "Male" from "gender"
+    And I click on "Create Patient"
+    And I click on "Next"
+    And I check I am on "Medications" page
+    And I click on "Next"
+    And I check I am on "Diagnosis" page
+    And I click on "Add HCV diagnosis"
+    Then "<Item>" is displayed as "<ItemName>"
+      | Item  | ItemName                      |
+      | item1 | Chronic Hepatitis C Infection |
+    And I click on "Add Assessment"
+    And I check I am on "Basic Information" page
+    And I select "Kildare, James" from "specialist"
+    # And I select "Darwin - Torsten Wiesel (GP)" from "GP"
+    And I click on "Save"
+    And I click on "Next"
+    And I check I am on "Medical History" page
+    And I click on "diabetesyes" radio option
+    And I click on "obesityyes" radio option
+    And I click on "hepatitisyes" radio option
+    And I click on "renalfailno" radio option
+    And I click on "contraceptionno" radio option
+    And I click on "hivno" radio option
+    And I click on "Next"
+    And I check I am on "Current Medications" page
+    And I click on "Next"
+    And I click on "Next"
+    And I check I am on "HepC History" page
+    And I click on "genotype2" radio option
+    And I select "2015" from "acquisitionInput"
+    And I click on "Tattoos" checkbox
+    And I click on "opioidyes" radio option
+    And I click on "genotype1a" radio option
+    And I click on "viralload6mless" radio option
+    And I click on "previoustherapyno" radio option
+    And I click on "Next"
+    And I check I am on "Fibrosis Assessment" page
+    And I enter the details as
+      | Fields   | Value      |
+      | aprilevl | <aprilevl> |
+      | ast      | <ast>      |
+      | Platelet | <Platelet> |
+    And I click on "Submit Assessment"
+    Then I see text "<text>" displayed
+    Then "<Item>" is displayed as "<ItemName>"
+      | Item  | ItemName |
+      | item1 | Back     |
+      | item1 | Continue |
+    And I click on "Continue"
+    And I check I am on "Treatment Options" page
+    Then I see the table "treatmentoptiontable" displayed
+    Then I "check" text "Elbasvir + Grazoprevir" displayed in table "treatmentoptiontable"
+    Then I "click" text "Paritaprevir/ RTV + Ombitasvir + Dasabuvir + Ribavirin" displayed in table "treatmentoptiontable"
+    And I click on "Select Treatment"
+    Then I see text "Treatment Plan (New)" displayed
+ Then I click on "Submit"
+ And I see popup "modal-body-next" displayed
+ # And I click on text "Request Referral to Liver Clinic"
+  And I click on text "Request Specialist participation in"
+    And I click on button "sendRequestNonCirrhosis"
+    # check that status has changed
+    Then I see text "Treatment Plan (Pending Approval)" displayed
+    Then "<Item>" is NOT displayed as "<ItemName>"
+      | Item  | ItemName |
+      | item1 | Submit   |
+
+    Examples: 
+      | PortalName | email               | Password | FirstName               | EmailInput   | LastName   | contactInput | CU  | medicare | postCode | aprilevl | ast | Platelet | Message | text                     | addnote   | noteinput     | addnote2              | noteinput2                     | billrubin | inr | albumin | creatinine | Poorly controlled | Minimum | variscesyes | bleedingyes |
+      | Gessit     | demogp123@gmail.com | pass123  | sendToSpecialist | abwc@abc.com | with parameters |   0422000000 | Bay |        7 |     2222 |       40 |  50 |      200 |         | Based on the information | I am a GP | entering note | GP, the first contact | Check if i can add to approved |           |     |         |            |                   |         |             |             |
+
+  
+
+   Scenario Outline: GES1124 - As a GP/Specialist, I should be able to add notes to a treatment plan page
+    # ********* continue from above...Specialist pick up above patient and cancel it********
+    Given I want to login to portal "<PortalName>"
+    And I wait for "10000" millisecond
+    And I enter the details as
+      | Fields        | Value      |
+      | email         | <email>    |
+      | inputPassword | <Password> |
+    And I hit Enter
+    And I check I am on "My Tasks" page
+     Then I click on image "icon_menu"
+    And I wait for "1000" millisecond
+    And I click on " My Patients"
+    Then I see the table "myPatientsTable" displayed
+    And I enter the details as
+      | Fields          | Value      |
+      | searchtextInput | <LastName> |
+    And I hit Enter
+    Then I see text "<LastName>" displayed
+    And I click on "<LastName>"
+        And I click on "Edit Patient Details "
+    And I click on "Treatment Plans"
+    Then I see text "Treatment Plan (Pending Approval)" displayed
+        # stupid sys....cancel marked as saveButton
+    And I click on button "saveButton"
+   And I wait for "1000" millisecond
+    Then I see text "Treatment Plan (Cancelled)" displayed
+    Examples: 
+      | PortalName | email               | Password | FirstName               | EmailInput   | LastName   | contactInput | CU  | medicare | postCode | aprilevl | ast | Platelet | Message | text                     | addnote   | noteinput     | addnote2              | noteinput2                     | billrubin | inr | albumin | creatinine | Poorly controlled | Minimum | variscesyes | bleedingyes |
+      | Gessit     | demospecialist123@gmail.com | pass123  | sendToSpecialist | abwc@abc.com | with parameters |   0422000000 | Bay |        7 |     2222 |       40 |  50 |      200 |         | Based on the information | I am a GP | entering note | GP, the first contact | Check if i can add to approved |           |     |         |            |                   |         |             |             |
+      
+      ######################### END ##############################
             

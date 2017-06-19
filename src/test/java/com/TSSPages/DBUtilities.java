@@ -93,11 +93,26 @@ public class DBUtilities extends XPathGenerator {
 
 	}
 
-	public void checkBoxClick(String arg1) {
+	public void checkBoxClick(String arg1) throws InterruptedException {
 		DBUtilities createXpath = new DBUtilities(driver);
 		String myxpath = createXpath.xpathMakerContainsText(arg1);
 		System.out.println("Clicking on the checkbox " + myxpath);
-		driver.findElement(By.xpath(myxpath)).click();
+		//driver.findElement(By.xpath(myxpath)).click();
+//		*****************8
+		
+		  WebElement element = driver.findElement(By.xpath(myxpath));
+
+		    try {
+		        element.click();
+		    } catch (Exception e) {
+		    	Actions actions = new Actions(driver);
+		    	actions.keyDown(Keys.CONTROL).sendKeys(Keys.END).perform();
+		    	Thread.sleep(3000);
+		        element.click();
+		    }
+		
+		
+		
 	}
 
 	public void checkTextElementAbsent(DataTable table) throws InterruptedException {
@@ -390,10 +405,21 @@ public class DBUtilities extends XPathGenerator {
 
 	public void selectDropdownValue(String arg1, String arg2) throws InterruptedException {
 		String myxpath = new DBUtilities(driver).xpathMakerContainsText(arg1);
-		driver.findElement(By.xpath(myxpath)).click();
+		//driver.findElement(By.xpath(myxpath)).click();
 		// disabling following as Gessit format is different
 		// String myxpath2= new DBUtilities(driver).xpathMakerById(arg2);
 		// driver.findElement(By.xpath(myxpath2)).click();
+//		************* 
+		WebElement element = driver.findElement(By.xpath(myxpath));
+
+	    try {
+	        element.click();
+	    } catch (Exception e) {
+	    	Actions actions = new Actions(driver);
+	    	actions.keyDown(Keys.CONTROL).sendKeys(Keys.END).perform();
+	    	
+	        element.click();
+	    }
 
 	}
 
