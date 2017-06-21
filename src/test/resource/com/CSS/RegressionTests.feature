@@ -30,7 +30,7 @@ Feature: To test the functionality of Appication as described in Jira Stories fo
 
     Examples: 
       | PortalName | UserNameField | PasswordField | UserName | Password   | ButtonName | ServiceName              | AccountNumber          | Address                                                |
-      | CSS        | UserNameInput | PasswordInput | Michael  | Dbresults1 | Accounts   | Residential: Electricity | Account No. 2411617223 | Apt. 201, 300 Mission Street, San Francisco, CA, 94105 |
+      | CSS        | UserNameInput | PasswordInput | Christian  | Aussie | Accounts   | Residential: Electricity | Account No. 2411617223 | Apt. 201, 300 Mission Street, San Francisco, CA, 94105 |
 
   @ShakeOut
   Scenario Outline: Check Usage Menu Item List Test 1, DCSSP-245 Description: User views the menu items Epic: Common Components
@@ -77,7 +77,7 @@ Feature: To test the functionality of Appication as described in Jira Stories fo
       | CSS        | UserNameInput | PasswordInput | Michael  | Dbresults1 | Set Up Direct Debit |
       | CSS        | UserNameInput | PasswordInput | Michael  | Dbresults1 | Set Up eBilling     |
       | CSS        | UserNameInput | PasswordInput | Michael  | Dbresults1 | Current_Bill        |
-
+@Kammu
   Scenario Outline: Test20, Test21, Test22, Test23, Test24, Test26, Check Billing history page elements.
     Given I want to login to portal "<PortalName>"
     And I enter the details as
@@ -101,7 +101,7 @@ Feature: To test the functionality of Appication as described in Jira Stories fo
 
     Examples: 
       | PortalName | UserNameField | PasswordField | UserName | Password   | ButtonName      | ServiceName              | ButtonName2                                                 | ButtonName3   |
-      | CSS        | UserNameInput | PasswordInput | Michael  | Dbresults1 | Billing History | Residential: Electricity | Apt. 201, 300 Mission Street, San Francisco, CA, 94105 2603 | Usage History |
+      | CSS        | UserNameInput | PasswordInput | Christian  | Aussie | BILLING HISTORY | Residential: Electricity | Apt. 201, 300 Mission Street, San Francisco, CA, 94105 2603 | Usage History |
 
   Scenario Outline: Test 25, User views the Billing History page
     Given I want to login to portal "<PortalName>"

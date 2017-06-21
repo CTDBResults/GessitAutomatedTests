@@ -19,6 +19,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
@@ -62,10 +63,10 @@ public class Gessit_StepImplementations {
 
 		// the location of the driver is been changed to match with remote
 		// server setting..... HS
+		
+		//+++++++++++++ FOR CHROME ++++++++++++++++++++++++++
 		System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Automation Tools\\Drivers\\chromedriver.exe");
-
 		// following is added to fix chrome maximise issue
-
 		ChromeOptions options = new ChromeOptions();
 		options.addArguments("test-type");
 		options.addArguments("start-maximized");
@@ -75,8 +76,17 @@ public class Gessit_StepImplementations {
 		options.addArguments("--disable-default-apps");
 		options.addArguments("test-type=browser");
 		options.addArguments("disable-infobars");
-
 		driver = new ChromeDriver(options);
+		//++++++++++++++++++++++++++++++++++++++++++++++++++
+		
+		
+		
+		
+		//+++++++++++++ FOR HEADLESS ++++++++++++++++++++++++++
+		//driver = new HtmlUnitDriver();
+		
+		
+		//+++++++++++++++++++++++++++++++++++++++
 
 		// driver = new ChromeDriver();
 
