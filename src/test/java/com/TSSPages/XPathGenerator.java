@@ -68,6 +68,11 @@ public class XPathGenerator {
 		String xpath = "(//*[contains(text(),'" + buttonName + "')])[2]";
 		return xpath;
 	}
+	public String xpathMakerContainsText1stOption(String buttonName) {
+		String xpath = "(//*[contains(text(),'" + buttonName + "')])[1]";
+		return xpath;
+	}
+
 
 	public String xpathMakerContainsID2ndOption(String arg1) {
 		String xpath = "(//input[contains(@id, '" + arg1 + "')])[2]";

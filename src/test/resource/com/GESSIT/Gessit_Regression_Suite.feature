@@ -432,6 +432,7 @@ Feature: Some feature
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
     And I click on "hepatitisyes" radio option
+    And I scroll "down" the page
     And I click on "renalfailno" radio option
     And I click on "contraceptionno" radio option
     And I click on "hivno" radio option
@@ -522,6 +523,7 @@ Feature: Some feature
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
     And I click on "hepatitisyes" radio option
+    And I scroll "down" the page
     And I click on "renalfailyes" radio option
     And I click on "contraceptionno" radio option
     And I click on "hivno" radio option
@@ -627,6 +629,7 @@ Feature: Some feature
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
     And I click on "hepatitisyes" radio option
+    And I scroll "down" the page
     And I click on "renalfailyes" radio option
     And I click on "contraceptionno" radio option
     And I click on "hivno" radio option
@@ -889,6 +892,7 @@ Feature: Some feature
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
     And I click on "hepatitisyes" radio option
+    And I scroll "down" the page
     And I click on "renalfailno" radio option
     And I click on "contraceptionno" radio option
     And I click on "hivno" radio option
@@ -1031,6 +1035,7 @@ Feature: Some feature
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
     And I click on "hepatitisyes" radio option
+    And I scroll "down" the page
     And I click on "renalfailno" radio option
     And I click on "contraceptionno" radio option
     And I click on "hivno" radio option
@@ -1169,6 +1174,7 @@ Feature: Some feature
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
     And I click on "hepatitisyes" radio option
+    And I scroll "down" the page
     And I click on "renalfailno" radio option
     And I click on "contraceptionno" radio option
     And I click on "hivno" radio option
@@ -1276,7 +1282,7 @@ Feature: Some feature
     Examples: 
       | PortalName | email               | Password | FirstName            | EmailInput   | LastName  | contactInput | medicare | postCode | aprilevl | ast | Platelet | Message1      |
       | Gessit     | demogp123@gmail.com | pass123  | GPApprovedPlanprodtt | abwc@abc.com | GAPprodtt |   0422000000 |        7 |     2222 |       40 |  50 |      200 | Non-Cirrhotic |
-
+@def
   Scenario Outline: GES-499, As a Specialist, I want the ability to approve a draft treatment plan that I have created
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -1340,6 +1346,7 @@ Feature: Some feature
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
     And I click on "hepatitisyes" radio option
+    And I scroll "down" the page
     And I click on "renalfailno" radio option
     And I click on "contraceptionno" radio option
     And I click on "hivno" radio option
@@ -1443,12 +1450,12 @@ Feature: Some feature
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
     And I click on "hepatitisyes" radio option
+    And I scroll "down" the page
     And I click on "renalfailno" radio option
     And I click on "contraceptionno" radio option
     And I click on "hivno" radio option
     And I click on "Next"
     And I check I am on "Current Medications" page
-    And I click on "Next"
     And I click on "Next"
     And I check I am on "HepC History" page
     And I click on "genotype2" radio option
@@ -1562,6 +1569,7 @@ Feature: Some feature
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
     And I click on "hepatitisyes" radio option
+    And I scroll "down" the page
     And I click on "renalfailyes" radio option
     And I click on "contraceptionno" radio option
     And I click on "hivno" radio option
@@ -1675,6 +1683,7 @@ Feature: Some feature
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
     And I click on "hepatitisyes" radio option
+    And I scroll "down" the page
     And I click on "renalfailno" radio option
     And I click on "contraceptionno" radio option
     And I click on "hivno" radio option
@@ -1774,6 +1783,7 @@ Feature: Some feature
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
     And I click on "hepatitisyes" radio option
+    And I scroll "down" the page
     And I click on "renalfailno" radio option
     And I click on "contraceptionno" radio option
     And I click on "hivno" radio option
@@ -1868,6 +1878,7 @@ Feature: Some feature
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
     And I click on "hepatitisyes" radio option
+    And I scroll "down" the page
     And I click on "renalfailno" radio option
     And I click on "contraceptionno" radio option
     And I click on "hivno" radio option
@@ -1999,6 +2010,7 @@ Feature: Some feature
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
     And I click on "hepatitisyes" radio option
+    And I scroll "down" the page
     And I click on "renalfailno" radio option
     And I click on "contraceptionno" radio option
     And I click on "hivno" radio option
@@ -2198,6 +2210,7 @@ Feature: Some feature
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
     And I click on "hepatitisyes" radio option
+    And I scroll "down" the page
     And I click on "renalfailno" radio option
     And I click on "contraceptionno" radio option
     And I click on "hivno" radio option
@@ -2350,6 +2363,7 @@ Feature: Some feature
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
     And I click on "hepatitisyes" radio option
+    And I scroll "down" the page
     And I click on "renalfailno" radio option
     And I click on "contraceptionno" radio option
     And I click on "hivno" radio option
@@ -2489,6 +2503,7 @@ Feature: Some feature
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
     And I click on "hepatitisyes" radio option
+    And I scroll "down" the page
     And I click on "renalfailno" radio option
     And I click on "contraceptionno" radio option
     And I click on "hivno" radio option
@@ -2628,6 +2643,7 @@ Feature: Some feature
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
     And I click on "hepatitisyes" radio option
+    And I scroll "down" the page
     And I click on "renalfailno" radio option
     And I click on "contraceptionno" radio option
     And I click on "hivno" radio option
@@ -2716,7 +2732,6 @@ Feature: Some feature
       | PortalName | email                       | Password | FirstName                    | EmailInput   | LastName  | contactInput | medicare | CU    | postCode | aprilevl | ast | Platelet | Message | text | addnote   | noteinput     | addnote2   | noteinput2                              |
       | Gessit     | demospecialist123@gmail.com | pass123  | testTTTloginSpecialistprodtt | abwc@abc.com | SPCprodtt |   0422000000 |        7 | Royal |     2222 |       40 |  50 |       20 |         |      | I am a GP | entering note | SPecialist | Check if specialist can add to approved |
 
-  @defect
   Scenario Outline: GES-502 Password reset for an account
     Given I want to login to portal "<PortalName>"
     And I wait for "2000" millisecond
@@ -3129,6 +3144,7 @@ Feature: Some feature
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
     And I click on "hepatitisyes" radio option
+    And I scroll "down" the page
     And I click on "renalfailno" radio option
     And I click on "contraceptionno" radio option
     And I click on "hivno" radio option
@@ -3379,6 +3395,7 @@ Given I want to login to portal "<PortalName>"
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
     And I click on "hepatitisyes" radio option
+    And I scroll "down" the page
     And I click on "renalfailno" radio option
     And I click on "contraceptionno" radio option
     And I click on "hivno" radio option
@@ -3543,7 +3560,7 @@ Given I want to login to portal "<PortalName>"
       | Gessit     | demogp123@gmail.com | pass123  | NurseCommenceMedication | Bay | abwc@abc.com | GAPprodtt |   0422000000 |        7 |     2222 |       40 |  50 |      200 | Non-Cirrhotic |
       
       ######################## START ###############################
-      @debug
+     
       Scenario Outline: GES1124 - As a GP/Specialist, I should be able to add notes to a treatment plan page
     Given I want to login to portal "<PortalName>"
     And I wait for "10000" millisecond
@@ -3596,12 +3613,12 @@ Given I want to login to portal "<PortalName>"
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
     And I click on "hepatitisyes" radio option
+    And I scroll "down" the page
     And I click on "renalfailno" radio option
     And I click on "contraceptionno" radio option
     And I click on "hivno" radio option
     And I click on "Next"
     And I check I am on "Current Medications" page
-    And I click on "Next"
     And I click on "Next"
     And I check I am on "HepC History" page
     And I click on "genotype2" radio option
@@ -3759,6 +3776,7 @@ Given I want to login to portal "<PortalName>"
     And I click on "diabetesyes" radio option
     And I click on "obesityyes" radio option
     And I click on "hepatitisyes" radio option
+    And I scroll "down" the page
     And I click on "renalfailno" radio option
     And I click on "contraceptionno" radio option
     And I click on "hivno" radio option

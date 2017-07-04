@@ -30,7 +30,7 @@ import cucumber.api.junit.Cucumber;
 // features = "src/test/resource/com/GESSIT/algo.feature")
 
 //******************************************* CSS **************************************
-//features = "src/test/resource/com/CSS")
+//features = "src/test/resource/com/CSS/Regression_2017.feature")
 
 // ****************************************************************************************
 

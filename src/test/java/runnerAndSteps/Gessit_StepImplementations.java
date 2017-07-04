@@ -77,20 +77,10 @@ public class Gessit_StepImplementations {
 		options.addArguments("test-type=browser");
 		options.addArguments("disable-infobars");
 		driver = new ChromeDriver(options);
-		//++++++++++++++++++++++++++++++++++++++++++++++++++
+	
+	
 		
-		
-		
-		
-		//+++++++++++++ FOR HEADLESS ++++++++++++++++++++++++++
-		//driver = new HtmlUnitDriver();
-		
-		
-		//+++++++++++++++++++++++++++++++++++++++
-
-		// driver = new ChromeDriver();
-
-		// driver.manage().window().maximize();
+	
 
 	}
 	// **************disable to leave browser
@@ -124,18 +114,6 @@ public class Gessit_StepImplementations {
 	@Given("^I capture \"(.*?)\"$")
 	public String i_capture(String arg1) throws Throwable {
 
-		// DBUtilities createXpath = new DBUtilities(driver);
-		// String myxpath = createXpath.xpathMakerById(arg1);
-		// System.out.println(myxpath);
-		//
-		// WebElement xyz = driver.findElement(By.xpath(myxpath));
-		//
-		// //Gessit_StepImplementations.Capture= xyz.getText();
-		// //In a textbox typed text goes into the value attribute so
-		// Gessit_StepImplementations.Capture= xyz.getAttribute(arg1);
-		// System.out.println("object that is captured is
-		// *****************>>>>>>>>>>>>>>>>>>>>>>>> " +Capture);
-
 		DBUtilities createXpath = new DBUtilities(driver);
 		
 		String myxpath = createXpath.xpathMakerById(arg1);
@@ -148,21 +126,11 @@ public class Gessit_StepImplementations {
 
 	@Given("^I paste \"(.*?)\"$")
 	public void i_paste(String arg1) throws Throwable {
-		// System.out.println(Gessit_StepImplementations.CapturedValue2);
-		// System.out.println(Gessit_StepImplementations.CapturedValue2);
-		// String htmlToBePasted = Gessit_StepImplementations.CapturedValue2;
-		// System.out.println(htmlToBePasted);
-		// driver.findElement(By.xpath("//*[contains(@id,
-		// 'inputemail')]")).click();
-		// driver.findElement(By.xpath("//*[contains(@id,
-		// 'inputemail')]")).sendKeys(htmlToBePasted);
+
 
 		System.out.println(Gessit_StepImplementations.CapturedValue);
 		String htmlToBePasted = Gessit_StepImplementations.CapturedValue;
-		System.out.println(htmlToBePasted);
-//		driver.findElement(By.xpath("//*[contains(@id, 'inputemail')]")).click();
-//		driver.findElement(By.xpath("//*[contains(@id, 'inputemail')]"))
-//				.sendKeys(Gessit_StepImplementations.CapturedValue);
+
 		DBUtilities createXpath = new DBUtilities(driver);
 		String myXpath = createXpath.xpathMakerById(arg1);
 		driver.findElement(By.xpath(myXpath)).sendKeys(Gessit_StepImplementations.CapturedValue);
@@ -379,9 +347,11 @@ public class Gessit_StepImplementations {
 
 		}
 
-		else if (arg1.equals("Welcome")) {
+		else if (arg1.equals("Welcome,")) {
 			DBUtilities createXpath2 = new DBUtilities(driver);
-			String myxpath3 = createXpath2.xpathMakerContainsText(arg1);
+			String myxpath3 = createXpath2.xpathMakerContainsText1stOption(arg1);
+			System.out.println("Clicking on element " +myxpath3);
+			driver.findElement(By.xpath(myxpath3)).click();
 
 		}
 
@@ -475,9 +445,9 @@ public class Gessit_StepImplementations {
 				driver.findElement(By.xpath(myxpath2)).click();
 				Thread.sleep(1000);
 				driver.findElement(By.xpath(myxpath)).click();
-
+			
 			}
-			System.out.println();
+			
 			
 		}
 	
@@ -743,32 +713,34 @@ public class Gessit_StepImplementations {
 	@Then("^I click on \"(.*?)\" radio option$")
 	public void i_click_on_radio_option(String arg1) throws Throwable {
 
-		// String myxpath = PageFactory.initElements(driver,
-		// Gessit_AddPatientPage.class).xpathMakerById(arg1);
 		// following is for Gessit only.....because of poor coding practice
 		String myxpath = PageFactory.initElements(driver, Gessit_AddPatientPage.class).xpathMakerByIdAndlabel(arg1);
 		// for overlapping
 
 		// myXpath = createXpath.xpathMakerById(arg1);
 		WebElement elementToBeClicked = driver.findElement(By.xpath(myxpath));
-		System.out.println(elementToBeClicked.getText());
-		if (driver.findElements(By.xpath(myxpath)).size() != 0) {
-			System.out.println("Element is Present");
-		} else {
-			System.out.println("Element is Absent SOOOOOO SCROLLING DOWN");
-			DBUtilities createXpath = new DBUtilities(driver);
-			createXpath.scrollDownForElement(myxpath);
-		}
-		Thread.sleep(1000);
-		elementToBeClicked.click();
+		//System.out.println(elementToBeClicked.getText());
+//		if (driver.findElement(By.xpath(myxpath)).isDisplayed())  {
+//			System.out.println("Element is Present" +myxpath);
+//		} else {
+//			System.out.println("Element is Absent SOOOOOO SCROLLING DOWN");
+//			DBUtilities createXpath = new DBUtilities(driver);
+//			createXpath.scrollDownForElement(myxpath);
+//		}
+		
+		 try {
+				Thread.sleep(1000);
+				elementToBeClicked.click();
+		    } catch (Exception e) {
+		    	Actions actions = new Actions(driver);
+		    	Thread.sleep(1000);
+		    	actions.keyDown(Keys.CONTROL).sendKeys(Keys.END).perform();
+		    	Thread.sleep(1000);
+		    	elementToBeClicked.click();
+		    }
+		
 
-		//
-		//
-		//
-		// ((JavascriptExecutor)
-		// driver).executeScript("arguments[0].scrollIntoView(true);", myxpath);
-		// driver.findElement(By.xpath(myxpath)).click();
-		// System.out.println(" Selecting radio option " +arg1);
+
 
 	}
 

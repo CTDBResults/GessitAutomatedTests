@@ -106,12 +106,13 @@ public class DBUtilities extends XPathGenerator {
 		        element.click();
 		    } catch (Exception e) {
 		    	Actions actions = new Actions(driver);
+		    	Thread.sleep(1000);
 		    	actions.keyDown(Keys.CONTROL).sendKeys(Keys.END).perform();
-		    	Thread.sleep(3000);
+		    	Thread.sleep(1000);
 		        element.click();
 		    }
 		
-		
+
 		
 	}
 

@@ -46,7 +46,7 @@ public class LandingPage extends DBUtilities {
 
 			} else if (name.equals("Logo") || name.equals("Logo on main page")) {
 				// verify image on home screen
-				Assert.assertTrue(driver.findElement(By.xpath("//img[contains(@src, 'png')]")).isDisplayed());
+				Assert.assertTrue(driver.findElement(By.xpath("//img[contains(@src, 'D')]")).isDisplayed());
 				// Assert.assertTrue(driver.findElement(By.xpath("//img[contains(@src,
 				// 'Logo_Large.png')]")).isDisplayed());
 			} else if (name.equals("Due Date") || name.equals("Account Total")) {
